@@ -1,0 +1,21 @@
+return {
+	-- "A7Lavinraj/fyler.nvim",
+	-- dependencies = { "nvim-tree/nvim-web-devicons" },
+	-- opts = { -- check the default options in the README.md
+	-- 	icon_provider = "nvim-web-devicons",
+	-- 	close_on_select = false,
+	-- 	views = {
+	-- 		explorer = {
+	-- 			width = 0.2,
+	-- 			height = 0.2,
+	-- 		},
+	-- 	},
+	-- },
+	-- keys = {
+	-- 	{
+	-- 		"<leader>e",
+	-- 		":Fyler kind=split:left<CR>",
+	-- 		desc = "Explorer",
+	-- 	},
+	-- },
+}

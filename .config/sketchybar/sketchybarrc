@@ -1,0 +1,96 @@
+#!/bin/bash
+
+source "$CONFIG_DIR/colors.sh" # Loads all defined colors
+source "$CONFIG_DIR/icons.sh"  # Loads all defined icons
+
+SPOTIFY_EVENT="com.spotify.client.PlaybackStateChanged"
+POPUP_SCRIPT="sketchybar -m --set \$NAME popup.drawing=toggle"
+ITEM_DIR="$CONFIG_DIR/items"     # Directory where the items are configured
+PLUGIN_DIR="$CONFIG_DIR/plugins" # Directory where all the plugin scripts are stored
+
+FONT="Monaspace Neon Var" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+PADDINGS=3                # All paddings use this value (icon, label, background)
+
+# # Unload the macOS on screen indicator overlay for volume change
+# launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
+
+# Setting up the general bar appearance of the bar
+
+bar=(
+	height=26
+	shadow=off
+	position=top
+	sticky=on
+	padding_left=1
+	padding_right=1
+	topmost=window
+  corner_radius=12.5
+	y_offset=5
+	margin=5
+  color=0xCC181616
+  # color=$(color 0x66111111 0x66111111)
+  blur_radius=20
+  border_width=1
+  border_color=0x1DAAAAAA
+)
+
+sketchybar --bar "${bar[@]}"
+
+# Setting up default values
+defaults=(
+	updates=when_shown
+	icon.font="$FONT:Regular:12.0"
+	icon.color=$ICON_COLOR
+	icon.padding_left=$PADDINS
+	icon.padding_right=$PADDINGS
+	label.font="$FONT:Semibold:12.0"
+	label.color=$LABEL_COLOR
+	label.padding_left=$PADDINGS
+	label.padding_right=$PADDINGS
+	label.shadow.drawing=off
+	label.shadow.distance=2
+	label.shadow.color=0xff00000000
+	padding_right=$PADDINGS
+	padding_left=$PADDINGS
+	background.height=20
+	background.corner_radius=12.5
+	background.border_width=0
+	scroll_texts=on
+
+)
+
+sketchybar --default "${defaults[@]}"
+
+# Left
+# source "$ITEM_DIR/apple.sh"
+source "$ITEM_DIR/spaces.sh"
+source "$ITEM_DIR/front_app.sh"
+
+# Center
+source "$ITEM_DIR/spotify.sh"
+
+# Right
+source "$ITEM_DIR/calendar.sh"
+source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/battery.sh"
+# source "$ITEM_DIR/cpu.sh"
+
+sketchybar --add bracket left space.1 space.2 space.3 space.4 space.5 space.6 space.7 space.8 space.9 \
+	--set left \
+  blur_radius=20 \
+	background.height=24 \
+  # background.color=0x1D444444 \
+  # background.border_width=1 \
+  # background.border_color=0xFF222222
+
+#
+# # cpu.sys
+sketchybar --add bracket right battery volume calendar \
+	--set right \
+  blur_radius=20 \
+	background.height=24
+
+sketchybar --hotload on
+
+# Forcing all item scripts to run (never do this outside of sketchybarrc)
+sketchybar --update

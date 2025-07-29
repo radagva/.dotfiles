@@ -1,0 +1,21 @@
+theme = Kanagawa Dragon
+macos-titlebar-style = hidden
+# unfocused-split-opacity = 0.30
+
+
+font-size = 12
+window-step-resize = true
+window-padding-balance = true
+
+font-family = Monaspace Neon Var
+
+macos-option-as-alt = right
+title = " "
+
+background-opacity = 1
+background-blur-radius = 0
+split-divider-color = "#83a598"
+
+window-padding-y = 0, 0
+
+keybind = global:ctrl+`=toggle_quick_terminal
