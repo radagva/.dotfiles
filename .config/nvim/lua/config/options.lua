@@ -40,6 +40,10 @@ vim.opt.sessionoptions = "buffers,curdir,folds,winsize,terminal"
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = "*",
 	callback = function()
+		if vim.wo.winbar ~= nil and vim.wo.winbar ~= "" then
+			return
+		end
+
 		vim.o.winbar = "%{%v:lua.require('utils.winbar').get_winbar()%}"
 	end,
 })

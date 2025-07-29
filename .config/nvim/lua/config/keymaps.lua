@@ -10,7 +10,19 @@ map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 map({ "n" }, "<CR>", "o<Esc>", { silent = true, noremap = true })
 
-map({ "n" }, "<C-_>", "<cmd>split | terminal<CR>a", { silent = true, noremap = true })
+map(
+	{ "n" },
+	"<C-_>-",
+	"<cmd>split | terminal<CR>a",
+	{ silent = true, noremap = true, desc = "Create new terminal in H Split" }
+)
+map(
+	{ "n" },
+	"<C-_>|",
+	"<cmd>vsplit | terminal<CR>a",
+	{ silent = true, noremap = true, desc = "Create new terminal in V Split" }
+)
+map({ "t" }, "<C-\\>", "<C-\\><C-n><C-w>h", { silent = true })
 
 -- save file with ctrl + s
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR><Esc>", opts({}))
