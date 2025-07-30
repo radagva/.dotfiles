@@ -1,6 +1,4 @@
-local spread = require("config.utils").spread
 local map = vim.keymap.set
-local opts = spread({ noremap = true, silent = true })
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -25,43 +23,68 @@ map(
 map({ "t" }, "<C-\\>", "<C-\\><C-n><C-w>h", { silent = true })
 
 -- save file with ctrl + s
-map({ "n", "i" }, "<C-s>", "<cmd>w<CR><Esc>", opts({}))
+map({ "n", "i" }, "<C-s>", "<cmd>w<CR><Esc>", { silent = true })
 
 -- for better copying and pasting
-map("n", "x", '"_x', opts({}))
-map("v", "p", '"_dP', opts({}))
+map("n", "x", '"_x', { silent = true })
+map("v", "p", '"_dP', { silent = true })
 -- map("n", "vag", "ggvG$", opts({ desc = "Copy file content", silent = false }))
 -- map("n", "yag", "ggyG", opts({ desc = "Copy file content", silent = false }))
-map("n", "dag", "ggdG", opts({ desc = "Copy file content", silent = false }))
+-- map("n", "dag", "ggdG", { desc = "Copy file content", silent = true, noremap = true })
+local function setup_regular_buffer_keybindings()
+	local buftype = vim.bo.buftype
+	if buftype == "" then -- Only regular buffers
+		map({ "n" }, "dag", "ggdG", {
+			desc = "[D]elete file contents",
+			buffer = true,
+			noremap = true,
+			silent = true,
+		})
+
+		map(
+			{ "n" },
+			"<leader>vag",
+			"ggVG",
+			{ desc = "[V]isual select file contents", buffer = true, noremap = true, silent = true }
+		)
+
+		map({ "n" }, "yag", "ggyG", { desc = "[Y]ank file contents", buffer = true, noremap = true, silent = true })
+	end
+end
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = setup_regular_buffer_keybindings,
+})
 
 -- for finding and moving up and down
-map("n", "<C-d>", "<C-d>zz", opts({}))
-map("n", "<C-u>", "<C-u>zz", opts({}))
-map("n", "n", "nzzzv", opts({}))
-map("n", "N", "Nzzzv", opts({}))
+map("n", "<C-d>", "<C-d>zz", { silent = true })
+map("n", "<C-u>", "<C-u>zz", { silent = true })
+map("n", "n", "nzzzv", { silent = true })
+map("n", "N", "Nzzzv", { silent = true })
 
 -- window resizing
-map("n", "<Up>", ":resize -2<CR>", opts({}))
-map("n", "<Down>", ":resize +2<CR>", opts({}))
-map("n", "<Left>", ":vertical resize -2<CR>", opts({}))
-map("n", "<Right>", ":vertical resize +2<CR>", opts({}))
+map("n", "<Up>", ":resize -2<CR>", { silent = true })
+map("n", "<Down>", ":resize +2<CR>", { silent = true })
+map("n", "<Left>", ":vertical resize -2<CR>", { silent = true })
+map("n", "<Right>", ":vertical resize +2<CR>", { silent = true })
 
 -- window management
-map("n", "<leader>|", "<C-w>v", opts({ silent = false, desc = "Open new V split" }))
-map("n", "<leader>-", "<C-w>s", opts({ silent = false, desc = "Open new H Split" }))
+map("n", "<leader>|", "<C-w>v", { silent = false, desc = "Open new V split" })
+map("n", "<leader>-", "<C-w>s", { silent = false, desc = "Open new H Split" })
 
 -- move between buffers
-map("n", "<C-h>", ":wincmd h<CR>", opts({}))
-map("n", "<C-j>", ":wincmd j<CR>", opts({}))
-map("n", "<C-k>", ":wincmd k<CR>", opts({}))
-map("n", "<C-l>", ":wincmd l<CR>", opts({}))
+map("n", "<C-h>", ":wincmd h<CR>", { silent = true })
+map("n", "<C-j>", ":wincmd j<CR>", { silent = true })
+map("n", "<C-k>", ":wincmd k<CR>", { silent = true })
+map("n", "<C-l>", ":wincmd l<CR>", { silent = true })
 
 -- for better indentation
-map("v", "<", "<gv", opts({}))
-map("v", ">", ">gv", opts({}))
+map("v", "<", "<gv", { silent = true })
+map("v", ">", ">gv", { silent = true })
 
 -- buffers
-map("n", "<leader>bd", ":bp|bd#<cr>", opts({ desc = "Delete current buffer" }))
+map("n", "<leader>bd", ":bp|bd#<cr>", { desc = "Delete current buffer" })
 map("n", "<leader>bo", function()
 	local bufs = vim.api.nvim_list_bufs()
 	local current_buf = vim.api.nvim_get_current_buf()
@@ -70,9 +93,9 @@ map("n", "<leader>bo", function()
 			vim.api.nvim_buf_delete(i, {})
 		end
 	end
-end, opts({ desc = "Delete all buffers but current" }))
-map("n", "<S-l>", "<cmd>bnext<CR>", opts({ desc = "Go to next buffer" }))
-map("n", "<S-h>", "<cmd>bprev<CR>", opts({ desc = "Go to prev buffer" }))
+end, { desc = "Delete all buffers but current" })
+map("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Go to next buffer" })
+map("n", "<S-h>", "<cmd>bprev<CR>", { desc = "Go to prev buffer" })
 
 -- utils
 map("n", "<leader>uip", function()

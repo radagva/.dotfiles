@@ -31,24 +31,19 @@ return {
 					Float = { bg = "none" },
 					FloatBorder = { bg = "none" },
 					FloatTitle = { bg = "none" },
+					NeoTreeTabActive = { bg = "none" },
+					NeoTreeTabInactive = { bg = "none" },
+					NeoTreeTabSeparatorActive = { fg = "#282727" },
+					NeoTreeTabSeparatorInactive = { fg = "#282727" },
 					CursorLineNr = { fg = colors.palette.dragonRed, bg = "NONE" },
+					WinSeparator = { fg = "#282727" },
 				}
-				-- return {
-				-- 	NormalFloat = { bg = "none" },
-				-- 	FloatBorder = { bg = "none" },
-				-- 	FloatTitle = { bg = "none" },
-				-- 	PMenu = { bg = "none" },
-				-- 	BlinkCmpMenu = { bg = "none" },
-				-- 	BlinkCmpLabelDetail = { bg = "none" },
-				-- 	BlinkCmpMenuSelection = { bg = "none" },
-				-- }
 			end,
 		},
 		init = function()
 			vim.cmd.colorscheme("kanagawa")
 
 			vim.api.nvim_set_hl(0, "WinbarSeparator", { fg = "#6c7086" })
-			-- vim.api.nvim_set_hl(0, "WinbarFilename", { fg = "none" })
 			vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#ff5555" })
 			vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#f1fa8c" })
 		end,

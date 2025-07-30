@@ -5,6 +5,7 @@ PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 SPOTIFY_DISPLAY_CONTROLS="${1:-false}"
 COVER_PATH="/tmp/cover.jpg"
 MAX_LABEL_LENGTH=35
+
 # Optional control functions (disabled by default)
 next () {
   osascript -e 'tell application "Spotify" to play next track'
@@ -112,6 +113,11 @@ update() {
 }
 
 scroll() {
+  if ! pgrep -x "Spotify" > /dev/null; then
+    sketchybar -m --set spotify.anchor drawing=off popup.drawing=off
+    exit 0
+  fi
+
   local duration_ms position time duration
   duration_ms=$(osascript -e 'tell application "Spotify" to get duration of current track')
   duration=$((duration_ms / 1000))
@@ -125,6 +131,12 @@ scroll() {
 }
 
 scrubbing() {
+  if ! pgrep -x "Spotify" > /dev/null; then
+    sketchybar -m --set spotify.anchor drawing=off popup.drawing=off
+    exit 0
+  fi
+
+
   local duration_ms duration target
   duration_ms=$(osascript -e 'tell application "Spotify" to get duration of current track')
   duration=$((duration_ms / 1000))
