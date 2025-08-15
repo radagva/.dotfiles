@@ -1,69 +1,4 @@
-local function create_file_action(selected)
-	local path = selected[1]
-
-	local parts = {}
-
-	for part in path:gmatch("%S+") do
-		table.insert(parts, part)
-	end
-
-	local parent_dir = parts[#parts]
-
-	vim.ui.input({
-		prompt = "New file: ",
-		default = parent_dir .. "/",
-		completion = "file",
-	}, function(input)
-		if not input or input == "" then
-			return
-		end
-
-		local filename = input:gsub("[^%w %- _/%.%~]", ""):gsub("^%s+", ""):gsub("%s+$", "")
-
-		local final_dir = vim.fn.fnamemodify(filename, ":h")
-		if final_dir ~= "." and vim.fn.isdirectory(final_dir) == 0 then
-			vim.fn.mkdir(final_dir, "p")
-		end
-
-		if vim.fn.filereadable(filename) == 0 then
-			vim.fn.writefile({}, filename)
-		end
-
-		vim.cmd("edit " .. vim.fn.fnameescape(filename))
-	end)
-end
-
 return {
-	-- {
-	-- 	"nvim-neo-tree/neo-tree.nvim",
-	-- 	branch = "v3.x",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-tree/nvim-web-devicons",
-	-- 		"MunifTanjim/nui.nvim",
-	-- 	},
-	-- 	lazy = false,
-	-- 	---@module "neo-tree"
-	-- 	---@type neotree.Config?
-	-- 	opts = {
-	-- 		close_if_last_window = true,
-	-- 		event_handlers = {
-	-- 			{
-	-- 				event = "vim_buffer_enter",
-	-- 				handler = function()
-	-- 					if vim.bo.filetype == "neo-tree" then
-	-- 						vim.opt_local.number = false
-	-- 						vim.opt_local.relativenumber = false
-	-- 						vim.opt_local.statuscolumn = ""
-	-- 					end
-	-- 				end,
-	-- 			},
-	-- 		},
-	-- 	},
-	-- 	keys = {
-	-- 		{ "<leader>e", ":Neotree toggle<cr>", desc = "Neotree", silent = true },
-	-- 	},
-	-- },
 	{
 		"stevearc/oil.nvim",
 		---@module 'oil'
@@ -103,6 +38,8 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = function()
 			local actions = require("fzf-lua").actions
+			local extensions = require("extensions.fzf-lua")
+
 			actions = {
 				files = {
 					["enter"] = actions.file_edit_or_qf,
@@ -110,10 +47,10 @@ return {
 					["ctrl-v"] = actions.file_vsplit,
 					["ctrl-i"] = actions.toggle_ignore,
 					["ctrl-h"] = actions.toggle_hidden,
-					["ctrl-x"] = create_file_action,
+					["ctrl-x"] = extensions.create_file_action,
 				},
 				dir = {
-					["ctrl-x"] = create_file_action,
+					["ctrl-x"] = extensions.create_file_action,
 				},
 			}
 

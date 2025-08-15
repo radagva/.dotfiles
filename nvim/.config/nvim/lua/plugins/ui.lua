@@ -1,42 +1,4 @@
-local debugger = {
-	function()
-		local status = require("dap").status()
-		return status ~= "" and status or nil
-	end,
-	cond = function()
-		return require("dap").session() ~= nil
-	end,
-	color = { fg = "#ff9e64" },
-	on_click = function()
-		require("dap").continue()
-	end,
-}
-
-local ip_address = function()
-	local handle = io.popen("ipconfig getifaddr en0")
-	if handle ~= nil then
-		local output = handle:read("*a") -- Read all output
-		handle:close()
-
-		return output:gsub("%s+$", "")
-	end
-
-	return "localhost"
-end
-
-local pretty_path = function(path)
-	local rel_path = vim.fn.fnamemodify(path, ":~:.")
-
-	local parts = vim.split(rel_path, "/", { plain = true })
-
-	if #parts > 3 then
-		parts = { "…", parts[#parts - 1], parts[#parts] }
-	end
-
-	return table.concat(parts, "/")
-end
-
-local bg = "none"
+local lualine = require("extensions.lualine")
 
 return {
 	{
@@ -85,12 +47,16 @@ return {
 		opts = {
 			options = {
 				theme = {
-					normal = { a = { bg = bg }, b = { bg = bg }, c = { bg = bg } },
-					insert = { a = { bg = bg }, b = { bg = bg }, c = { bg = bg } },
-					visual = { a = { bg = bg }, b = { bg = bg }, c = { bg = bg } },
-					replace = { a = { bg = bg }, b = { bg = bg }, c = { bg = bg } },
-					command = { a = { bg = bg, fg = "#ffa066" }, b = { bg = bg }, c = { bg = bg } },
-					inactive = { a = { bg = bg }, b = { bg = bg }, c = { bg = bg } },
+					normal = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
+					insert = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
+					visual = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
+					replace = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
+					command = {
+						a = { bg = lualine.bg, fg = "#ffa066" },
+						b = { bg = lualine.bg },
+						c = { bg = lualine.bg },
+					},
+					inactive = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
 				},
 				icons_enabled = true,
 				component_separators = { left = "", right = "" },
@@ -115,10 +81,10 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = { { "filename", path = 1, fmt = pretty_path } },
-				lualine_x = { debugger },
+				lualine_c = { { "filename", path = 1, fmt = lualine.pretty_path } },
+				lualine_x = { lualine.debugger },
 				lualine_y = { "progress" },
-				lualine_z = { "location", "filetype", { ip_address, color = { fg = "#ff9e64" } } },
+				lualine_z = { "location", "filetype", { lualine.ip_address, color = { fg = "#ff9e64" } } },
 			},
 			inactive_sections = {
 				lualine_a = {},
@@ -129,10 +95,6 @@ return {
 				lualine_z = {},
 			},
 		},
-		init = function()
-			vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
-			vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
-		end,
 	},
 	{
 		"norcalli/nvim-colorizer.lua",
@@ -142,7 +104,6 @@ return {
 			}, { mode = "background" })
 		end,
 	},
-	-- Lua
 	{
 		"folke/twilight.nvim",
 		opts = {},
@@ -237,15 +198,6 @@ return {
 						key_hl = "Number",
 						icon_hl = "group",
 					},
-					-- {
-					-- 	icon = " ",
-					-- 	desc = "[P]rojecs",
-					-- 	key = "p",
-					-- 	action = "NeovimProjectDiscover",
-					-- 	desc_hl = "String",
-					-- 	key_hl = "Number",
-					-- 	icon_hl = "group",
-					-- },
 					{
 						icon = "󰿅 ",
 						desc = "[Q]uit",
@@ -269,60 +221,6 @@ return {
 		opts = {
 			animate = {
 				enabled = false,
-			},
-			bottom = {
-				-- {
-				-- 	title = "DB Query Result",
-				-- 	ft = "dbout",
-				-- 	width = 5.0,
-				-- },
-				-- {
-				-- 	title = "Terminal",
-				-- 	ft = "terminal",
-				-- 	width = 5.0,
-				-- },
-				-- {
-				-- 	title = "DapView",
-				-- 	ft = "dap-view",
-				-- 	width = 5.0,
-				-- },
-			},
-			right = {
-				-- {
-				-- 	title = "Database",
-				-- 	ft = "dbui",
-				-- 	pinned = false,
-				-- 	width = 0.3,
-				-- 	open = function()
-				-- 		vim.cmd("DBUI")
-				-- 	end,
-				-- },
-			},
-			left = {
-				-- {
-				-- 	title = "Fyler",
-				-- 	ft = "fyler",
-				-- 	size = { height = 0.5 },
-				-- },
-				-- {
-				-- 	title = "Neo-Tree",
-				-- 	ft = "neo-tree",
-				-- 	filter = function(buf)
-				-- 		return vim.b[buf].neo_tree_source == "filesystem"
-				-- 	end,
-				-- },
-				-- {
-				-- 	title = "Scopes",
-				-- 	ft = "dapui_scopes",
-				-- },
-				-- {
-				-- 	title = "Breakpoints",
-				-- 	ft = "dapui_breakpoints",
-				-- },
-				-- {
-				-- 	title = "Stacks",
-				-- 	ft = "dapui_stacks",
-				-- },
 			},
 		},
 	},

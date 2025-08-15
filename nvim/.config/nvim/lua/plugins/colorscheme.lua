@@ -13,8 +13,13 @@ return {
 			},
 			custom_highlights = function(a)
 				return {
+					-- transparent NvimDapView tabs
 					TabLineSel = { bg = "none", fg = a.text },
 					TabLine = { bg = "none", fg = a.overlay0 },
+
+					-- transparent lualine
+					StatusLine = { bg = "none" },
+					StatusLineNC = { bg = "none" },
 				}
 			end,
 			-- custom
