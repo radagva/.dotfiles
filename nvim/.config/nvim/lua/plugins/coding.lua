@@ -1,4 +1,7 @@
 return {
+	--[[
+  -- To perform global search and replace actions
+  --]]
 	{
 		"MagicDuck/grug-far.nvim",
 		opts = {},
@@ -6,6 +9,9 @@ return {
 			{ "<leader>sr", "<cmd>GrugFar<cr>", desc = "[S]earch & [R]eplace (GrugFar)" },
 		},
 	},
+	--[[
+  -- To running HTTP requests
+  --]]
 	{
 		"mistweaverco/kulala.nvim",
 		keys = {
@@ -14,6 +20,9 @@ return {
 		},
 		ft = { "http", "rest" },
 	},
+	--[[
+  -- To run UV commands in python projects
+  --]]
 	{
 		"benomahony/uv.nvim",
 		opts = {
@@ -22,6 +31,9 @@ return {
 			notify_activate_venv = true,
 		},
 	},
+	--[[
+  -- To have better autocompletion of tailwindcss classnames
+  --]]
 	{
 		"luckasRanarison/tailwind-tools.nvim",
 		name = "tailwind-tools",
@@ -29,28 +41,34 @@ return {
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
-		opts = {}, -- your configuration
+		---@type TailwindTools.SettingsOption
+		opts = {},
 	},
+	--[[
+  -- To autoclose and autopair HTML/JSX/HTMX tags
+  --]]
 	{
 		"windwp/nvim-ts-autotag",
+		---@type nvim-ts-autotag.PluginSetup
 		opts = {
 			{
 				opts = {
-					enable_close = true,
 					enable_rename = true,
 					enable_close_on_slash = false,
 				},
 			},
 		},
 	},
-	-- For reading .env files
-	{
-		"tpope/vim-dotenv",
-	},
-	-- For code diagnostics
+	--[[
+  -- To read .env files
+  --]]
+	{ "tpope/vim-dotenv" },
+	--[[
+  -- To have better diagnostics
+  --]]
 	{
 		"folke/trouble.nvim",
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		opts = {},
 		cmd = "Trouble",
 		keys = {
 			{
@@ -85,10 +103,12 @@ return {
 			},
 		},
 	},
-
-	-- For code formatting
+	--[[
+  -- To format code per language
+  --]]
 	{
 		"stevearc/conform.nvim",
+		---@type conform.setupOpts
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
@@ -112,11 +132,13 @@ return {
 			},
 		},
 	},
-
-	-- For Autocompletion
+	--[[
+  -- To have better autocompletion per filetype
+  --]]
 	{
 		"saghen/blink.cmp",
 		version = "1.*",
+		---@type blink.cmp.Config
 		opts = {
 			keymap = { preset = "default" },
 
@@ -155,7 +177,6 @@ return {
 					},
 				},
 			},
-
 			sources = {
 				default = { "lsp", "path" },
 				per_filetype = {
@@ -169,11 +190,13 @@ return {
 		},
 		opts_extend = { "sources.default" },
 	},
-
-	-- For LSP/DAPs installing
+	--[[
+  -- To easily install LSP or DAP clients right in .local/shared/mason folder
+  --]]
 	{
 		"mason-org/mason.nvim",
 		lazy = false,
+		---@type MasonSettings
 		opts = {
 			ensure_installed = { "http", "c" },
 			ui = {
@@ -181,50 +204,45 @@ return {
 			},
 		},
 	},
-
-	-- For Syntax highlighting
+	--[[
+  -- To have syntax highlight per filetype
+  --]]
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				modules = {},
-				ensure_installed = {
-					"lua",
-					"go",
-					"bash",
-					"html",
-					"css",
-					"typescript",
-					"tsx",
-					"http",
-					"sql",
-					-- config files
-					"json",
-					"yaml",
-					"toml",
-					"c",
-				},
-				-- Install parsers synchronously (only applied to `ensure_installed`)
-				sync_install = false,
-
-				-- Automatically install missing parsers when entering buffer
-				auto_install = true,
-
-				-- List of parsers to ignore installing (for "all")
-				ignore_install = { "some_parser" },
-
-				highlight = {
-					enable = true,
-					disable = { "help" }, -- list of language that will be disabled
-					additional_vim_regex_highlighting = false,
-				},
-
-				-- Other modules you might want (optional)
-				indent = { enable = true },
-				incremental_selection = { enable = true },
-				textobjects = { enable = true },
-			})
+		---@type TSConfig
+		opts = {
+			modules = {},
+			ensure_installed = {
+				"lua",
+				"go",
+				"bash",
+				"html",
+				"css",
+				"typescript",
+				"tsx",
+				"http",
+				"sql",
+				-- config files
+				"json",
+				"yaml",
+				"toml",
+				"c",
+			},
+			sync_install = false,
+			auto_install = true,
+			ignore_install = { "some_parser" },
+			highlight = {
+				enable = true,
+				disable = { "help" },
+				additional_vim_regex_highlighting = false,
+			},
+			indent = { enable = true },
+			incremental_selection = { enable = true },
+			textobjects = { enable = true },
+		},
+		config = function(_, opts)
+			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
 }
