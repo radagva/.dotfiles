@@ -3,6 +3,7 @@
 -- 	return mason_path .. "/angular-language-server/node_modules/@angular/language-server/index.js"
 -- end
 
+---@type vim.lsp.Config
 return {
 	cmd = { "djlsp" },
 	-- cmd = { vim.fn.stdpath("data") .. "/mason/packages/django-template-lsp/.venv/bin/djlsp" },

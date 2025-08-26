@@ -20,6 +20,7 @@ local function set_python_path(path)
 	end
 end
 
+---@type vim.lsp.Config
 return {
 	cmd = { "basedpyright-langserver", "--stdio" },
 	filetypes = { "python" },
@@ -45,7 +46,7 @@ return {
 			analysis = {
 				autoSearchPaths = true,
 				useLibraryCodeForTypes = true,
-				diagnosticMode = "openFilesOnly",
+				diagnosticMode = "workspace",
 			},
 		},
 	},

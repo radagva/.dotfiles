@@ -1,5 +1,6 @@
 local mason_path = vim.fn.stdpath("data") .. "/mason/packages"
 
+---@type vim.lsp.Config
 return {
 	cmd = { mason_path .. "/sqlls/node_modules/.bin/sql-language-server", "up", "--method", "stdio" },
 	root_markers = { ".git", ".sqllsrc.json" },

@@ -45,6 +45,7 @@ local function symbol_info()
 	end, bufnr)
 end
 
+---@type vim.lsp.Config
 return {
 	cmd = { "clangd" },
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },

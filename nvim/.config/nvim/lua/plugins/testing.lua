@@ -6,6 +6,8 @@ return {
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-neotest/neotest-python",
+		"nvim-neotest/neotest-jest",
+		"marilari88/neotest-vitest",
 	},
 	config = function()
 		require("neotest").setup({
@@ -14,6 +16,8 @@ return {
 			},
 			adapters = {
 				require("neotest-python"),
+				require("neotest-jest"),
+				require("neotest-vitest"),
 			},
 			floating = {
 				border = "rounded",

@@ -6,6 +6,7 @@ return {
 		ft = "markdown",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"folke/which-key.nvim",
 		},
 		---@module 'obsidian'
 		---@type obsidian.config

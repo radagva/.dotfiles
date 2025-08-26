@@ -66,3 +66,5 @@ vim.o.foldenable = true
 vim.opt.foldtext = ""
 vim.opt.foldlevel = 99
 vim.opt.foldcolumn = "1"
+
+-- vim.o.winborder = "rounded"

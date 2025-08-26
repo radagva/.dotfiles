@@ -139,6 +139,7 @@ alias tetrigo='$(go env GOPATH)/bin/tetrigo'
 
 alias dcurl='f() {curl $1 | pbcopy};f'
 alias getip="ipconfig getifaddr en0"
+alias nvim-plugin='nvim -c "set rtp+=./"'
 
 # Android CLI
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk

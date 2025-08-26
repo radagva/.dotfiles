@@ -56,6 +56,9 @@ return {
 
 			return {
 				actions = actions,
+				grep = {
+					rg_glob = true,
+				},
 				files = {
 					cwd_prompt = false,
 					prompt = "Files ❯ ",

@@ -24,12 +24,12 @@ local cmd = {
 	ng_probe,
 }
 
+---@type vim.lsp.Config
 return {
 	name = "angularls",
 	cmd = cmd,
 	filetypes = { "html", "ts" },
 	root_markers = { "angular.json" },
-	-- root_markers = vim.fs.dirname(vim.fs.find({ "angular.json" }, { upward = true })[1]),
 	on_new_config = function(new_config)
 		new_config.cmd = cmd
 	end,

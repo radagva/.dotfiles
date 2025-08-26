@@ -10,12 +10,15 @@ vim.lsp.enable({
 	"tailwindcss",
 	"emmet",
 	"django_template_lsp",
+	"cssls",
 })
 
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Add [M]issing imports" })
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[R]ename symbol" })
+vim.keymap.set("n", "<leader>cr", function()
+	return ":IncRename " .. vim.fn.expand("<cword>")
+end, { desc = "[R]ename symbol", expr = true })
 vim.keymap.set("n", "K", function()
-	vim.lsp.buf.hover({ border = "rounded" })
+	vim.lsp.buf.hover({ border = "rounded", max_width = 600, max_height = 400 })
 end, { desc = "Hover Documentation" })
 
 vim.api.nvim_create_autocmd("LspAttach", {

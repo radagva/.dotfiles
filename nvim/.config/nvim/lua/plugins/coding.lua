@@ -20,6 +20,10 @@ return {
 		},
 		ft = { "http", "rest" },
 	},
+	{
+		"smjonas/inc-rename.nvim",
+		opts = {},
+	},
 	--[[
   -- To run UV commands in python projects
   --]]
@@ -29,6 +33,9 @@ return {
 			picker_integration = true,
 			auto_activate_venv = true,
 			notify_activate_venv = true,
+			keymaps = {
+				prefix = "<leader>cu",
+			},
 		},
 	},
 	--[[
@@ -198,7 +205,7 @@ return {
 		lazy = false,
 		---@type MasonSettings
 		opts = {
-			ensure_installed = { "http", "c" },
+			ensure_installed = { "http", "c", "css-lsp" },
 			ui = {
 				border = "rounded",
 			},
