@@ -26,6 +26,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local fzf = require("fzf-lua")
 
 		vim.keymap.set("n", "gd", fzf.lsp_definitions, { desc = "Go to definition" })
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementations" })
 		vim.keymap.set("n", "gr", fzf.lsp_references, { desc = "Go to references" })
 
 		vim.keymap.set("n", "]d", function()

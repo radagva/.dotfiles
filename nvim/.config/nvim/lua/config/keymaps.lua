@@ -23,7 +23,7 @@ map(
 map({ "t" }, "<C-\\>", "<C-\\><C-n><C-w>h", { silent = true })
 
 -- save file with ctrl + s
-map({ "n", "i" }, "<C-s>", "<cmd>w<CR><Esc>", { silent = true })
+map({ "n", "i" }, "<C-s>", "<cmd>w<CR><Esc>", { silent = true, noremap = true, expr = false })
 
 -- for better copying and pasting
 map("n", "x", '"_x', { silent = true })

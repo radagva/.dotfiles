@@ -1,4 +1,33 @@
 return {
+	{
+		"radagva/angular.nvim",
+		opts = {
+			auto_commands = true,
+		},
+		keys = {
+			{
+				"<leader>ac",
+				function()
+					require("angular").create_component()
+				end,
+				desc = "Create Angular component",
+			},
+			{
+				"<leader>as",
+				function()
+					require("angular").create_service()
+				end,
+				desc = "Create Angular service",
+			},
+			{
+				"<leader>ar",
+				function()
+					require("angular").run_schematic()
+				end,
+				desc = "Create Angular service",
+			},
+		},
+	},
 	--[[
   -- To perform global search and replace actions
   --]]

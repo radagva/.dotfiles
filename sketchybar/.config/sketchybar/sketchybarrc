@@ -24,12 +24,12 @@ bar=(
 	padding_left=1
 	padding_right=1
 	topmost=window
-  corner_radius=12
-	y_offset=5
-	margin=5
-  color=$TRANSPARENT
-  # color=$BAR_COLOR
-  # blur_radius=65
+  # corner_radius=12
+	# y_offset=5
+	# margin=5
+  # color=$TRANSPARENT
+  color=0xE11E2021
+  blur_radius=65
 )
 
 sketchybar --bar "${bar[@]}"
@@ -60,7 +60,6 @@ defaults=(
 sketchybar --default "${defaults[@]}"
 
 # Left
-# source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/front_app.sh"
 
@@ -71,21 +70,14 @@ source "$ITEM_DIR/front_app.sh"
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/battery.sh"
-# source "$ITEM_DIR/cpu.sh"
 
 sketchybar --add bracket left space.1 space.2 space.3 space.4 space.5 space.6 space.7 space.8 space.9 \
 	--set left \
-  blur_radius=65 \
 	background.height=24 \
-  background.color=0xE11E2021 
 
-# cpu.sys
-
-sketchybar --add bracket right battery volume calendar \
+sketchybar --add bracket righ battery volume calendar \
 	--set right \
-  blur_radius=20 \
 	background.height=24 \
-  background.color=0xE11E2021
 
 
 sketchybar --hotload on
