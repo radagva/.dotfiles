@@ -84,7 +84,7 @@ map("v", "<", "<gv", { silent = true })
 map("v", ">", ">gv", { silent = true })
 
 -- buffers
-map("n", "<leader>bd", ":bp|bd#<cr>", { desc = "Delete current buffer" })
+map("n", "<leader>bd", ":bp|bd#<cr>", { desc = "Delete current buffer", silent = true })
 map("n", "<leader>bo", function()
 	local bufs = vim.api.nvim_list_bufs()
 	local current_buf = vim.api.nvim_get_current_buf()

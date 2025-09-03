@@ -37,8 +37,38 @@ local function get_angular_core_version(root_dir)
 end
 
 local ts_probe = get_probe_dir(vim.fn.getcwd())
-local ng_probe = table.concat({ angularls_path .. "/node_modules/@angular/language-server", vim.fn.getcwd() }, ",")
+local ng_probe = angularls_path .. "/node_modules/@angular/language-server"
 local default_angular_core_version = get_angular_core_version(vim.fn.getcwd())
+
+local is_angular_template = function()
+	local angular_json = vim.fs.find("angular.json", { upward = true })[1]
+	if not angular_json then
+		return false
+	end
+
+	-- Check if the file contains Angular-specific syntax
+	local content = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+
+	-- Look for Angular template syntax patterns
+	local angular_patterns = {
+		"*ngIf=",
+		"*ngFor=",
+		"{{.*}}",
+		"[(ngModel)]=",
+		"[.*]=",
+		"(.*)=",
+		"#.*=",
+		"@.*=",
+	}
+
+	for _, pattern in ipairs(angular_patterns) do
+		if content:match(pattern) then
+			return true
+		end
+	end
+
+	return false
+end
 
 local cmd = {
 	"ngserver",
@@ -57,25 +87,28 @@ return {
 	cmd = cmd,
 	filetypes = { "html", "ts" },
 	root_markers = { "angular.json" },
-	on_new_config = function(new_config, new_root_dir)
-		local new_probe_dir = get_probe_dir(new_root_dir)
-		local angular_core_version = get_angular_core_version(new_root_dir)
-
-		-- We need to check our probe directories because they may have changed.
-		new_config.cmd = {
-			vim.fn.exepath("ngserver"),
-			"--stdio",
-			"--tsProbeLocations",
-			new_probe_dir,
-			"--ngProbeLocations",
-			new_probe_dir,
-			"--angularCoreVersion",
-			angular_core_version,
-		}
+	on_new_config = function(new_config)
+		new_config.cmd = cmd
 	end,
-	-- on_new_config = function(new_config)
-	-- 	new_config.cmd = cmd
-	-- end,
+	on_attach = function()
+		vim.filetype.add({
+			pattern = {
+				[".*%.component%.html"] = "htmlangular",
+			},
+			extension = {
+				html = function()
+					if is_angular_template() then
+						return "htmlangular"
+					end
+					return "html"
+				end,
+			},
+		})
+
+		if vim.bo.filetype == "html" and is_angular_template() then
+			vim.bo.filetype = "htmlangular"
+		end
+	end,
 	capabilities = vim.lsp.protocol.make_client_capabilities(),
 	settings = {
 		angular = {

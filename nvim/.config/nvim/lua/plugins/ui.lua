@@ -49,9 +49,9 @@ return {
 					inactive = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
 				},
 				icons_enabled = true,
-				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
-				disabled_filetypes = { statusline = {}, winbar = {} },
+				disabled_component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+				filetypes = { statusline = {}, winbar = {} },
 				ignore_focus = {
 					"dapui_watches",
 					"dapui_breakpoints",
