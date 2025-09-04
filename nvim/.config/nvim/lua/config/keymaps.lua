@@ -1,29 +1,23 @@
+local spread = require("config.utils").spread
+local opts = spread({ silent = true, noremap = true })
 local map = vim.keymap.set
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+-- Remove highlight after search by pressing Esc
+map({ "n" }, "<Esc>", "<cmd>nohl<cr>", opts({ silent = true }))
 
-map({ "n" }, "<Esc>", "<cmd>nohl<cr>", { silent = true })
-map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+-- Remove default Space action
+map({ "n", "v" }, "<Space>", "<Nop>", opts({ silent = true }))
 
-map({ "n" }, "<CR>", "o<Esc>", { silent = true, noremap = true })
+map({ "n" }, "<C-_>-", "<cmd>split | terminal<CR>a", opts({ desc = "Create new terminal in H Split" }))
 
-map(
-	{ "n" },
-	"<C-_>-",
-	"<cmd>split | terminal<CR>a",
-	{ silent = true, noremap = true, desc = "Create new terminal in H Split" }
-)
-map(
-	{ "n" },
-	"<C-_>|",
-	"<cmd>vsplit | terminal<CR>a",
-	{ silent = true, noremap = true, desc = "Create new terminal in V Split" }
-)
+map({ "n" }, "<C-_>|", "<cmd>vsplit | terminal<CR>a", opts({ desc = "Create new terminal in V Split" }))
+
 map({ "t" }, "<C-\\>", "<C-\\><C-n><C-w>h", { silent = true })
 
 -- save file with ctrl + s
-map({ "n", "i" }, "<C-s>", "<cmd>w<CR><Esc>", { silent = true, noremap = true, expr = false })
+map({ "n", "i" }, "<C-s>", "<cmd>w<CR><Esc>", opts({ expr = false }))
 
 -- for better copying and pasting
 map("n", "x", '"_x', { silent = true })
@@ -43,7 +37,7 @@ local function setup_regular_buffer_keybindings()
 
 		map(
 			{ "n" },
-			"<leader>vag",
+			"vag",
 			"ggVG",
 			{ desc = "[V]isual select file contents", buffer = true, noremap = true, silent = true }
 		)
@@ -110,3 +104,9 @@ map("n", "<leader>uip", function()
 		})
 	end
 end, { desc = "Get router IP Address" })
+
+map("n", "<leader><Tab><Tab>", "<cmd>tabnew<cr>", opts({ desc = "New tab" }))
+map("n", "<leader><Tab>x", "<cmd>tabclose<cr>", opts({ desc = "Close current tab" }))
+map("n", "<leader><Tab>o", "<cmd>tabonly<cr>", opts({ desc = "Close other tabs" }))
+map("n", "<leader><Tab>n", "<cmd>tabnext<cr>", opts({ desc = "Next tab" }))
+map("n", "<leader><Tab>p", "<cmd>tabprevious<cr>", opts({ desc = "Prev tab" }))

@@ -13,7 +13,7 @@ vim.lsp.enable({
 	"cssls",
 })
 
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Add [M]issing imports" })
+vim.keymap.set("n", "<leader>cia", vim.lsp.buf.code_action, { desc = "code inline actions" })
 vim.keymap.set("n", "<leader>cr", function()
 	return ":IncRename " .. vim.fn.expand("<cword>")
 end, { desc = "[R]ename symbol", expr = true })

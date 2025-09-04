@@ -17,6 +17,7 @@ return {
 				TabLine = { bg = "none", fg = "#CCCCCC" },
 				TabLineFill = { bg = "none", fg = "none" },
 				NvimDapViewTab = { bg = "none" },
+				-- WhichKeyNormal = { bg = "#282828" },
 
 				-- transparent lualine
 				StatusLine = { bg = "none" },

@@ -1,6 +1,7 @@
 return {
 	{
 		dir = "~/Developer/Projects/personal/neovim-plugins/angular.nvim",
+		dependencies = { "folke/which-key.nvim" },
 		dev = true,
 		-- "radagva/angular.nvim",
 		opts = {
@@ -10,29 +11,6 @@ return {
 					skipTests = true,
 					styles = "css",
 				},
-			},
-		},
-		keys = {
-			{
-				"<leader>ac",
-				function()
-					require("angular").create_component()
-				end,
-				desc = "Create Angular component",
-			},
-			{
-				"<leader>as",
-				function()
-					require("angular").create_service()
-				end,
-				desc = "Create Angular service",
-			},
-			{
-				"<leader>ar",
-				function()
-					require("angular").run_schematic()
-				end,
-				desc = "Create Angular service",
 			},
 		},
 	},
@@ -49,13 +27,24 @@ return {
 	--[[
   -- To running HTTP requests
   --]]
+	---@type LazyPluginSpec
 	{
 		"mistweaverco/kulala.nvim",
-		keys = {
-			{ "<leader>Rs", require("kulala").run, desc = "Send request" },
-			{ "<leader>Rb", desc = "Open scratchpad" },
-		},
 		ft = { "http", "rest" },
+		opts = {
+			global_keymaps = true,
+			global_keymaps_prefix = "<leader>R",
+			kulala_keymaps_prefix = "",
+			lsp = {
+				on_attach = function(_, bufnr)
+					vim.keymap.set("n", "<C-r>", function()
+						require("kulala").run()
+					end, { silent = true, buffer = bufnr, noremap = true })
+				end,
+			},
+		},
+		-- init = function()
+		-- end,
 	},
 	{
 		"smjonas/inc-rename.nvim",

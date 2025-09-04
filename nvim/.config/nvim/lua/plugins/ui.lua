@@ -4,7 +4,9 @@ return {
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-		opts = {},
+		opts = {
+			preset = "modern",
+		},
 		keys = {
 			{
 				"<leader>?",
@@ -14,6 +16,21 @@ return {
 				desc = "Buffer Local Keymaps (which-key)",
 			},
 		},
+		init = function()
+			require("which-key").add({
+				{ "<leader>c", group = "Coding" },
+				{ "<leader>s", group = "Search" },
+				{ "<leader>b", group = "Buffers" },
+				{ "<leader>d", group = "Debugging" },
+				{ "<leader>t", group = "Testing" },
+				{ "<leader>o", group = "Obsidian" },
+				{ "<leader>g", group = "Git" },
+				{ "<leader>u", group = "UI" },
+				{ "<leader>x", group = "Diagnostics" },
+				{ "<leader>R", group = "Kulala/HTTP" },
+				{ "<leader><Tab>", group = "Tabs" },
+			})
+		end,
 	},
 	{
 		"folke/todo-comments.nvim",
@@ -50,7 +67,8 @@ return {
 				},
 				icons_enabled = true,
 				disabled_component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+				-- section_separators = { left = "", right = "" },
 				filetypes = { statusline = {}, winbar = {} },
 				ignore_focus = {
 					"dapui_watches",
