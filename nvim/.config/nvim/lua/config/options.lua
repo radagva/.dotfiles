@@ -10,7 +10,7 @@ vim.opt.fillchars = { eob = " " }
 
 -- editor text
 vim.o.clipboard = "unnamedplus"
-vim.opt.linespace = 6
+-- vim.opt.linespace = 6
 vim.o.wrap = false
 vim.o.linebreak = true
 vim.o.autoindent = true

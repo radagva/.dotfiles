@@ -1,7 +1,7 @@
 vim.lsp.enable({
 	"lua_ls",
 	"vtsls",
-	"angularls",
+	-- "angularls",
 	"gopls",
 	"sqlls",
 	"eslint",

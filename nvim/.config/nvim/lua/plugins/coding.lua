@@ -14,6 +14,92 @@ return {
 			},
 		},
 	},
+	{
+		"zerochae/endpoint.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		cmd = {
+			"Endpoint",
+		},
+		opts = {
+			-- Framework configuration
+			framework = "auto", -- "auto", "spring", "nestjs", "django", "rails", "express"
+
+			-- Optional: Path-based framework overrides
+			-- framework_paths = {
+			-- 	["/path/to/spring/project"] = "spring",
+			-- 	["/path/to/nestjs/project"] = "nestjs",
+			-- },
+
+			-- Cache configuration
+			cache_mode = "session", -- Cache mode: "session" or "persistent"
+			debug = false, -- Enable debug logging
+
+			ui = {
+				show_icons = false, -- Show method icons
+				show_method = true, -- Show method text (GET, POST, etc.)
+				use_nerd_font = true, -- Use nerd font glyphs instead of emojis
+
+				-- Customize icons (requires show_icons = true)
+				method_icons = {
+					-- emoji = {
+					-- 	GET = "📥",
+					-- 	POST = "📤",
+					-- 	PUT = "✏️",
+					-- 	DELETE = "🗑️",
+					-- 	PATCH = "🔧",
+					-- },
+					nerd_font = {
+						GET = "", -- download icon
+						POST = "", -- upload icon
+						PUT = "", -- edit icon
+						DELETE = "", -- trash icon
+						PATCH = "", -- wrench icon
+					},
+				},
+
+				-- Customize colors
+				method_colors = {
+					GET = "DiagnosticOk", -- Green
+					POST = "DiagnosticInfo", -- Blue
+					PUT = "DiagnosticWarn", -- Yellow
+					DELETE = "DiagnosticError", -- Red
+					PATCH = "DiagnosticHint", -- Purple
+				},
+
+				-- Cache status UI customization
+				cache_status_icons = {
+					emoji = {
+						title = "🚀",
+						success = "✅",
+						error = "❌",
+						tree = "🌳",
+						directory = "📁",
+						file = "📄",
+					},
+					nerd_font = {
+						title = "",
+						success = "",
+						error = "",
+						tree = "",
+						directory = "",
+						file = "",
+					},
+				},
+
+				-- Cache status syntax highlighting
+				cache_status_highlight = {
+					title = "Special",
+					success = "DiagnosticOk",
+					error = "DiagnosticError",
+					key = "Keyword",
+					tree_method = "Function",
+				},
+			},
+		},
+		keys = {
+			{ "<leader>E", "<cmd>Endpoint<cr>", desc = "Show list of endpoints (NestJS, Spring)", silent = true },
+		},
+	},
 	--[[
   -- To perform global search and replace actions
   --]]
@@ -59,9 +145,10 @@ return {
 			picker_integration = true,
 			auto_activate_venv = true,
 			notify_activate_venv = true,
-			keymaps = {
-				prefix = "<leader>cu",
-			},
+			keymaps = false,
+			-- keymaps = {
+			-- 	prefix = "<leader>cu",
+			-- },
 		},
 	},
 	--[[

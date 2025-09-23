@@ -1,8 +1,9 @@
-theme = GruvboxDarkHard
+theme = Catppuccin Mocha
 macos-titlebar-style = hidden
 window-padding-y = 0
 window-padding-x = 0
-background-opacity = 0.95
-background-blur = 50
+# background-opacity = 0.9
+# background-blur = 50
 
-font-family = "MonaspiceAr NFM"
+# font-family = "MonaspiceAr NFM"
+font-family = "JetBrains Mono NL"

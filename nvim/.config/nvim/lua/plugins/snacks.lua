@@ -41,31 +41,8 @@ return {
 		explorer = {
 			enabled = true,
 		},
-		-- indent = {
-		-- 	indent = {
-		-- 		enabled = false,
-		-- 	},
-		-- 	chunk = {
-		-- 		enabled = true,
-		-- 		char = {
-		-- 			horizontal = "─",
-		-- 			vertical = "│",
-		-- 			corner_top = "╭",
-		-- 			corner_bottom = "╰",
-		-- 			arrow = "─",
-		-- 		},
-		-- 	},
-		-- },
 	},
 	keys = {
-		{
-			"<leader>E",
-			function()
-				Snacks.explorer.reveal()
-			end,
-			desc = "Reveal in explorer",
-			silent = true,
-		},
 		{
 			"<leader>e",
 			function()

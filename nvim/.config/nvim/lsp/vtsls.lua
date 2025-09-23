@@ -12,7 +12,7 @@ return {
 		"tsconfig.json",
 	},
 	settings = {
-		complete_function_calls = true,
+		complete_function_calls = false,
 		vtsls = {
 			enableMoveToFileCodeAction = true,
 			autoUseWorkspaceTsdk = true,
@@ -30,7 +30,7 @@ return {
 		typescript = {
 			updateImportsOnFileMove = { enabled = "always" },
 			suggest = {
-				completeFunctionCalls = true,
+				completeFunctionCalls = false,
 				names = false,
 			},
 			inlayHints = {
