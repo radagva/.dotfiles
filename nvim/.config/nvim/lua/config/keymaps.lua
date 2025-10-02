@@ -4,6 +4,8 @@ local map = vim.keymap.set
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+map({ "n" }, "<leader>`", "viw~", opts({ silent = true, desc = "Uppercase word" }))
 -- Remove highlight after search by pressing Esc
 map({ "n" }, "<Esc>", "<cmd>nohl<cr>", opts({ silent = true }))
 

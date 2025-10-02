@@ -1,8 +1,12 @@
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# Gruvbox Dark Hard
 include current-theme.conf
 # END_KITTY_THEME
 
 
-macos_titlebar_color background
+hide_window_decorations titlebar-only
+background_opacity 1
+background_blur 50
+
+# allow_remote_control yes

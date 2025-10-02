@@ -44,20 +44,20 @@ return {
 		},
 
 		---@type snacks.explorer.Config
-		-- explorer = {
-		-- 	enabled = true,
-		-- },
+		explorer = {
+			enabled = true,
+		},
 	},
 	init = function()
 		require("which-key").add({
-			-- {
-			-- 	"<leader>e",
-			-- 	function()
-			-- 		Snacks.explorer.open()
-			-- 	end,
-			-- 	desc = "Show explorer",
-			-- 	silent = true,
-			-- },
+			{
+				"<leader>e",
+				function()
+					Snacks.explorer.open()
+				end,
+				desc = "Show explorer",
+				silent = true,
+			},
 			{
 				"<leader>lg",
 				function()
@@ -67,7 +67,4 @@ return {
 			},
 		})
 	end,
-	-- keys = {
-	-- ,
-	-- },
 }

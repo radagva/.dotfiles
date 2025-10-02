@@ -13,6 +13,9 @@ vim.lsp.enable({
 	"cssls",
 })
 
+vim.keymap.set("n", "<leader>uli", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
+end, { desc = "Toggle inlay hints" })
 vim.keymap.set("n", "<leader>cia", vim.lsp.buf.code_action, { desc = "code inline actions" })
 vim.keymap.set("n", "<leader>cr", function()
 	return ":IncRename " .. vim.fn.expand("<cword>")

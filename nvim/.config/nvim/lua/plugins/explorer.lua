@@ -1,19 +1,5 @@
 return {
 	{
-		"A7Lavinraj/fyler.nvim",
-		dependencies = { "nvim-mini/mini.icons" },
-		branch = "stable",
-		cmd = { "Fyler" },
-		keys = {
-			{
-				"<leader>e",
-				":Fyler kind=split_left_most<cr>",
-				desc = "Toggle File Explorer",
-			},
-		},
-		opts = {},
-	},
-	{
 		"stevearc/oil.nvim",
 		---@module 'oil'
 		---@type oil.SetupOpts
