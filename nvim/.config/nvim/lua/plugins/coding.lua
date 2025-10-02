@@ -16,88 +16,24 @@ return {
 	},
 	{
 		"zerochae/endpoint.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim" },
-		cmd = {
-			"Endpoint",
+		dependencies = {
+			-- Choose one or more pickers (all optional):
+			"nvim-telescope/telescope.nvim", -- For telescope picker
+			"folke/snacks.nvim", -- For snacks picker
+			"stevearc/dressing.nvim", -- Enhances vim.ui.select with telescope backend
+			-- vim.ui.select picker works without dependencies
 		},
+		cmd = { "Endpoint", "EndpointRefresh" },
 		opts = {
-			-- Framework configuration
-			framework = "auto", -- "auto", "spring", "nestjs", "django", "rails", "express"
-
-			-- Optional: Path-based framework overrides
-			-- framework_paths = {
-			-- 	["/path/to/spring/project"] = "spring",
-			-- 	["/path/to/nestjs/project"] = "nestjs",
-			-- },
-
-			-- Cache configuration
-			cache_mode = "session", -- Cache mode: "session" or "persistent"
-			debug = false, -- Enable debug logging
-
 			ui = {
-				show_icons = false, -- Show method icons
-				show_method = true, -- Show method text (GET, POST, etc.)
-				use_nerd_font = true, -- Use nerd font glyphs instead of emojis
-
-				-- Customize icons (requires show_icons = true)
-				method_icons = {
-					-- emoji = {
-					-- 	GET = "📥",
-					-- 	POST = "📤",
-					-- 	PUT = "✏️",
-					-- 	DELETE = "🗑️",
-					-- 	PATCH = "🔧",
-					-- },
-					nerd_font = {
-						GET = "", -- download icon
-						POST = "", -- upload icon
-						PUT = "", -- edit icon
-						DELETE = "", -- trash icon
-						PATCH = "", -- wrench icon
-					},
-				},
-
-				-- Customize colors
-				method_colors = {
-					GET = "DiagnosticOk", -- Green
-					POST = "DiagnosticInfo", -- Blue
-					PUT = "DiagnosticWarn", -- Yellow
-					DELETE = "DiagnosticError", -- Red
-					PATCH = "DiagnosticHint", -- Purple
-				},
-
-				-- Cache status UI customization
-				cache_status_icons = {
-					emoji = {
-						title = "🚀",
-						success = "✅",
-						error = "❌",
-						tree = "🌳",
-						directory = "📁",
-						file = "📄",
-					},
-					nerd_font = {
-						title = "",
-						success = "",
-						error = "",
-						tree = "",
-						directory = "",
-						file = "",
-					},
-				},
-
-				-- Cache status syntax highlighting
-				cache_status_highlight = {
-					title = "Special",
-					success = "DiagnosticOk",
-					error = "DiagnosticError",
-					key = "Keyword",
-					tree_method = "Function",
-				},
+				show_icons = false,
 			},
 		},
+		-- config = function()
+		-- 	require("endpoint").setup()
+		-- end,
 		keys = {
-			{ "<leader>E", "<cmd>Endpoint<cr>", desc = "Show list of endpoints (NestJS, Spring)", silent = true },
+			{ "<leader>E", ":Endpoint<cr>", desc = "Show list of endpoint", silent = true, noremap = true },
 		},
 	},
 	--[[
@@ -131,6 +67,9 @@ return {
 		},
 		-- init = function()
 		-- end,
+	},
+	{
+		"code-biscuits/nvim-biscuits",
 	},
 	{
 		"smjonas/inc-rename.nvim",
@@ -298,12 +237,18 @@ return {
 				},
 			},
 			sources = {
-				default = { "lsp", "path" },
+				default = { "lsp", "path", "copilot" },
 				per_filetype = {
 					sql = { "dadbod" },
 				},
 				providers = {
 					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+					copilot = {
+						name = "copilot",
+						module = "blink-cmp-copilot",
+						score_offset = 100,
+						async = true,
+					},
 				},
 			},
 			fuzzy = { implementation = "prefer_rust_with_warning" },

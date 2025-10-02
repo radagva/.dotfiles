@@ -5,7 +5,7 @@ return {
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		opts = {
-			preset = "modern",
+			-- preset = "modern",
 		},
 		keys = {
 			{
@@ -19,6 +19,8 @@ return {
 		init = function()
 			require("which-key").add({
 				{ "<leader>c", group = "Coding" },
+				{ "<leader>l", group = "Lazy" },
+				{ "<leader>ll", ":Lazy<cr>", desc = "Open Lazy" },
 				{ "<leader>s", group = "Search" },
 				{ "<leader>b", group = "Buffers" },
 				{ "<leader>d", group = "Debugging" },
@@ -66,9 +68,12 @@ return {
 					inactive = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
 				},
 				icons_enabled = true,
-				disabled_component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
+				-- disabled_component_separators = { left = "", right = "" },
+				-- section_separators = { left = "", right = "" },
 				-- section_separators = { left = "", right = "" },
+				-- section_separators = { left = '', right = '' },
+				-- component_separators = { left = "", right = "" },
+				-- section_separators = { left = "", right = "" },
 				filetypes = { statusline = {}, winbar = {} },
 				ignore_focus = {
 					"dapui_watches",

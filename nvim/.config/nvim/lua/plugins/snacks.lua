@@ -1,9 +1,15 @@
 return {
 	"folke/snacks.nvim",
+	dependencies = {
+		"folke/which-key.nvim",
+	},
 	priority = 1000,
 	lazy = false,
 	---@type snacks.Config
 	opts = {
+		lazygit = {
+			configure = true,
+		},
 		bigfile = { enabled = true },
 
 		---@type snacks.picker.Config
@@ -38,18 +44,30 @@ return {
 		},
 
 		---@type snacks.explorer.Config
-		explorer = {
-			enabled = true,
-		},
+		-- explorer = {
+		-- 	enabled = true,
+		-- },
 	},
-	keys = {
-		{
-			"<leader>e",
-			function()
-				Snacks.explorer.open()
-			end,
-			desc = "Show explorer",
-			silent = true,
-		},
-	},
+	init = function()
+		require("which-key").add({
+			-- {
+			-- 	"<leader>e",
+			-- 	function()
+			-- 		Snacks.explorer.open()
+			-- 	end,
+			-- 	desc = "Show explorer",
+			-- 	silent = true,
+			-- },
+			{
+				"<leader>lg",
+				function()
+					Snacks.lazygit.open()
+				end,
+				desc = "Open lazygit",
+			},
+		})
+	end,
+	-- keys = {
+	-- ,
+	-- },
 }

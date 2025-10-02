@@ -37,7 +37,7 @@ export BATTERY_3=0xfff5a97f
 export BATTERY_4=0xffee99a0
 export BATTERY_5=0xffed8796
 
-export BG_SOLID=0xFF1E1E2E
+export BG_SOLID=0xFF181616
 export BG=0xCC1E1E2E
 export BG2=0xCC1E1E2E
 

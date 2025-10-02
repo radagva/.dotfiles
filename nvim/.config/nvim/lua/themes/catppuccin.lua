@@ -1,7 +1,7 @@
 return {
 	"catppuccin/nvim",
 	name = "catppuccin",
-	priority = 1000,
+	lazy = true,
 	opts = {
 		flavour = "mocha",
 		-- transparent_background = true,
@@ -22,7 +22,7 @@ return {
 					-- transparent lualine
 					StatusLine = { bg = "none" },
 					StatusLineNC = { bg = "none" },
-					GitSignsCurrentLineBlame = { fg = "#918474" },
+					GitSignsCurrentLineBlame = { fg = "#8B91A9" },
 
 					-- transparent autocompletion
 					Pmenu = { bg = "none", fg = "none" },

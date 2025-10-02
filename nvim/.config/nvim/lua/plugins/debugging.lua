@@ -9,7 +9,7 @@ return {
 		},
 		config = function()
 			local dap, widgets, wk = require("dap"), require("dap.ui.widgets"), require("which-key")
-			dap.defaults.fallback.exception_breakpoints = { "raised" }
+			-- dap.defaults.fallback.exception_breakpoints = { "raised" }
 
 			-- when breakpoint is hit, it sets the focus to the buffer with the breakpoint
 			dap.defaults.fallback.switchbuf = "usetab,uselast"
