@@ -1,8 +1,6 @@
 return {
 	{
 		"stevearc/oil.nvim",
-		---@module 'oil'
-		---@type oil.SetupOpts
 		opts = {
 			win_options = {
 				winbar = "%{v:lua.require('oil').get_current_dir()}",
@@ -24,15 +22,13 @@ return {
 				},
 			},
 		},
-		-- Optional dependencies
 		dependencies = { { "echasnovski/mini.icons", opts = {} } },
-		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 		lazy = false,
 		keys = {
 			{ "-", ":Oil<cr>", desc = "Oil" },
 		},
 	},
+
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },

@@ -5,14 +5,11 @@ return {
 	},
 	priority = 1000,
 	lazy = false,
-	---@type snacks.Config
 	opts = {
 		lazygit = {
 			configure = true,
 		},
 		bigfile = { enabled = true },
-
-		---@type snacks.picker.Config
 		picker = {
 			enabled = true,
 			-- ui_select = true,
@@ -42,8 +39,6 @@ return {
 			-- 	},
 			-- },
 		},
-
-		---@type snacks.explorer.Config
 		explorer = {
 			enabled = true,
 		},

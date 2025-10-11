@@ -24,9 +24,6 @@ map({ "n", "i" }, "<C-s>", "<cmd>w<CR><Esc>", opts({ expr = false }))
 -- for better copying and pasting
 map("n", "x", '"_x', { silent = true })
 map("v", "p", '"_dP', { silent = true })
--- map("n", "vag", "ggvG$", opts({ desc = "Copy file content", silent = false }))
--- map("n", "yag", "ggyG", opts({ desc = "Copy file content", silent = false }))
--- map("n", "dag", "ggdG", { desc = "Copy file content", silent = true, noremap = true })
 local function setup_regular_buffer_keybindings()
 	local buftype = vim.bo.buftype
 	if buftype == "" then -- Only regular buffers

@@ -39,6 +39,5 @@ M.pretty_path = function(path)
 end
 
 M.bg = "none"
--- M.bg = "#181825"
 
 return M

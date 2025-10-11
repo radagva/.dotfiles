@@ -1,7 +1,6 @@
 vim.lsp.enable({
 	"lua_ls",
 	"vtsls",
-	-- "angularls",
 	"gopls",
 	"sqlls",
 	"eslint",
@@ -9,7 +8,6 @@ vim.lsp.enable({
 	"clangd",
 	"tailwindcss",
 	"emmet",
-	"django_template_lsp",
 	"cssls",
 })
 
@@ -26,11 +24,11 @@ end, { desc = "Hover Documentation" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function()
-		local fzf = require("fzf-lua")
+		-- local fzf = require("fzf-lua")
 
-		vim.keymap.set("n", "gd", fzf.lsp_definitions, { desc = "Go to definition" })
+		-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementations" })
-		vim.keymap.set("n", "gr", fzf.lsp_references, { desc = "Go to references" })
+		-- vim.keymap.set("n", "gr", vim.lsp.buf.reference, { desc = "Go to references" })
 
 		vim.keymap.set("n", "]d", function()
 			vim.diagnostic.goto_next({ float = true })
@@ -64,10 +62,10 @@ vim.diagnostic.config({
 	},
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = "",
-			[vim.diagnostic.severity.WARN] = "",
-			[vim.diagnostic.severity.INFO] = "",
-			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.INFO] = " ",
+			[vim.diagnostic.severity.HINT] = " ",
 		},
 		numhl = {
 			[vim.diagnostic.severity.ERROR] = "ErrorMsg",

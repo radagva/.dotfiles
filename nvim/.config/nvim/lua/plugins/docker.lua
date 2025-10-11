@@ -19,14 +19,5 @@ return {
 				},
 			})
 		end,
-		-- keys = {
-		-- 	{
-		-- 		"<leader>k",
-		-- 		function()
-		-- 			require("lazydocker").open()
-		-- 		end,
-		-- 		desc = "Open Lazydocker floating window",
-		-- 	},
-		-- },
 	},
 }

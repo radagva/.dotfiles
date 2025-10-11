@@ -1,6 +1,7 @@
 add_newline = false
-format = """$directory$character"""
-right_format = """$all"""
+format = """$directory$git_branch$git_status"""
+# right_format = """$nodejs$python$java$go"""
+right_format = """$nodejs$python$java$go"""
 palette = "catppuccin_mocha"
 
 [palettes.catppuccin_mocha]

@@ -3,7 +3,7 @@ return {
 	name = "catppuccin",
 	lazy = true,
 	opts = {
-		flavour = "mocha",
+		flavour = "macchiato",
 		-- transparent_background = true,
 		-- float = {
 		-- 	transparent = true, -- enable transparent floating windows

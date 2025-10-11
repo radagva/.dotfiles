@@ -3,15 +3,10 @@ local javascript = require("extensions.debugging.javascript")
 return {
 	{
 		"mfussenegger/nvim-dap",
-		dependencies = {
-			"mxsdev/nvim-dap-vscode-js",
-			"folke/which-key.nvim",
-		},
+		dependencies = { "mxsdev/nvim-dap-vscode-js", "folke/which-key.nvim" },
 		config = function()
 			local dap, widgets, wk = require("dap"), require("dap.ui.widgets"), require("which-key")
-			-- dap.defaults.fallback.exception_breakpoints = { "raised" }
 
-			-- when breakpoint is hit, it sets the focus to the buffer with the breakpoint
 			dap.defaults.fallback.switchbuf = "usetab,uselast"
 
 			javascript.setup(dap)
@@ -27,14 +22,19 @@ return {
 				{ "<leader>dc", dap.continue, desc = "Continue" },
 				{ "<leader>db", dap.toggle_breakpoint, desc = "Toggle Breakpoint" },
 				{ "<leader>dq", dap.terminate, desc = "Terminate" },
-				{ "<leader>dh", widgets.hover, desc = "Hover" },
+				{
+					"<leader>dh",
+					function(val)
+						widgets.hover(val, { border = "rounded" })
+					end,
+					desc = "Hover",
+				},
 			})
 		end,
 	},
+
 	{
 		"igorlfs/nvim-dap-view",
-		---@module 'dap-view'
-		---@type dapview.Config
 		dependencies = { "mfussenegger/nvim-dap", "folke/which-key.nvim" },
 		lazy = false,
 		opts = {
@@ -64,6 +64,7 @@ return {
 			})
 		end,
 	},
+
 	{
 		"mfussenegger/nvim-dap-python",
 		dependencies = { "mfussenegger/nvim-dap" },

@@ -8,8 +8,6 @@ return {
 			"nvim-lua/plenary.nvim",
 			"folke/which-key.nvim",
 		},
-		---@module 'obsidian'
-		---@type obsidian.config
 		opts = {
 			legacy_commands = false,
 			workspaces = {
@@ -27,9 +25,7 @@ return {
 			picker = {
 				name = "fzf-lua",
 				note_mappings = {
-					-- Create a new note from your query.
 					new = "<C-x>",
-					-- Insert a link to the selected note.
 					insert_link = "<C-l>",
 				},
 			},

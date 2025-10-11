@@ -1,3 +1,3 @@
 local colorscheme = require("utils.theme")
 
-return colorscheme("gruvbox")
+return colorscheme("vague")

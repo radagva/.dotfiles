@@ -1,11 +1,11 @@
-local lualine = require("extensions.lualine")
-
 return {
+	{ "RRethy/vim-illuminate" },
+	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		opts = {
-			-- preset = "modern",
+			preset = "modern",
 		},
 		keys = {
 			{
@@ -34,85 +34,20 @@ return {
 			})
 		end,
 	},
-	{
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
+
 	{
 		"rcarriga/nvim-notify",
 		config = function()
 			local notify = require("notify")
-			notify.setup({ --- @diagnostic disable-line
+
+			notify.setup({
 				background_colour = "#000000",
 			})
 
 			vim.notify = notify
 		end,
 	},
-	{
-		"nvim-lualine/lualine.nvim",
-		lazy = false,
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			options = {
-				theme = {
-					normal = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
-					insert = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
-					visual = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
-					replace = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
-					command = {
-						a = { bg = lualine.bg, fg = "#ffa066" },
-						b = { bg = lualine.bg },
-						c = { bg = lualine.bg },
-					},
-					inactive = { a = { bg = lualine.bg }, b = { bg = lualine.bg }, c = { bg = lualine.bg } },
-				},
-				icons_enabled = true,
-				-- disabled_component_separators = { left = "", right = "" },
-				-- section_separators = { left = "", right = "" },
-				-- section_separators = { left = "", right = "" },
-				-- section_separators = { left = '', right = '' },
-				-- component_separators = { left = "", right = "" },
-				-- section_separators = { left = "", right = "" },
-				filetypes = { statusline = {}, winbar = {} },
-				ignore_focus = {
-					"dapui_watches",
-					"dapui_breakpoints",
-					"dapui_scopes",
-					"dapui_console",
-					"dapui_stacks",
-					"dap-repl",
-					"dbui",
-					"dbout",
-					"neo-tree",
-				},
-				tabline = {},
-				winbar = {},
-				inactive_winbar = {},
-				extensions = {},
-			},
-			sections = {
-				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = { { "filename", path = 1, fmt = lualine.pretty_path } },
-				lualine_x = { lualine.debugger },
-				lualine_y = { "progress" },
-				lualine_z = {
-					"location",
-					"filetype",
-					-- { lualine.ip_address, color = { fg = "#ff9e64" } }
-				},
-			},
-			inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_c = { "filename" },
-				lualine_x = { "location" },
-				lualine_y = {},
-				lualine_z = {},
-			},
-		},
-	},
+
 	{
 		"norcalli/nvim-colorizer.lua",
 		config = function()
@@ -121,6 +56,7 @@ return {
 			}, { mode = "background" })
 		end,
 	},
+
 	{
 		"folke/twilight.nvim",
 		opts = {},
@@ -139,23 +75,7 @@ return {
 			},
 		},
 	},
-	-- {
-	-- 	"folke/noice.nvim",
-	-- 	event = "VeryLazy",
-	-- 	opts = {
-	-- 		presets = {
-	-- 			-- bottom_search = true, -- use a classic bottom cmdline for search
-	-- 			-- command_palette = true, -- position the cmdline and popupmenu together
-	-- 			-- long_message_to_split = true, -- long messages will be sent to a split
-	-- 			inc_rename = true, -- enables an input dialog for inc-rename.nvim
-	-- 			lsp_doc_border = true, -- add a border to hover docs and signature help
-	-- 		},
-	-- 	},
-	-- 	dependencies = {
-	-- 		"MunifTanjim/nui.nvim",
-	-- 		"rcarriga/nvim-notify",
-	-- 	},
-	-- },
+
 	-- {
 	-- 	"nvimdev/dashboard-nvim",
 	-- 	event = "VimEnter",
@@ -257,6 +177,7 @@ return {
 			},
 		},
 	},
+
 	{
 		"j-hui/fidget.nvim",
 		lazy = false,
@@ -268,5 +189,4 @@ return {
 			},
 		},
 	},
-	{ "RRethy/vim-illuminate" },
 }

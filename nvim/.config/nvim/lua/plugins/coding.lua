@@ -1,27 +1,27 @@
 return {
-	{
-		dir = "~/Developer/Projects/personal/neovim-plugins/angular.nvim",
-		dependencies = { "folke/which-key.nvim" },
-		dev = true,
-		-- "radagva/angular.nvim",
-		opts = {
-			auto_commands = true,
-			schematics = {
-				components = {
-					skipTests = true,
-					styles = "css",
-				},
-			},
-		},
-	},
+	{ "tpope/vim-dotenv" },
+	{ "smjonas/inc-rename.nvim" },
+	-- {
+	-- 	dir = "~/Developer/Projects/personal/neovim-plugins/angular.nvim",
+	-- 	dependencies = { "folke/which-key.nvim" },
+	-- 	dev = true,
+	-- 	-- "radagva/angular.nvim",
+	-- 	opts = {
+	-- 		auto_commands = true,
+	-- 		schematics = {
+	-- 			components = {
+	-- 				skipTests = true,
+	-- 				styles = "css",
+	-- 			},
+	-- 		},
+	-- 	},
+	-- },
+
 	{
 		"zerochae/endpoint.nvim",
 		dependencies = {
-			-- Choose one or more pickers (all optional):
-			"nvim-telescope/telescope.nvim", -- For telescope picker
-			"folke/snacks.nvim", -- For snacks picker
-			"stevearc/dressing.nvim", -- Enhances vim.ui.select with telescope backend
-			-- vim.ui.select picker works without dependencies
+			"folke/snacks.nvim",
+			"stevearc/dressing.nvim",
 		},
 		cmd = { "Endpoint", "EndpointRefresh" },
 		opts = {
@@ -29,16 +29,11 @@ return {
 				show_icons = false,
 			},
 		},
-		-- config = function()
-		-- 	require("endpoint").setup()
-		-- end,
 		keys = {
 			{ "<leader>E", ":Endpoint<cr>", desc = "Show list of endpoint", silent = true, noremap = true },
 		},
 	},
-	--[[
-  -- To perform global search and replace actions
-  --]]
+
 	{
 		"MagicDuck/grug-far.nvim",
 		opts = {},
@@ -46,10 +41,7 @@ return {
 			{ "<leader>sr", "<cmd>GrugFar<cr>", desc = "[S]earch & [R]eplace (GrugFar)" },
 		},
 	},
-	--[[
-  -- To running HTTP requests
-  --]]
-	---@type LazyPluginSpec
+
 	{
 		"mistweaverco/kulala.nvim",
 		ft = { "http", "rest" },
@@ -65,19 +57,8 @@ return {
 				end,
 			},
 		},
-		-- init = function()
-		-- end,
 	},
-	{
-		"code-biscuits/nvim-biscuits",
-	},
-	{
-		"smjonas/inc-rename.nvim",
-		opts = {},
-	},
-	--[[
-  -- To run UV commands in python projects
-  --]]
+
 	{
 		"benomahony/uv.nvim",
 		opts = {
@@ -85,14 +66,9 @@ return {
 			auto_activate_venv = true,
 			notify_activate_venv = true,
 			keymaps = false,
-			-- keymaps = {
-			-- 	prefix = "<leader>cu",
-			-- },
 		},
 	},
-	--[[
-  -- To have better autocompletion of tailwindcss classnames
-  --]]
+
 	{
 		"luckasRanarison/tailwind-tools.nvim",
 		name = "tailwind-tools",
@@ -100,15 +76,11 @@ return {
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
-		---@type TailwindTools.SettingsOption
 		opts = {},
 	},
-	--[[
-  -- To autoclose and autopair HTML/JSX/HTMX tags
-  --]]
+
 	{
 		"windwp/nvim-ts-autotag",
-		---@type nvim-ts-autotag.PluginSetup
 		opts = {
 			{
 				opts = {
@@ -118,13 +90,7 @@ return {
 			},
 		},
 	},
-	--[[
-  -- To read .env files
-  --]]
-	{ "tpope/vim-dotenv" },
-	--[[
-  -- To have better diagnostics
-  --]]
+
 	{
 		"folke/trouble.nvim",
 		opts = {},
@@ -162,12 +128,9 @@ return {
 			},
 		},
 	},
-	--[[
-  -- To format code per language
-  --]]
+
 	{
 		"stevearc/conform.nvim",
-		---@type conform.setupOpts
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
@@ -183,7 +146,7 @@ return {
 				python = { "ruff_format", "ruff_fix" },
 				go = { "gofumpt" },
 				sql = { "sql_formatter" },
-				["*"] = { "injected" }, -- enables injected-lang formatting for all filetypes
+				["*"] = { "injected" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
@@ -191,20 +154,15 @@ return {
 			},
 		},
 	},
-	--[[
-  -- To have better autocompletion per filetype
-  --]]
+
 	{
 		"saghen/blink.cmp",
 		version = "1.*",
-		---@type blink.cmp.Config
 		opts = {
 			keymap = { preset = "default" },
-
 			appearance = {
 				nerd_font_variant = "mono",
 			},
-
 			completion = {
 				documentation = {
 					auto_show = true,
@@ -237,17 +195,16 @@ return {
 				},
 			},
 			sources = {
-				default = { "lsp", "path", "copilot" },
+				default = { "lsp", "path" },
 				per_filetype = {
 					sql = { "dadbod" },
 				},
 				providers = {
 					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-					copilot = {
-						name = "copilot",
-						module = "blink-cmp-copilot",
-						score_offset = 100,
-						async = true,
+					path = {
+						enabled = function()
+							return vim.bo.filetype ~= "copilot-chat"
+						end,
 					},
 				},
 			},
@@ -255,13 +212,10 @@ return {
 		},
 		opts_extend = { "sources.default" },
 	},
-	--[[
-  -- To easily install LSP or DAP clients right in .local/shared/mason folder
-  --]]
+
 	{
 		"mason-org/mason.nvim",
 		lazy = false,
-		---@type MasonSettings
 		opts = {
 			ensure_installed = { "http", "c", "css-lsp" },
 			ui = {
@@ -269,13 +223,10 @@ return {
 			},
 		},
 	},
-	--[[
-  -- To have syntax highlight per filetype
-  --]]
+
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		---@type TSConfig
 		opts = {
 			modules = {},
 			ensure_installed = {

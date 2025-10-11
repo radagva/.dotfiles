@@ -4,6 +4,7 @@ return function(name)
 		require("themes.gruvbox"),
 		require("themes.rose-pine"),
 		require("themes.kanagawa"),
+		require("themes.vague"),
 	}
 
 	for _, v in pairs(themes) do

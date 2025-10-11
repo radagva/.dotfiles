@@ -1,20 +1,15 @@
 return {
+	{ "tpope/vim-fugitive" },
+
 	{
 		"lewis6991/gitsigns.nvim",
-		---@diagnostic disable: missing-fields
-		---@type Gitsigns.Config
 		opts = {
 			preview_config = {
 				border = "rounded",
 			},
 			current_line_blame = true,
 			current_line_blame_opts = {
-				-- virt_text = true,
-				-- virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
 				delay = 250,
-				-- ignore_whitespace = false,
-				-- virt_text_priority = 100,
-				-- use_focus = true,
 			},
 			on_attach = function()
 				local gitsigns = require("gitsigns")
@@ -40,11 +35,10 @@ return {
 				map("n", "<leader>ggB", gitsigns.blame, { desc = "Blame buffer" })
 
 				map("n", "<leader>ggd", gitsigns.diffthis, { desc = "Diff this" })
-				-- map({ "o", "x" }, "ih", gitsigns.select_hunk, { desc = "Select hunk" })
 			end,
 		},
 	},
-	{ "tpope/vim-fugitive" },
+
 	{
 		"pwntester/octo.nvim",
 		lazy = false,
