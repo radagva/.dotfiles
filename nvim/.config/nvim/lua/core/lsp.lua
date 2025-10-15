@@ -23,12 +23,55 @@ vim.keymap.set("n", "K", function()
 end, { desc = "Hover Documentation" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function()
-		-- local fzf = require("fzf-lua")
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		local bufnr = args.buf
 
-		-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementations" })
-		-- vim.keymap.set("n", "gr", vim.lsp.buf.reference, { desc = "Go to references" })
+		-- Only set up keymaps if we have a valid client
+		if not client then
+			return
+		end
+
+		-- Helper function to safely bind LSP functions
+		local function safe_lsp_buf_bind(lsp_func, fallback_desc)
+			if type(lsp_func) == "function" then
+				return lsp_func
+			else
+				return function()
+					vim.notify("LSP function not available", vim.log.levels.WARN)
+				end
+			end
+		end
+
+		vim.keymap.set(
+			"n",
+			"gd",
+			safe_lsp_buf_bind(vim.lsp.buf.definition),
+			{ buffer = bufnr, desc = "LSP: Go to definition" }
+		)
+		vim.keymap.set(
+			"n",
+			"gD",
+			safe_lsp_buf_bind(vim.lsp.buf.type_definition),
+			{ buffer = bufnr, desc = "LSP: Go to type definition" }
+		)
+		vim.keymap.set(
+			"n",
+			"gr",
+			safe_lsp_buf_bind(vim.lsp.buf.references),
+			{ buffer = bufnr, desc = "LSP: Go to references" }
+		)
+		vim.keymap.set(
+			"n",
+			"gi",
+			safe_lsp_buf_bind(vim.lsp.buf.implementation),
+			{ buffer = bufnr, desc = "LSP: Go to implementations" }
+		)
+
+		-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP: Go to definition" })
+		-- vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { desc = "LSP: Go to type definition" })
+		-- vim.keymap.set("n", "gr", vim.lsp.buf.reference, { desc = "LSP: Go to references" })
+		-- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "LSP: Go to implementations" })
 
 		vim.keymap.set("n", "]d", function()
 			vim.diagnostic.goto_next({ float = true })

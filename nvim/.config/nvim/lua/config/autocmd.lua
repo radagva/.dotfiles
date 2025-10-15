@@ -43,3 +43,10 @@ function GetAttachedLspClients()
 	local bufnr = vim.api.nvim_get_current_buf()
 	return vim.lsp.get_clients({ bufnr = bufnr })
 end
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "startify",
+	callback = function()
+		vim.keymap.set("n", "o", ":LoadLastSession<CR>", { buffer = true, desc = "Open file explorer" })
+	end,
+})

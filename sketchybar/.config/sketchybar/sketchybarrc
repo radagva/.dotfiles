@@ -28,7 +28,7 @@ bar=(
 	y_offset=4
 	margin=5
   # color=$TRANSPARENT
-  color=$BG_SOLID
+  color=0x6125273A
   # color=0xA11E1E2E
   blur_radius=65
 )

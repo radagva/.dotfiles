@@ -29,81 +29,81 @@ return {
 		},
 	},
 
-	{
-		"ibhagwan/fzf-lua",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = function()
-			local actions = require("fzf-lua").actions
-			local extensions = require("extensions.fzf-lua")
-
-			actions = {
-				files = {
-					["enter"] = actions.file_edit_or_qf,
-					["ctrl-s"] = actions.file_split,
-					["ctrl-v"] = actions.file_vsplit,
-					["ctrl-i"] = actions.toggle_ignore,
-					["ctrl-h"] = actions.toggle_hidden,
-					["ctrl-x"] = extensions.create_file_action,
-				},
-				dir = {
-					["ctrl-x"] = extensions.create_file_action,
-				},
-			}
-
-			return {
-				actions = actions,
-				grep = {
-					rg_glob = true,
-				},
-				files = {
-					cwd_prompt = false,
-					prompt = "Files ❯ ",
-					formatter = "path.filename_first",
-				},
-				winopts = {
-					preview = {
-						layout = "vertical",
-					},
-				},
-			}
-		end,
-		keys = {
-			{
-				"<leader><leader>",
-				function()
-					require("fzf-lua").files({ cmd = "fd --type f --exclude .git -i" })
-				end,
-				desc = "Fuzzy Find Files",
-			},
-			{
-				"<leader>ss",
-				function()
-					require("fzf-lua").lsp_document_symbols()
-				end,
-				desc = "[S]earch document [S]ymbols",
-			},
-
-			{
-				"<leader>sg",
-				function()
-					require("fzf-lua").live_grep()
-				end,
-				desc = "[G]lobal [Search] of text in files",
-			},
-			{
-				"<leader>sb",
-				function()
-					require("fzf-lua").buffers()
-				end,
-				desc = "[B]uffers [Search]",
-			},
-			{
-				"<leader>sc",
-				function()
-					require("fzf-lua").files({ cwd = "~/.dotfiles", cmd = "fd --type f --hidden --exclude .git" })
-				end,
-				desc = "[C]onfig [S]earch",
-			},
-		},
-	},
+	-- {
+	-- 	"ibhagwan/fzf-lua",
+	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	-- 	opts = function()
+	-- 		local actions = require("fzf-lua").actions
+	-- 		local extensions = require("extensions.fzf-lua")
+	--
+	-- 		actions = {
+	-- 			files = {
+	-- 				["enter"] = actions.file_edit_or_qf,
+	-- 				["ctrl-s"] = actions.file_split,
+	-- 				["ctrl-v"] = actions.file_vsplit,
+	-- 				["ctrl-i"] = actions.toggle_ignore,
+	-- 				["ctrl-h"] = actions.toggle_hidden,
+	-- 				["ctrl-x"] = extensions.create_file_action,
+	-- 			},
+	-- 			dir = {
+	-- 				["ctrl-x"] = extensions.create_file_action,
+	-- 			},
+	-- 		}
+	--
+	-- 		return {
+	-- 			actions = actions,
+	-- 			grep = {
+	-- 				rg_glob = true,
+	-- 			},
+	-- 			files = {
+	-- 				cwd_prompt = false,
+	-- 				prompt = "Files ❯ ",
+	-- 				formatter = "path.filename_first",
+	-- 			},
+	-- 			winopts = {
+	-- 				preview = {
+	-- 					layout = "vertical",
+	-- 				},
+	-- 			},
+	-- 		}
+	-- 	end,
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader><leader>",
+	-- 			function()
+	-- 				require("fzf-lua").files({ cmd = "fd --type f --exclude .git -i" })
+	-- 			end,
+	-- 			desc = "Fuzzy Find Files",
+	-- 		},
+	-- 		{
+	-- 			"<leader>ss",
+	-- 			function()
+	-- 				require("fzf-lua").lsp_document_symbols()
+	-- 			end,
+	-- 			desc = "[S]earch document [S]ymbols",
+	-- 		},
+	--
+	-- 		{
+	-- 			"<leader>sg",
+	-- 			function()
+	-- 				require("fzf-lua").live_grep()
+	-- 			end,
+	-- 			desc = "[G]lobal [Search] of text in files",
+	-- 		},
+	-- 		{
+	-- 			"<leader>sb",
+	-- 			function()
+	-- 				require("fzf-lua").buffers()
+	-- 			end,
+	-- 			desc = "[B]uffers [Search]",
+	-- 		},
+	-- 		{
+	-- 			"<leader>sc",
+	-- 			function()
+	-- 				require("fzf-lua").files({ cwd = "~/.dotfiles", cmd = "fd --type f --hidden --exclude .git" })
+	-- 			end,
+	-- 			desc = "[C]onfig [S]earch",
+	-- 		},
+	-- 	},
+	-- },
 }

@@ -1,11 +1,12 @@
-
+hide_window_decorations yes
 # BEGIN_KITTY_THEME
 # Gruvbox Dark Hard
 include current-theme.conf
 # END_KITTY_THEME
 
 
-background_opacity 0.9
+background_opacity 0.8
 background_blur 65
 # allow_remote_control yes
-macos_titlebar_color background
+# macos_titlebar_color background
+# shell /opt/homebrew/bin/nu
