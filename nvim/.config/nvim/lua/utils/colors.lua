@@ -1,5 +1,6 @@
 local utils = {
 	highlights = {
+		comment = "@comment.documentation",
 		wifi = "@constant.builtin",
 		git_branch = "@lsp.type.method",
 		debugger = "@lsp.type.parameter",

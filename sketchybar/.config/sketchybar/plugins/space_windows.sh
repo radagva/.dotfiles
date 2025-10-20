@@ -34,16 +34,17 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
 		label.highlight=true \
 		icon.color=$BLACK \
 		label.color=$ORANGE \
-    background.color=$(color 0x66111111 0x22AAAAAA) \
-		background.border_color=$GREY
+    background.color=$(color $SPACE_BG_COLOR $SPACE_BG_COLOR) \
+		background.border_color=$SPACE_FG_COLOR_ACTIVE \
+    background.border_width=1
 
 	# prev workspace space styling (unfocused)
 	sketchybar --set space.$AEROSPACE_PREV_WORKSPACE \
 		icon.highlight=false \
 		label.highlight=false \
-		icon.color=$WHITE \
-		label.color=$WHITE \
-		background.border_color=$BACKGROUND_2 \
+    icon.color=$SPACE_FG_COLOR \
+    label.color=$SPACE_FG_COLOR \
+		background.border_color=$TRANSPARENT \
 		background.color=$TRANSPARENT
 
 	# Handle empty workspaces

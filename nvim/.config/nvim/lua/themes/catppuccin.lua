@@ -25,7 +25,7 @@ return {
 					GitSignsCurrentLineBlame = { fg = "#8B91A9" },
 
 					-- transparent autocompletion
-					Pmenu = { bg = "none", fg = "none" },
+					-- Pmenu = { bg = "none", fg = "none" },
 				}
 			end,
 		},

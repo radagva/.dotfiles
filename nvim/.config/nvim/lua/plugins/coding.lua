@@ -1,6 +1,13 @@
 return {
 	{ "tpope/vim-dotenv" },
 	{ "smjonas/inc-rename.nvim" },
+	{
+		"dmmulroy/tsc.nvim",
+		config = true,
+		opts = {
+			use_trouble_qflist = true,
+		},
+	},
 	-- {
 	-- 	dir = "~/Developer/Projects/personal/neovim-plugins/angular.nvim",
 	-- 	dependencies = { "folke/which-key.nvim" },

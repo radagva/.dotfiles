@@ -48,16 +48,16 @@ return {
 				"<leader><leader>",
 				function()
 					Snacks.picker.files({
+						hidden = true,
 						layout = { preset = "ivy", layout = { position = "bottom" } },
 						win = {
-							input = {
+							list = {
 								keys = {
 									["H"] = { "preview_scroll_left", mode = { "i", "n" } },
 									["J"] = { "preview_scroll_down", mode = { "i", "n" } },
 									["K"] = { "preview_scroll_up", mode = { "i", "n" } },
 									["L"] = { "preview_scroll_right", mode = { "i", "n" } },
-									["<c-h>"] = { "toggle_hidden", mode = { "i", "n" } },
-									["<c-i>"] = { "toggle_ignored", mode = { "i", "n" } },
+									-- ["<M-h>"] = { "toggle_hidden", mode = { "i", "n" } },
 								},
 							},
 						},
@@ -90,6 +90,13 @@ return {
 				function()
 					Snacks.picker.grep({ layout = { preset = "ivy", layout = { position = "bottom" } } })
 				end,
+			},
+			{
+				"<leader>sd",
+				function()
+					Snacks.picker.diagnostics()
+				end,
+				desc = "LSP Diagnostics",
 			},
 			{
 				"<leader>ss",

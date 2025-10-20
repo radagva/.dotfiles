@@ -2,6 +2,7 @@ local ipaddress = require("ui.statusline.ipaddress")
 local git = require("ui.statusline.git")
 local dap = require("ui.statusline.dap")
 local diagnostics = require("ui.statusline.diagnostics")
+local filetype = require("ui.statusline.filetype")
 
 Statusline = {}
 
@@ -14,6 +15,7 @@ function Statusline.activate()
 			dap(),
 			"%=",
 			"%l:%c",
+			filetype(),
 			ipaddress(),
 		}, " ")
 		.. " "

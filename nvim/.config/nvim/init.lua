@@ -6,6 +6,7 @@ require("core.lazy")
 require("core.lsp")
 
 require("ui.statusline")
+require("ui.winbar")
 
 -- if os.getenv("theme") == "light" then
 -- 	vim.o.background = "light"

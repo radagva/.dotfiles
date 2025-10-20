@@ -14,10 +14,10 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
     space=(
       space="$sid"
       icon="$sid"
-      icon.color=$WHITE
-      icon.highlight_color=$WHITE
-      label.color=$WHITE
-      label.highlight_color=$WHITE
+      icon.color=$SPACE_FG_COLOR
+      label.color=$SPACE_FG_COLOR
+      icon.highlight_color=$SPACE_FG_COLOR_ACTIVE
+      label.highlight_color=$SPACE_FG_COLOR_ACTIVE
       label.font="sketchybar-app-font:Regular:12.0"
       icon.font="$FONT:Regular:12"
       icon.padding_left=10
