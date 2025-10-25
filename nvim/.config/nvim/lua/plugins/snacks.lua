@@ -88,7 +88,7 @@ return {
 			{
 				"<leader>sg",
 				function()
-					Snacks.picker.grep({ layout = { preset = "ivy", layout = { position = "bottom" } } })
+					Snacks.picker.grep({ hidden = true, layout = { preset = "ivy", layout = { position = "bottom" } } })
 				end,
 			},
 			{

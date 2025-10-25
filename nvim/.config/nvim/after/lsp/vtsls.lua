@@ -1,48 +1,4 @@
----@type vim.lsp.Config
 return {
-	filetypes = {
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact",
-	},
-	cmd = { "vtsls", "--stdio" },
-	root_markers = {
-		".git",
-		"tsconfig.json",
-	},
-	settings = {
-		complete_function_calls = false,
-		vtsls = {
-			enableMoveToFileCodeAction = true,
-			autoUseWorkspaceTsdk = true,
-			experimental = {
-				completion = {
-					enableServerSideFuzzyMatch = true,
-				},
-			},
-		},
-		javascript = {
-			suggest = {
-				names = false,
-			},
-		},
-		typescript = {
-			updateImportsOnFileMove = { enabled = "always" },
-			suggest = {
-				completeFunctionCalls = false,
-				names = false,
-			},
-			inlayHints = {
-				enumMemberValues = { enabled = true },
-				functionLikeReturnTypes = { enabled = true },
-				parameterNames = { enabled = "literals" },
-				parameterTypes = { enabled = false },
-				propertyDeclarationTypes = { enabled = true },
-				variableTypes = { enabled = false },
-			},
-		},
-	},
 	on_attach = function(client, bufnr) ---@diagnostic disable-line
 		local map = vim.keymap.set
 

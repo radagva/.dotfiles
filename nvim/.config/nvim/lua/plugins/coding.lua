@@ -154,7 +154,7 @@ return {
 				python = { "ruff_format", "ruff_fix" },
 				go = { "gofumpt" },
 				sql = { "sql_formatter" },
-				-- ["*"] = { "injected" },
+				["*"] = { "injected" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
@@ -220,18 +220,6 @@ return {
 		},
 		opts_extend = { "sources.default" },
 	},
-
-	{
-		"mason-org/mason.nvim",
-		lazy = false,
-		opts = {
-			ensure_installed = { "http", "c", "css-lsp" },
-			ui = {
-				border = "rounded",
-			},
-		},
-	},
-
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
