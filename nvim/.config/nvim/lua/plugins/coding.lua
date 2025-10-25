@@ -142,6 +142,7 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = { "prettier" },
+				astro = { "prettier" },
 				javascriptreact = { "prettier" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
@@ -153,7 +154,7 @@ return {
 				python = { "ruff_format", "ruff_fix" },
 				go = { "gofumpt" },
 				sql = { "sql_formatter" },
-				["*"] = { "injected" },
+				-- ["*"] = { "injected" },
 			},
 			format_on_save = {
 				timeout_ms = 500,

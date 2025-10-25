@@ -1,14 +1,15 @@
 vim.lsp.enable({
 	"lua_ls",
 	"vtsls",
-	"gopls",
+	-- "gopls",
 	"sqlls",
 	"eslint",
 	"basedpyright",
-	"clangd",
+	-- "clangd",
 	"tailwindcss",
 	"emmet",
 	"cssls",
+	"astro",
 })
 
 vim.keymap.set("n", "<leader>uli", function()

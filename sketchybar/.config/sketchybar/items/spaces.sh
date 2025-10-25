@@ -27,7 +27,8 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
       padding_right=2
       label.padding_right=12
       label.y_offset=-1
-      background.border_color=$BACKGROUND_2
+      background.border_width=1
+      background.border_color=$SPACE_FG_COLOR_ACTIVE
       script="$PLUGIN_DIR/space.sh"
     )
 

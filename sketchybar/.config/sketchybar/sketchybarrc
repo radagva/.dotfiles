@@ -27,15 +27,7 @@ bar=(
   corner_radius=10
 	y_offset=4
 	margin=5
-  border_width=1
-
-  color=0x61252530
-  border_color=0x22AEAED1
-
-  # catppuccin theme
-  # border_color=0x22c6a0f6
-  # color=0x6125273A
-  blur_radius=65
+  color=$TRANSPARENT
 )
 
 sketchybar --bar "${bar[@]}"
@@ -66,11 +58,11 @@ defaults=(
 sketchybar --default "${defaults[@]}"
 
 # Left
-source "$ITEM_DIR/front_app.sh"
 source "$ITEM_DIR/spaces.sh"
+source "$ITEM_DIR/front_app.sh"
 
 # Center
-# source "$ITEM_DIR/spotify.sh"
+source "$ITEM_DIR/spotify.sh"
 
 # Right
 source "$ITEM_DIR/calendar.sh"
@@ -78,13 +70,22 @@ source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/earphones_battery.sh"
 
-# sketchybar --add bracket left space.1 space.2 space.3 space.4 space.5 space.6 space.7 space.8 space.9 \
-# 	--set left \
-# 	background.height=24 \
-#
-# sketchybar --add bracket right earphones_battery battery volume calendar \
-# 	--set right \
-# 	background.height=24 \
+sketchybar --add bracket left space.1 space.2 space.3 space.4 space.5 space.6 space.7 space.8 space.9 front_app \
+	--set left \
+	background.height=24 \
+  background.color=$SKETCHYBAR_BG \
+  background.border_width=1 \
+  background.border_color=0x22c6a0f6 \
+
+
+
+sketchybar --add bracket right earphones_battery battery volume calendar \
+	--set right \
+	background.height=24 \
+  background.color=$SKETCHYBAR_BG \
+  background.border_width=1 \
+  background.border_color=0x22c6a0f6 \
+
 
 
 sketchybar --hotload on

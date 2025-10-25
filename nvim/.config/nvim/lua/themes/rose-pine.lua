@@ -9,8 +9,9 @@ return {
 		},
 		highlight_groups = {
 			Visual = {
-				bg = "#e0def4",
-				fg = "#ffffff",
+				bg = "#44415a",
+				fg = "#e0def4",
+				inherit = false,
 			},
 			Pmenu = { bg = "none", fg = "none" },
 			-- PmenuThumb = { bg = "#C0A36E" },
@@ -21,8 +22,8 @@ return {
 			FloatBorder = { bg = "none" },
 			FloatTitle = { bg = "none" },
 
-			WinBar = { bg = "none" },
-			WinBarNC = { bg = "none" },
+			WinBar = { bg = "none", inherit = false },
+			WinBarNC = { bg = "none", fg = "none", inherit = false },
 			TabLineSel = { bg = "none", fg = "white" },
 			TabLine = { bg = "none", fg = "gray" },
 			TabLineFill = { bg = "none", fg = "none" },

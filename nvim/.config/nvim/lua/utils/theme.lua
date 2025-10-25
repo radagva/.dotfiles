@@ -5,6 +5,7 @@ return function(name)
 		require("themes.rose-pine"),
 		require("themes.kanagawa"),
 		require("themes.vague"),
+		require("themes.tokyonight"),
 	}
 
 	for _, v in pairs(themes) do

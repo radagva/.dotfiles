@@ -20,6 +20,19 @@ color() {
     fi
 }
 
+# Theme specific
+## Gruvbox
+export GRUVBOX_DARK=0xFF1E2021
+export GRUVBOX_ORANGE=0xFFFE8018
+export GRUVBOX_ORANGE_ALPHA=0x11FE8018
+export GRUVBOX_RED=0xFFFA4834
+
+## Catppuccin Macchiato
+export CATPPUCCIN_MACCHIATO_MAGENTA=0xFFC6A0F7
+export CATPPUCCIN_MACCHIATO_RED=0xffeed49f
+
+
+# General
 export BLACK=0xff181926
 export WHITE=0xffcad3f5
 export RED=0xffcc241d
@@ -43,9 +56,12 @@ export BG2=0xCCC6A0F7
 
 export APP_ICON_COLOR=$MAGENTA
 
-export SPACE_BG_COLOR=0x11D9647E
+# UI Components
+export SKETCHYBAR_BG=0xFF25273A
+
+export SPACE_BG_COLOR=0x11C6A0F7
 export SPACE_FG_COLOR=0xFFFFFFFF
-export SPACE_FG_COLOR_ACTIVE=0xFFD9647E
+export SPACE_FG_COLOR_ACTIVE=0xFFC6A0F7
 
 
 # General bar colors

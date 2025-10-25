@@ -1,19 +1,31 @@
 # BEGIN_KITTY_THEME
-# Vague
+# Gruvbox Dark Hard
 include current-theme.conf
 # END_KITTY_THEME
 
+#- System
+map ctrl+a>t kitten toggle_dark_mode.py
+
 #- UI window
 # hide_window_decorations yes
+tab_title_template {session_name} {title}
+cursor_trail 1
+tab_bar_align left
+tab_bar_style powerline
+tab_powerline_style angled
+active_tab_background #e46876
+inactive_tab_background #a6a69c
 
 #- UI theme
 background_opacity 1
 background_blur 65
+active_border_color #a6a69c
+inactive_border_color #a6a69c
 
 #- third party
 allow_remote_control yes
 listen_on unix:/tmp/mykitty
-# shell /opt/homebrew/bin/nu
+shell /opt/homebrew/bin/nu
 
 #- MacOS specific options
 macos_option_as_alt right
@@ -21,15 +33,16 @@ macos_titlebar_color background
 
 #- Layout
 enabled_layouts splits,stack
+map ctrl+a>m toggle_layout stack
 
-map cmd+d launch --location=vsplit
-map cmd+shift+d launch --location=hsplit
+map ctrl+a>| launch --cwd=current --location=vsplit
+map ctrl+a>- launch --cwd=current --location=hsplit
 
 ## Move the active window to the indicated screen edge
-map ctrl+shift+up layout_action move_to_screen_edge top
-map ctrl+shift+left layout_action move_to_screen_edge left
-map ctrl+shift+right layout_action move_to_screen_edge right
-map ctrl+shift+down layout_action move_to_screen_edge bottom
+map ctrl+a>shift+k layout_action move_to_screen_edge top
+map ctrl+a>shift+h layout_action move_to_screen_edge left
+map ctrl+a>shift+l layout_action move_to_screen_edge right
+map ctrl+a>shift+j layout_action move_to_screen_edge bottom
 
 ## Switch focus to the neighboring window in the indicated direction
 map ctrl+j neighboring_window down
@@ -44,13 +57,30 @@ map --when-focus-on var:IS_NVIM ctrl+h
 map --when-focus-on var:IS_NVIM ctrl+l
 
 # the 3 here is the resize amount, adjust as needed
-# map alt+j kitten relative_resize.py down  3
-# map alt+k kitten relative_resize.py up    3
-# map alt+h kitten relative_resize.py left  3
-# map alt+l kitten relative_resize.py right 3
+map alt+j kitten relative_resize.py down  3
+map alt+k kitten relative_resize.py up    3
+map alt+h kitten relative_resize.py left  3
+map alt+l kitten relative_resize.py right 3
 
 map --when-focus-on var:IS_NVIM alt+j
 map --when-focus-on var:IS_NVIM alt+k
 map --when-focus-on var:IS_NVIM alt+h
 map --when-focus-on var:IS_NVIM alt+l
 
+#- Session Management
+tab_bar_filter session:~ or session:^$
+map f5 save_as_session --relocatable --use-foreground-process --match=session:. .
+map ctrl+a>s goto_session --sort-by=alphabetical
+map ctrl+a>w goto_session ~/Developer/Projects/wear/wear.kitty-session
+map ctrl+a>. goto_session ~/dotfiles.kitty-session
+map ctrl+a>c goto_session ~/Developer/Projects/personal/communities/comnties.kitty-session
+map ctrl+a>n goto_session 1
+map ctrl+a>p goto_session -1
+
+map f1 launch --stdin-source=@screen_scrollback --stdin-add-formatting less +G -R
+
+#- Tabs managements
+map ctrl+a>n next_tab
+map ctrl+a>p prev_tab
+# tab_bar_margin_color none
+# tab_bar_background none

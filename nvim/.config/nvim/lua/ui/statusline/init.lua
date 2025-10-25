@@ -9,6 +9,7 @@ Statusline = {}
 function Statusline.activate()
 	return " "
 		.. table.concat({
+			"%t",
 			git(),
 			diagnostics(),
 			"%=",

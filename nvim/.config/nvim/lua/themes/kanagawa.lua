@@ -1,14 +1,12 @@
-local theme = "wave"
-
 return {
 	"rebelot/kanagawa.nvim",
 	name = "kanagawa",
 	lazy = true,
 	opts = {
-		theme = theme, -- Load "wave" theme
+		-- theme = theme, -- Load "wave" theme
 		background = { -- map the value of 'background' option to a theme
-			dark = theme, -- try "dragon" !
-			light = theme,
+			dark = "dragon", -- try "dragon" !
+			light = "lotus",
 		},
 		transparent = false,
 		colors = {
