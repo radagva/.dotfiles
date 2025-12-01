@@ -48,7 +48,7 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
-			picker = "fzf-lua",
+			picker = "snacks",
 		},
 		keys = {
 			{

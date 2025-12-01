@@ -2,21 +2,21 @@ local ipaddress = require("ui.statusline.ipaddress")
 local git = require("ui.statusline.git")
 local dap = require("ui.statusline.dap")
 local diagnostics = require("ui.statusline.diagnostics")
-local filetype = require("ui.statusline.filetype")
+local lsps = require("ui.statusline.attachedlsps")
 
 Statusline = {}
 
 function Statusline.activate()
 	return " "
 		.. table.concat({
-			"%t",
 			git(),
 			diagnostics(),
 			"%=",
 			dap(),
 			"%=",
 			"%l:%c",
-			filetype(),
+			lsps(),
+			-- filetype(),
 			ipaddress(),
 		}, " ")
 		.. " "

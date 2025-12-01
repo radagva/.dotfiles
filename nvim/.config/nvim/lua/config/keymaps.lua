@@ -110,6 +110,10 @@ map("n", "<leader><Tab>o", "<cmd>tabonly<cr>", opts({ desc = "Close other tabs" 
 map("n", "<leader><Tab>n", "<cmd>tabnext<cr>", opts({ desc = "Next tab" }))
 map("n", "<leader><Tab>p", "<cmd>tabprevious<cr>", opts({ desc = "Prev tab" }))
 
+map("n", "<leader>,", "<Nop>", { silent = true })
+map("n", "<leader>,-", "<cmd>below split | terminal<cr><C-w>J", { silent = true, desc = "New terminal below" })
+map("n", "<leader>,|", "<cmd>below split | terminal<cr><C-w>L", { silent = true, desc = "New terminal right" })
+
 -- vim.keymap.set("n", "<C-h>", function()
 -- 	require("smart-splits").move_cursor_left()
 -- end)

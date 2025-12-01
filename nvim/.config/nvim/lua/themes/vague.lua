@@ -24,7 +24,9 @@ return {
 			hl.StatusLine = { bg = "none" }
 			hl.StatusLineNC = { bg = "none" }
 
-			hl.GitSignsCurrentLineBlame = { fg = "#8B91A9" }
+			hl.GitSignsCurrentLineBlame = { fg = "#606079" }
+
+			hl["@lsp.type.class"] = hl.Number
 		end,
 	},
 }

@@ -6,6 +6,7 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
+		gh = {},
 		lazygit = {
 			configure = true,
 		},
@@ -49,7 +50,8 @@ return {
 				function()
 					Snacks.picker.files({
 						hidden = true,
-						layout = { preset = "ivy", layout = { position = "bottom" } },
+						layout = { preset = "vertical" },
+						-- layout = { preset = "ivy", layout = { position = "bottom" } },
 						win = {
 							list = {
 								keys = {
@@ -70,7 +72,9 @@ return {
 			{
 				"<leader>sb",
 				function()
-					Snacks.picker.buffers({ layout = { preset = "ivy", layout = { position = "bottom" } } })
+					Snacks.picker.buffers({
+						-- layout = { preset = "ivy", layout = { position = "bottom" } }
+					})
 				end,
 				desc = "Search for buffers",
 				silent = true,
@@ -81,15 +85,22 @@ return {
 					Snacks.picker.files({
 						cwd = "~/.dotfiles",
 						hidden = true,
-						layout = { preset = "ivy", layout = { position = "bottom" } },
+						-- layout = { preset = "ivy", layout = { position = "bottom" } },
 					})
 				end,
+				desc = "Search .dot configs",
+				silent = true,
 			},
 			{
 				"<leader>sg",
 				function()
-					Snacks.picker.grep({ hidden = true, layout = { preset = "ivy", layout = { position = "bottom" } } })
+					Snacks.picker.grep({
+						hidden = true,
+						-- layout = { preset = "ivy", layout = { position = "bottom" } }
+					})
 				end,
+				desc = "Search for text",
+				silent = true,
 			},
 			{
 				"<leader>sd",
@@ -97,6 +108,7 @@ return {
 					Snacks.picker.diagnostics()
 				end,
 				desc = "LSP Diagnostics",
+				silent = true,
 			},
 			{
 				"<leader>ss",
@@ -104,6 +116,7 @@ return {
 					Snacks.picker.lsp_symbols()
 				end,
 				desc = "LSP Symbols",
+				silent = true,
 			},
 			{
 				"<leader>e",
@@ -119,6 +132,22 @@ return {
 					Snacks.lazygit.open()
 				end,
 				desc = "Open lazygit",
+			},
+			{
+				"<leader>gp",
+				function()
+					Snacks.picker.gh_pr()
+				end,
+				desc = "GitHub Pull Requests (open)",
+				silent = true,
+			},
+			{
+				"<leader>gP",
+				function()
+					Snacks.picker.gh_pr({ state = "all" })
+				end,
+				desc = "GitHub Pull Requests (all)",
+				silent = true,
 			},
 		})
 	end,

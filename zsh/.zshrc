@@ -193,7 +193,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+# source <(ng completion script)
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"

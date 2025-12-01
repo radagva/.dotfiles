@@ -20,6 +20,24 @@ color() {
     fi
 }
 
+withopacity() {
+    local color="$1"
+    local alpha="$2"
+
+    # Remove the 0x prefix if present
+    color="${color#0x}"
+
+    # Extract the original alpha and RGB components
+    local original_alpha="${color:0:2}"
+    local rgb="${color:2:6}"
+
+    # Convert alpha to hex (ensure 2-digit hex)
+    alpha=$(printf "%02X" "$alpha")
+
+    # Return the new color with modified alpha
+    echo "0x${alpha}${rgb}"
+}
+
 # Theme specific
 ## Gruvbox
 export GRUVBOX_DARK=0xFF1E2021
@@ -57,11 +75,11 @@ export BG2=0xCCC6A0F7
 export APP_ICON_COLOR=$MAGENTA
 
 # UI Components
-export SKETCHYBAR_BG=0xFF25273A
+export SKETCHYBAR_BG=0xFF181616
 
-export SPACE_BG_COLOR=0x11C6A0F7
+export SPACE_FG_COLOR_ACTIVE=0xFFC4746E
+export SPACE_BG_COLOR=$(withopacity $SPACE_FG_COLOR_ACTIVE 10)
 export SPACE_FG_COLOR=0xFFFFFFFF
-export SPACE_FG_COLOR_ACTIVE=0xFFC6A0F7
 
 
 # General bar colors

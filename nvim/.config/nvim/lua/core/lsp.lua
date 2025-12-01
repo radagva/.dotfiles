@@ -1,22 +1,23 @@
 vim.lsp.enable({
 	"lua_ls",
 	"vtsls",
-	-- "gopls",
+	"gopls",
 	"sqlls",
 	"eslint",
+	"clangd",
 	"basedpyright",
-	-- "clangd",
 	"tailwindcss",
-	"emmet",
+	"emmet_ls",
 	"cssls",
 	"astro",
+	"terraform",
 })
 
-vim.keymap.set("n", "<leader>uli", function()
+vim.keymap.set("n", "<leader>uh", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
 end, { desc = "Toggle inlay hints" })
 
-vim.keymap.set("n", "<leader>cia", vim.lsp.buf.code_action, { desc = "code inline actions" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "code inline actions" })
 
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[R]ename symbol", expr = true })
 
@@ -35,13 +36,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		-- Helper function to safely bind LSP functions
-		local function safe_lsp_buf_bind(lsp_func, fallback_desc)
+		local function safe_lsp_buf_bind(lsp_func, _)
 			if type(lsp_func) == "function" then
 				return lsp_func
-			else
-				return function()
-					vim.notify("LSP function not available", vim.log.levels.WARN)
-				end
+			end
+
+			return function()
+				vim.notify("LSP function not available", vim.log.levels.WARN)
 			end
 		end
 
@@ -70,23 +71,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			{ buffer = bufnr, desc = "LSP: Go to implementations" }
 		)
 
-		-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP: Go to definition" })
-		-- vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { desc = "LSP: Go to type definition" })
-		-- vim.keymap.set("n", "gr", vim.lsp.buf.reference, { desc = "LSP: Go to references" })
-		-- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "LSP: Go to implementations" })
-
 		vim.keymap.set("n", "]d", function()
-			vim.diagnostic.goto_next({ float = true })
+			vim.diagnostic.jump({ count = 1, float = true })
 		end, { desc = "Next Diagnostic" })
 
 		vim.keymap.set("n", "[d", function()
-			vim.diagnostic.goto_prev({ float = true })
+			vim.diagnostic.jump({ count = -1, float = true })
 		end, { desc = "Previous Diagnostic" })
 
-		--[[
-    -- I'm adding this here because for some reason this is not working
-    -- if I add it in treesitter init function or options file
-    --]]
 		vim.opt.foldmethod = "expr"
 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 	end,

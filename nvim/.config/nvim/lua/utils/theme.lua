@@ -6,6 +6,7 @@ return function(name)
 		require("themes.kanagawa"),
 		require("themes.vague"),
 		require("themes.tokyonight"),
+		require("themes.gruvbox-material"),
 	}
 
 	for _, v in pairs(themes) do

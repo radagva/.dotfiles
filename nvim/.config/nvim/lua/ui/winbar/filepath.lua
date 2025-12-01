@@ -13,7 +13,7 @@ end
 
 return function()
 	local root_directory = vim.fn.getcwd()
-	local relative_path_to_current_file = vim.api.nvim_buf_get_name(0)
+	local relative_path_to_current_file = vim.fn.expand("%:p")
 
 	local project_folder = root_directory:match("([^/]+)$")
 
