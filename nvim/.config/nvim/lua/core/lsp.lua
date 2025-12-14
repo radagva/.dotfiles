@@ -2,7 +2,8 @@ vim.lsp.enable({
 	"lua_ls",
 	"vtsls",
 	"gopls",
-	"sqlls",
+	-- "sqlls",
+	"postgres_lsp",
 	"eslint",
 	"clangd",
 	"basedpyright",
@@ -49,25 +50,29 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set(
 			"n",
 			"gd",
-			safe_lsp_buf_bind(vim.lsp.buf.definition),
+			safe_lsp_buf_bind(Snacks.picker.lsp_definitions),
+			-- safe_lsp_buf_bind(vim.lsp.buf.definition),
 			{ buffer = bufnr, desc = "LSP: Go to definition" }
 		)
 		vim.keymap.set(
 			"n",
 			"gD",
-			safe_lsp_buf_bind(vim.lsp.buf.type_definition),
+			safe_lsp_buf_bind(Snacks.picker.lsp_type_definitions),
+			-- safe_lsp_buf_bind(vim.lsp.buf.type_definition),
 			{ buffer = bufnr, desc = "LSP: Go to type definition" }
 		)
 		vim.keymap.set(
 			"n",
 			"gr",
-			safe_lsp_buf_bind(vim.lsp.buf.references),
+			safe_lsp_buf_bind(Snacks.picker.lsp_references),
+			-- safe_lsp_buf_bind(vim.lsp.buf.references),
 			{ buffer = bufnr, desc = "LSP: Go to references" }
 		)
 		vim.keymap.set(
 			"n",
 			"gi",
-			safe_lsp_buf_bind(vim.lsp.buf.implementation),
+			safe_lsp_buf_bind(Snacks.picker.lsp_implementations),
+			-- safe_lsp_buf_bind(vim.lsp.buf.implementation),
 			{ buffer = bufnr, desc = "LSP: Go to implementations" }
 		)
 
