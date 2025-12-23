@@ -141,6 +141,7 @@ alias dcurl='f() {curl $1 | pbcopy};f'
 alias getip="ipconfig getifaddr en0"
 alias nvim-plugin='nvim -c "set rtp+=./"'
 alias love="/Applications/love.app/Contents/MacOS/love"
+alias simulator="/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator"
 
 # Android CLI
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
@@ -181,19 +182,8 @@ function y() {
 
 . "$HOME/.local/bin/env"
 
-export PATH=$PATH:/Users/radagv/.spicetify
-export DYLD_FRAMEWORK_PATH=/Library/Frameworks
-
-
-# bun completions
-[ -s "/Users/radagv/.bun/_bun" ] && source "/Users/radagv/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # Load Angular CLI autocompletion.
-# source <(ng completion script)
+source <(ng completion script)
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"

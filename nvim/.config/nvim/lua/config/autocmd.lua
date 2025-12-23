@@ -38,6 +38,15 @@ vim.api.nvim_create_user_command("LspList", ListAttachedLspClients, {
 	desc = "List all LSP clients attached to the current buffer",
 })
 
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = "*.html",
+	callback = function()
+		if vim.fn.findfile("angular.json", vim.fn.getcwd() .. ";") ~= "" then
+			vim.bo.filetype = "htmlangular"
+		end
+	end,
+})
+
 -- Alternative: Return the clients as a table for programmatic use
 function GetAttachedLspClients()
 	local bufnr = vim.api.nvim_get_current_buf()

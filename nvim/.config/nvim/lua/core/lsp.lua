@@ -12,6 +12,7 @@ vim.lsp.enable({
 	"cssls",
 	"astro",
 	"terraform",
+	"angularls",
 })
 
 vim.keymap.set("n", "<leader>uh", function()
