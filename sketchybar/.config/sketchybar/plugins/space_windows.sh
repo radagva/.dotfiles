@@ -13,7 +13,7 @@ update_space_label() {
 	icon_strip=" "
 	if [ "${apps}" != "" ]; then
 		while read -r app; do
-			icon_strip+=" $($CONFIG_DIR/plugins/icon_map.sh "$app")"
+			icon_strip+="$app"
 		done <<<"${apps}"
 	else
 		icon_strip=" —"

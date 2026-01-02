@@ -38,18 +38,6 @@ withopacity() {
     echo "0x${alpha}${rgb}"
 }
 
-# Theme specific
-## Gruvbox
-export GRUVBOX_DARK=0xFF1E2021
-export GRUVBOX_ORANGE=0xFFFE8018
-export GRUVBOX_ORANGE_ALPHA=0x11FE8018
-export GRUVBOX_RED=0xFFFA4834
-
-## Catppuccin Macchiato
-export CATPPUCCIN_MACCHIATO_MAGENTA=0xFFC6A0F7
-export CATPPUCCIN_MACCHIATO_RED=0xffeed49f
-
-
 # General
 export BLACK=0xff181926
 export WHITE=0xffcad3f5
