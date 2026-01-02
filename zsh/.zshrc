@@ -187,3 +187,10 @@ source <(ng completion script)
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+# bun completions
+[ -s "/Users/radagv/.bun/_bun" ] && source "/Users/radagv/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
