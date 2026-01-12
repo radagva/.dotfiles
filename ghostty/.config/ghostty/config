@@ -1,12 +1,15 @@
-theme = Vague
+theme = Catppuccin Macchiato
 macos-titlebar-style = hidden
 window-padding-y = 0
 window-padding-x = 0
 background-opacity = 0.9
 background-blur = 50
 
-# font-family = "MonaspiceAr NFM"
 font-family = "JetBrains Mono NL"
+
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 
 macos-option-as-alt = right
 keybind = alt+left=unbind

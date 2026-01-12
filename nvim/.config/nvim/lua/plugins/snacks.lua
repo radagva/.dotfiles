@@ -7,6 +7,7 @@ return {
 	lazy = false,
 	opts = {
 		gh = {},
+		dashboard = {},
 		lazygit = {
 			configure = true,
 		},

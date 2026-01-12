@@ -27,8 +27,8 @@ update_space_label() {
 
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
 	# Update both previous and current workspace labels
-	update_space_label "$AEROSPACE_PREV_WORKSPACE"
 	update_space_label "$AEROSPACE_FOCUSED_WORKSPACE"
+	update_space_label "$AEROSPACE_PREV_WORKSPACE"
 
 	# current workspace space styling (focused)
 	# --animate sin 10
