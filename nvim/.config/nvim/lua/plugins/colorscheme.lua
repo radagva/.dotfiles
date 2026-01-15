@@ -1,46 +1,43 @@
 local transparent = true
 
 return {
-	"catppuccin/nvim",
-	name = "catppuccin",
+	"folke/tokyonight.nvim",
+	lazy = false,
 	priority = 1000,
 	opts = {
-		flavour = "macchiato",
-		transparent_background = transparent, -- disables setting the background color.
-		float = {
-			transparent = transparent, -- enable transparent floating windows
-			solid = transparent, -- use solid styling for floating windows, see |winborder|
+		style = "moon",
+		transparent = transparent,
+		styles = {
+			floats = "transparent",
+			sidebars = "transparent",
 		},
-		custom_highlights = function(colors)
-			return {
-				Pmenu = { bg = "none", fg = "none" },
-				PmenuThumb = { bg = "#C0A36E" },
-				BlinkCmpMenuBorder = { fg = "", bg = "none" },
+		on_highlights = function(highlights, colors)
+			highlights.Pmenu = { bg = "none", fg = "none" }
+			highlights.PmenuThumb = { bg = "#C0A36E" }
+			highlights.BlinkCmpMenuBorder = { fg = "", bg = "none" }
+			--
+			highlights.NormalFloat = { bg = "none" }
+			highlights.Float = { bg = "none" }
+			highlights.FloatBorder = { bg = "none" }
+			highlights.FloatTitle = { bg = "none" }
 
-				NormalFloat = { bg = "none" },
-				Float = { bg = "none" },
-				FloatBorder = { bg = "none" },
-				FloatTitle = { bg = "none" },
+			highlights.WinBar = { bg = "none" }
+			highlights.WinBarNC = { bg = "none" }
+			highlights.TabLineSel = { bg = "none", fg = colors.fg }
+			highlights.TabLine = { bg = "none", fg = colors.comment }
+			highlights.TabLineFill = { bg = "none", fg = "none" }
 
-				WinBar = { bg = "none" },
-				WinBarNC = { bg = "none" },
-				TabLineSel = { bg = "none", fg = colors.text },
-				TabLine = { bg = "none", fg = colors.comment },
-				TabLineFill = { bg = "none", fg = "none" },
+			highlights.StatusLine = { bg = "none" }
+			highlights.StatusLineNC = { bg = "none" }
 
-				StatusLine = { bg = "none" },
-				StatusLineNC = { bg = "none" },
+			highlights.GitSignsCurrentLineBlame = { fg = "#606079" }
+			highlights.CursorLineNr = { fg = colors.func }
 
-				GitSignsCurrentLineBlame = { fg = colors.overlay1 },
-				CursorLineNr = { fg = colors.mauve },
-
-				SnacksTitle = { fg = colors.mauve },
-				SnacksPickerTitle = { fg = colors.mauve },
-			}
+			highlights["@lsp.type.class"] = highlights.Number
 		end,
 	},
 	init = function()
-		vim.cmd.colorscheme("catppuccin")
+		vim.cmd.colorscheme("tokyonight")
 	end,
 }
 -- return {

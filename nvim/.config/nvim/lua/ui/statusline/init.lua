@@ -17,7 +17,7 @@ function Statusline.activate()
 			"%l:%c",
 			lsps(),
 			-- filetype(),
-			ipaddress(),
+			-- ipaddress(),
 		}, " ")
 		.. " "
 end
