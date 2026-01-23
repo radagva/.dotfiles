@@ -39,42 +39,42 @@ withopacity() {
 }
 
 # General
-export BLACK=0xff181926
-export WHITE=0xffcad3f5
-export RED=0xffcc241d
-export GREEN=0xffa6da95
-export BLUE=0xff8aadf4
+export BLACK=0xff282828
+export WHITE=0xffebdbb2
+export RED=0xfffb4934
+export GREEN=0xffb8bb26
+export BLUE=0xff83a598
 export YELLOW=0xfffabd2f
-export ORANGE=0xffd79921
-export MAGENTA=0xffc6a0f6
-export GREY=0xff939ab7
+export ORANGE=0xfffe8019
+export MAGENTA=0xffd3869b
+export GREY=0xff928374
 export TRANSPARENT=0x00000000
 
-export BATTERY_1=0xffa6da95
-export BATTERY_2=0xffeed49f
-export BATTERY_3=0xfff5a97f
-export BATTERY_4=0xffee99a0
-export BATTERY_5=0xffed8796
+export BATTERY_1=0xffb8bb26
+export BATTERY_2=0xfffabd2f
+export BATTERY_3=0xfffe8019
+export BATTERY_4=0xfffb4934
+export BATTERY_5=0xffcc241d
 
-export BG_SOLID=0xFF181616
-export BG=0xCC1E1E2E
-export BG2=0xCCC6A0F7
+export BG_SOLID=0xFF282828
+export BG=0xCC282828
+export BG2=0xFF3c3836
 
 export APP_ICON_COLOR=$MAGENTA
 
 # UI Components
-export SKETCHYBAR_BG=0xFF181616
+export SKETCHYBAR_BG=0xFF282828
 
-export SPACE_FG_COLOR_ACTIVE=0xFF82AAFF
+export SPACE_FG_COLOR_ACTIVE=0xfffe8019
 export SPACE_BG_COLOR=$(withopacity $SPACE_FG_COLOR_ACTIVE 80)
-export SPACE_FG_COLOR=0xFFFFFFFF
+export SPACE_FG_COLOR=0xFFebdbb2
 
 
 # General bar colors
 # export BAR_COLOR=0xFF1E1E2E
-export BAR_COLOR=$(color 0xaa574489 0xCC1E1E2E)
+export BAR_COLOR=$(color 0xff282828 0xCC282828)
 export BAR_BORDER_COLOR=$BG2
-export BACKGROUND_1=$BG1
+export BACKGROUND_1=$BG
 export BACKGROUND_2=$BG2
 export ICON_COLOR=$(color $WHITE $WHITE)
 export LABEL_COLOR=$(color $WHITE $WHITE)

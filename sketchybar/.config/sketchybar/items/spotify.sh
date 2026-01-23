@@ -10,8 +10,8 @@ SPOTIFY_DISPLAY_CONTROLS=true
 # ────────────────────────────────────
 
 FONT="SF Pro"
-BACKGROUND=0xff1e1e2e
-BACKGROUND_BORDER=0xff45475a
+BACKGROUND=$BG
+BACKGROUND_BORDER=$BG2
 ACCENT_COLOR=$BG_SOLID
 SECONDARY_COLOR=$BLUE
 TERTIARY_COLOR=$BLUE
@@ -38,7 +38,7 @@ spotify_anchor=(
   popup.blur_radius=30
 	popup.background.border_width=2
 	popup.background.corner_radius=9
-	popup.background.border_color=0x44444444
+	popup.background.border_color=$BG2
   popup.background.shadow.drawing=on
   popup.height=$POPUP_HEIGHT
   icon.font="$FONT:Regular:25.0"

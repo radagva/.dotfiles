@@ -47,7 +47,7 @@ defaults=(
 	label.padding_right=$PADDINGS
 	label.shadow.drawing=off
 	label.shadow.distance=2
-	label.shadow.color=0xff00000000
+	label.shadow.color=$TRANSPARENT
 	padding_right=$PADDINGS
 	padding_left=$PADDINGS
 	background.height=20
@@ -72,7 +72,7 @@ source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/tmetric.sh"
 
 common=(
-  background.color=0xA0110000
+  background.color=$BG_SOLID
   background.height=25
   blur_radius=35
 )

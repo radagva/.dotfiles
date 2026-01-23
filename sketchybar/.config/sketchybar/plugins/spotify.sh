@@ -86,7 +86,7 @@ update() {
   
   # Download cover image with fallback
   if curl -s --max-time 5 "$cover_url" -o "$COVER_PATH"; then
-    sketchybar -m --set spotify.cover background.image="$COVER_PATH" background.color=0x00000000
+    sketchybar -m --set spotify.cover background.image="$COVER_PATH" background.color=$TRANSPARENT
   else
     # fallback if download fails
     sketchybar -m --set spotify.cover background.image="" background.color=0x00000000
