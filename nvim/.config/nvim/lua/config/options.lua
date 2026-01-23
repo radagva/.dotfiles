@@ -1,5 +1,6 @@
 -- colors
 vim.opt.termguicolors = true
+vim.opt.showmode = false
 
 -- statuscolumn
 vim.wo.number = true

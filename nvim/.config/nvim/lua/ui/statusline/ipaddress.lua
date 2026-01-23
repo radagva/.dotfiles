@@ -9,7 +9,7 @@ return function()
 		local output = handle:read("*a") -- Read all output
 		handle:close()
 
-		return hl(highlights.wifi, " ") .. output:gsub("%s+$", "")
+		return hl(highlights.wifi, "  ") .. output:gsub("%s+$", "")
 	end
 
 	return "nonip"

@@ -1,5 +1,7 @@
 local util = require("lspconfig.util")
 
 return {
-	root_dir = util.root_pattern("angular.json"),
+	default_config = {
+		root_dir = util.root_pattern("angular.json", "package.json", ".git"),
+	},
 }

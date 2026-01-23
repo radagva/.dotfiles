@@ -19,7 +19,7 @@ PADDINGS=3                # All paddings use this value (icon, label, background
 # Setting up the general bar appearance of the bar
 
 bar=(
-	height=24
+	height=25
 	shadow=off
 	position=top
 	sticky=on
@@ -70,6 +70,16 @@ source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/tmetric.sh"
+
+common=(
+  background.color=0xA0110000
+  background.height=25
+  blur_radius=35
+)
+
+sketchybar --add bracket app front_app left --set app "${common[@]}"
+sketchybar --add bracket spaces space.1 space.2 space.3 space.4 space.5 space.6 space.7 space.8 space.9 center --set spaces "${common[@]}"
+sketchybar --add bracket plugins calendar tmetric left --set plugins "${common[@]}"
 
 sketchybar --hotload on
 

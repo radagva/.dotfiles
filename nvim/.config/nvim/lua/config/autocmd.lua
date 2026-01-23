@@ -59,3 +59,73 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "o", ":LoadLastSession<CR>", { buffer = true, desc = "Open file explorer" })
 	end,
 })
+
+-- local cmdGrp = vim.api.nvim_create_augroup("cmdline_height", { clear = true })
+--
+-- local function set_cmdheight(val)
+-- 	if vim.opt.cmdheight:get() ~= val then
+-- 		vim.opt.cmdheight = val
+-- 		vim.cmd.redrawstatus()
+-- 	end
+-- end
+--
+-- vim.api.nvim_create_autocmd("CmdlineEnter", {
+-- 	group = cmdGrp,
+-- 	callback = function()
+-- 		if vim.fn.getcmdtype() == ":" then
+-- 			set_cmdheight(1)
+-- 		end
+-- 	end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("CmdlineChanged", {
+-- 	group = cmdGrp,
+-- 	callback = function()
+-- 		if vim.fn.getcmdtype() == ":" and vim.fn.getcmdline() == "" then
+-- 			set_cmdheight(0)
+-- 		end
+-- 	end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("CmdlineLeave", {
+-- 	group = cmdGrp,
+-- 	callback = function()
+-- 		set_cmdheight(0)
+-- 	end,
+-- })
+
+local cmdGrp = vim.api.nvim_create_augroup("cmdline_height", { clear = true })
+local function set_cmdheight(val)
+	if vim.opt.cmdheight:get() ~= val then
+		vim.opt.cmdheight = val
+		vim.cmd.redrawstatus()
+	end
+end
+
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+	group = cmdGrp,
+	callback = function()
+		if vim.fn.getcmdtype() == ":" then
+			set_cmdheight(1)
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("CmdlineChanged", {
+	group = cmdGrp,
+	callback = function()
+		if vim.fn.getcmdtype() == ":" and vim.fn.getcmdline() == "" then
+			set_cmdheight(0)
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("CmdlineLeave", {
+	group = cmdGrp,
+	callback = function()
+		-- Defer setting cmdheight=0 to allow messages to display
+		vim.defer_fn(function()
+			set_cmdheight(0)
+		end, 100)
+	end,
+})

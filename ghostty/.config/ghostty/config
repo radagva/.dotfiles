@@ -1,8 +1,8 @@
-theme = TokyoNight Moon
+theme = Rose Pine Moon
 macos-titlebar-style = hidden
 window-padding-y = 0
 window-padding-x = 0
-background-opacity = 0.9
+background-opacity = 1
 background-blur = 50
 
 font-family = "JetBrains Mono NL"

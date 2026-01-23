@@ -20,12 +20,12 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
       padding_right=2
       label.padding_right=12
       label.y_offset=-1
-      background.border_width=1
-      background.border_color=$SPACE_FG_COLOR_ACTIVE
+      # background.border_width=1
+      # background.border_color=$SPACE_FG_COLOR_ACTIVE
       script="$PLUGIN_DIR/spaces.sh"
     )
 
-    sketchybar --add space space.$sid left \
+    sketchybar --add space space.$sid center \
                --set space.$sid "${space[@]}" \
                --subscribe space.$sid mouse.clicked aerospace_workspace_change
 
@@ -54,10 +54,11 @@ done
 space_creator=(
   # icon=􀆊
   icon.font="$FONT:Heavy:12.0"
-  padding_left=10
-  padding_right=8
+  # padding_left=10
+  # padding_right=8
   label.drawing=off
   display=active
+  width=0
   script="$PLUGIN_DIR/space_windows.sh"
   icon.color=$WHITE
 )

@@ -11,16 +11,16 @@ update_space_label() {
 	local space_id=$1
 	apps=$(aerospace list-windows --workspace "$space_id" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 
-    icon_strip=" "
-    if [ "${apps}" != "" ]; then
-      while read -r app
-      do
-        # osascript -e "display notification \"$app\" with title "App""
-        icon_strip+=$(__icon_map "$app")
-      done <<< "${apps}"
-    else
-      icon_strip=" —"
-    fi
+  icon_strip=" "
+  if [ "${apps}" != "" ]; then
+    while read -r app
+    do
+      # osascript -e "display notification \"$app\" with title "App""
+      icon_strip+=$(__icon_map "$app")
+    done <<< "${apps}"
+  else
+    icon_strip=" —"
+  fi
 
 	sketchybar --set space.$space_id label="$icon_strip"
 }
@@ -38,8 +38,6 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
 		icon.color=$BLACK \
 		label.color=$ORANGE \
     background.color=$(color $SPACE_BG_COLOR $SPACE_BG_COLOR) \
-		background.border_color=$SPACE_FG_COLOR_ACTIVE \
-    background.border_width=1
 
 	# prev workspace space styling (unfocused)
 	sketchybar --set space.$AEROSPACE_PREV_WORKSPACE \
@@ -47,7 +45,6 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
 		label.highlight=false \
     icon.color=$SPACE_FG_COLOR \
     label.color=$SPACE_FG_COLOR \
-		background.border_color=$TRANSPARENT \
 		background.color=$TRANSPARENT
 
 	# Handle empty workspaces
