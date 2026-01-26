@@ -10,7 +10,8 @@ ITEM_DIR="$CONFIG_DIR/items"     # Directory where the items are configured
 PLUGIN_DIR="$CONFIG_DIR/plugins" # Directory where all the plugin scripts are stored
 HELPERS_DIR="$CONFIG_DIR/helpers" # Directory where all the plugin scripts are stored
 
-FONT="JetBrains Mono NL" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+FONT="SF Pro" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+# FONT="JetBrains Mono NL" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 PADDINGS=3                # All paddings use this value (icon, label, background)
 
 # # Unload the macOS on screen indicator overlay for volume change
@@ -85,3 +86,11 @@ sketchybar --hotload on
 
 # Forcing all item scripts to run (never do this outside of sketchybarrc)
 sketchybar --update
+
+# Listener for system appearance change
+sketchybar --add event system_will_change_appearance \
+           --add item system_appearance_listener left \
+           --set system_appearance_listener script="$CONFIG_DIR/reload_on_appearance_change.sh" \
+                                            drawing=off \
+                                            updates=on \
+           --subscribe system_appearance_listener system_will_change_appearance

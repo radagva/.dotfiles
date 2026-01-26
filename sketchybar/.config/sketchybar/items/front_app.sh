@@ -11,4 +11,3 @@ front_app=(
 sketchybar --add item front_app left         \
            --set front_app "${front_app[@]}" \
            --subscribe front_app front_app_switched
-
