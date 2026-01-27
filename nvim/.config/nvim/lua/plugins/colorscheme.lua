@@ -1,37 +1,36 @@
--- local transparent = true
---
-local highlight_groups = {}
-highlight_groups.Pmenu = { bg = "none", fg = "none" }
-highlight_groups.PmenuThumb = { bg = "#C0A36E" }
-highlight_groups.BlinkCmpMenuBorder = { fg = "", bg = "none" }
-
-highlight_groups.NormalFloat = { bg = "none" }
-highlight_groups.Float = { bg = "none" }
-highlight_groups.FloatBorder = { bg = "none" }
-highlight_groups.FloatTitle = { bg = "none" }
-
-highlight_groups.WinBar = { bg = "none", fg = "none" }
-highlight_groups.WinBarNC = { bg = "none", fg = "none" }
--- highlight_groups.TabLineSel = { bg = "none", fg = "love" }
--- highlight_groups.TabLine = { bg = "none", fg = "comment" }
-highlight_groups.TabLineFill = { bg = "none", fg = "none" }
-
-highlight_groups.StatusLine = { bg = "none" }
-highlight_groups.StatusLineNC = { bg = "none" }
-
-highlight_groups.GitSignsCurrentLineBlame = { fg = "#606079" }
--- highlight_groups.CursorLineNr = { fg = "love" }
-
 return {
-	"ellisonleao/gruvbox.nvim",
-	priority = 1000,
-	config = true,
+	"vague-theme/vague.nvim",
+	lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	priority = 1000, -- make sure to load this before all the other plugins
 	opts = {
-		contrast = "hard",
-		overrides = highlight_groups,
-		transparent_mode = true,
+		transparent = false,
+		on_highlights = function(hl, c)
+			hl.Pmenu = { bg = "none", fg = "none" }
+			hl.PmenuThumb = { bg = "#C0A36E" }
+			hl.BlinkCmpMenuBorder = { fg = "", bg = "none" }
+
+			hl.NormalFloat = { bg = "none" }
+			hl.Float = { bg = "none" }
+			hl.FloatBorder = { bg = "none" }
+			hl.FloatTitle = { bg = "none" }
+
+			hl.WinBar = { bg = "none" }
+			hl.WinBarNC = { bg = "none" }
+			hl.TabLineSel = { bg = "none", fg = c.fg }
+			hl.TabLine = { bg = "none", fg = c.comment }
+			hl.TabLineFill = { bg = "none", fg = "none" }
+
+			hl.StatusLine = { bg = "none" }
+			hl.StatusLineNC = { bg = "none" }
+
+			hl.GitSignsCurrentLineBlame = { fg = "#606079" }
+			hl.CursorLineNr = { fg = c.func }
+
+			hl["@lsp.type.class"] = hl.Number
+		end,
 	},
+
 	init = function()
-		vim.cmd.colorscheme("gruvbox")
+		vim.cmd.colorscheme("vague")
 	end,
 }

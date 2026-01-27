@@ -198,3 +198,4 @@ eval "$(uv generate-shell-completion zsh)"
 
 # opencode
 export PATH=/Users/radagv/.opencode/bin:$PATH
+export EDITOR=nvim
