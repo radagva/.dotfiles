@@ -12,7 +12,7 @@ update() {
 			label.highlight=true \
 			icon.color=$RED \
 			label.color=$RED \
-      background.color=$(color $SPACE_BG_COLOR $SPACE_BG_COLOR)=
+			background.color=$SPACE_BG_COLOR
 	fi
 }
 
