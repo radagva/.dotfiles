@@ -13,7 +13,7 @@ return {
 			json = { "prettier" },
 			yaml = { "prettier" },
 			markdown = { "prettier" },
-			python = { "ruff_format", "ruff_fix" },
+			python = { "ruff_format", "ruff_fix", "isort" },
 			go = { "gofumpt" },
 			sql = { "sql_formatter" },
 			cpp = { "clang-format" },
