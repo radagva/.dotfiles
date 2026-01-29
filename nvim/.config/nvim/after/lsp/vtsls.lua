@@ -4,6 +4,22 @@ return {
 	default_config = {
 		root_dir = util.root_pattern("tsconfig.json", "angular.json", "package.json", ".git"),
 		filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
+		settings = {
+			vtsls = {
+				tsserver = {
+					globalPlugins = {
+						{
+							name = "@angular/language-service",
+							location = table.concat({
+								vim.env.MASON,
+								"packages/angular-language-server/node_modules/@angular/language-service",
+							}),
+							enableForWorkspaceTypeScriptVersions = true,
+						},
+					},
+				},
+			},
+		},
 	},
 	on_attach = function(client, bufnr) ---@diagnostic disable-line
 		local map = vim.keymap.set

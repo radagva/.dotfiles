@@ -11,3 +11,5 @@ Run = function(name)
 	Reload(name)
 	return require(name)
 end
+
+vim.env.MASON = vim.fn.stdpath("data") .. "/mason"
