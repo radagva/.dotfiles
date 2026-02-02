@@ -38,35 +38,35 @@ withopacity() {
     echo "0x${alpha}${rgb}"
 }
 
-# Vague Dark Palette
-DARK_BG0=0xff141415
-DARK_BG1=0xff252530
-DARK_BG2=0xff606079
-DARK_FG0=0xffcdcdcd
-DARK_FG1=0xffd7d7d7
-DARK_RED=0xffd8647e
-DARK_GREEN=0xff7fa563
-DARK_YELLOW=0xfff3be7c
-DARK_BLUE=0xff6e94b2
-DARK_PURPLE=0xffbb9dbd
-DARK_AQUA=0xffaeaed1
-DARK_ORANGE=0xfff5cb96
-DARK_GREY=0xff606079
+# Catppuccin Macchiato Palette
+DARK_BG0=0xff24273a
+DARK_BG1=0xff363a4f
+DARK_BG2=0xff494d64
+DARK_FG0=0xffcad3f5
+DARK_FG1=0xffb8c0e0
+DARK_RED=0xffed8796
+DARK_GREEN=0xffa6da95
+DARK_YELLOW=0xffeed49f
+DARK_BLUE=0xff8aadf4
+DARK_PURPLE=0xffc6a0f6
+DARK_AQUA=0xff8bd5ca
+DARK_ORANGE=0xfff5a97f
+DARK_GREY=0xff5b6078
 
-# Vague "Light" Palette (Using same as Dark to enforce theme)
-LIGHT_BG0=0xff141415
-LIGHT_BG1=0xff252530
-LIGHT_BG2=0xff606079
-LIGHT_FG0=0xffcdcdcd
-LIGHT_FG1=0xffd7d7d7
-LIGHT_RED=0xffd8647e
-LIGHT_GREEN=0xff7fa563
-LIGHT_YELLOW=0xfff3be7c
-LIGHT_BLUE=0xff6e94b2
-LIGHT_PURPLE=0xffbb9dbd
-LIGHT_AQUA=0xffaeaed1
-LIGHT_ORANGE=0xfff5cb96
-LIGHT_GREY=0xff606079
+# Light Palette (Using same as Dark to enforce theme)
+LIGHT_BG0=0xff24273a
+LIGHT_BG1=0xff363a4f
+LIGHT_BG2=0xff494d64
+LIGHT_FG0=0xffcad3f5
+LIGHT_FG1=0xffb8c0e0
+LIGHT_RED=0xffed8796
+LIGHT_GREEN=0xffa6da95
+LIGHT_YELLOW=0xffeed49f
+LIGHT_BLUE=0xff8aadf4
+LIGHT_PURPLE=0xffc6a0f6
+LIGHT_AQUA=0xff8bd5ca
+LIGHT_ORANGE=0xfff5a97f
+LIGHT_GREY=0xff5b6078
 
 # General
 export BLACK=$(color $LIGHT_BG0 $DARK_BG0)
@@ -87,7 +87,7 @@ export BATTERY_4=$(color $LIGHT_RED $DARK_RED)
 export BATTERY_5=$(color $LIGHT_RED $DARK_RED)
 
 export BG_SOLID=$(color $LIGHT_BG0 $DARK_BG0)
-export BG=$(color 0xCC141415 0xCC141415)
+export BG=$(color 0xCC24273a 0xCC24273a)
 export BG2=$(color $LIGHT_BG2 $DARK_BG2)
 
 export APP_ICON_COLOR=$MAGENTA

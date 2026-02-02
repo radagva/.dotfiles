@@ -1,11 +1,12 @@
-theme = Rose Pine Moon
+theme = catppuccin-macchiato
 macos-titlebar-style = hidden
 window-padding-y = 0
 window-padding-x = 0
-background-opacity = 1
+background-opacity = 0.8
 background-blur = 50
 
-font-family = "JetBrains Mono NL"
+# font-family = "JetBrains Mono NL"
+# font-family = "SF Pro"
 
 font-feature = -calt
 font-feature = -liga

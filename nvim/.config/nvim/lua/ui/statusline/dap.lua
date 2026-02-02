@@ -12,7 +12,7 @@ end
 -- 	cond = function()
 -- 		return require("dap").session() ~= nil
 -- 	end,
--- 	color = { fg = "#ff9e64" },
+-- 	color = { fg = "#f5a97f" },
 -- 	on_click = function()
 -- 		require("dap").continue()
 -- 	end,
