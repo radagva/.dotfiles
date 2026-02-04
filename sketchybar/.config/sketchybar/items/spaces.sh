@@ -27,7 +27,7 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
 
     sketchybar --add space space.$sid left \
                --set space.$sid "${space[@]}" \
-               --subscribe space.$sid mouse.clicked aerospace_workspace_change
+               --subscribe space.$sid mouse.clicked
 
     apps=$(aerospace list-windows --workspace $sid | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 
@@ -52,17 +52,14 @@ done
 
 
 space_creator=(
-  # icon=􀆊
   icon.font="$FONT:Heavy:12.0"
-  # padding_left=10
-  # padding_right=8
   label.drawing=off
   display=active
   width=0
-  script="$PLUGIN_DIR/space_windows.sh"
+  script="$PLUGIN_DIR/aerospace.sh"
   icon.color=$WHITE
 )
 
-sketchybar --add item space_creator left               \
-           --set space_creator "${space_creator[@]}"   \
-           --subscribe space_creator aerospace_workspace_change
+sketchybar --add item aerospace left               \
+           --set aerospace "${space_creator[@]}"   \
+           --subscribe aerospace aerospace_workspace_change
