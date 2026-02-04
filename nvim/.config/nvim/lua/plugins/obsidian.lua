@@ -10,6 +10,14 @@ return {
 	},
 	opts = {
 		legacy_commands = false,
+		note_id_func = function(title)
+			if title == nil then
+				return nil
+			end
+
+			-- Keep the title as-is
+			return title
+		end,
 		workspaces = {
 			{
 				name = "notes",
@@ -23,7 +31,8 @@ return {
 			create_new = true,
 		},
 		picker = {
-			name = "fzf-lua",
+			name = "snacks.pick",
+			-- name = "fzf-lua",
 			note_mappings = {
 				new = "<C-x>",
 				insert_link = "<C-l>",

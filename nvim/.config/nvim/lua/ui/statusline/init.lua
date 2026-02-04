@@ -8,7 +8,7 @@ local lsps = require("ui.statusline.attachedlsps")
 Statusline = {}
 
 function Statusline.activate()
-	return " "
+	return ""
 		.. table.concat({
 			mode(),
 			git(),
@@ -21,7 +21,7 @@ function Statusline.activate()
 			-- filetype(),
 			ipaddress(),
 		}, " ")
-		.. " "
+		.. ""
 end
 
 function Statusline.deactivate()
