@@ -38,35 +38,49 @@ withopacity() {
     echo "0x${alpha}${rgb}"
 }
 
-# Catppuccin Macchiato Palette
-DARK_BG0=0xff24273a
-DARK_BG1=0xff363a4f
-DARK_BG2=0xff494d64
-DARK_FG0=0xffcad3f5
-DARK_FG1=0xffb8c0e0
-DARK_RED=0xffed8796
-DARK_GREEN=0xffa6da95
-DARK_YELLOW=0xffeed49f
-DARK_BLUE=0xff8aadf4
-DARK_PURPLE=0xffc6a0f6
-DARK_AQUA=0xff8bd5ca
-DARK_ORANGE=0xfff5a97f
-DARK_GREY=0xff5b6078
+# Catppuccin Mocha Palette
+DARK_BG0=0xff1e1e2e
+DARK_BG1=0xff313244
+DARK_BG2=0xff45475a
+DARK_FG0=0xffcdd6f4
+DARK_FG1=0xffbac2de
+DARK_RED=0xfff38ba8
+DARK_GREEN=0xffa6e3a1
+DARK_YELLOW=0xfff9e2af
+DARK_BLUE=0xff89b4fa
+DARK_PURPLE=0xffcba6f7
+DARK_AQUA=0xff94e2d5
+DARK_ORANGE=0xfffab387
+DARK_GREY=0xff6c7086
 
-# Light Palette (Using same as Dark to enforce theme)
-LIGHT_BG0=0xff24273a
-LIGHT_BG1=0xff363a4f
-LIGHT_BG2=0xff494d64
-LIGHT_FG0=0xffcad3f5
-LIGHT_FG1=0xffb8c0e0
-LIGHT_RED=0xffed8796
-LIGHT_GREEN=0xffa6da95
-LIGHT_YELLOW=0xffeed49f
-LIGHT_BLUE=0xff8aadf4
-LIGHT_PURPLE=0xffc6a0f6
-LIGHT_AQUA=0xff8bd5ca
-LIGHT_ORANGE=0xfff5a97f
-LIGHT_GREY=0xff5b6078
+# Light Palette (Catppuccin Latte)
+LIGHT_BG0=0xff1e1e2e
+LIGHT_BG1=0xff313244
+LIGHT_BG2=0xff45475a
+LIGHT_FG0=0xffcdd6f4
+LIGHT_FG1=0xffbac2de
+LIGHT_RED=0xfff38ba8
+LIGHT_GREEN=0xffa6e3a1
+LIGHT_YELLOW=0xfff9e2af
+LIGHT_BLUE=0xff89b4fa
+LIGHT_PURPLE=0xffcba6f7
+LIGHT_AQUA=0xff94e2d5
+LIGHT_ORANGE=0xfffab387
+LIGHT_GREY=0xff6c7086
+
+# LIGHT_BG0=0xffeff1f5
+# LIGHT_BG1=0xffe6e9ef
+# LIGHT_BG2=0xffdce0e8
+# LIGHT_FG0=0xff4c4f69
+# LIGHT_FG1=0xff5c5f77
+# LIGHT_RED=0xffd20f39
+# LIGHT_GREEN=0xff40a02b
+# LIGHT_YELLOW=0xffdf8e1d
+# LIGHT_BLUE=0xff1e66f5
+# LIGHT_PURPLE=0xff8839ef
+# LIGHT_AQUA=0xff179299
+# LIGHT_ORANGE=0xfffe640b
+# LIGHT_GREY=0xff9ca0b0
 
 # General
 export BLACK=$(color $LIGHT_BG0 $DARK_BG0)
@@ -87,7 +101,7 @@ export BATTERY_4=$(color $LIGHT_RED $DARK_RED)
 export BATTERY_5=$(color $LIGHT_RED $DARK_RED)
 
 export BG_SOLID=$(color $LIGHT_BG0 $DARK_BG0)
-export BG=$(color 0xCC24273a 0xCC24273a)
+export BG=$(withopacity $(color $LIGHT_BG0 $DARK_BG0) 0xcc)
 export BG2=$(color $LIGHT_BG2 $DARK_BG2)
 
 export APP_ICON_COLOR=$MAGENTA

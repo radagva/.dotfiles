@@ -28,7 +28,7 @@ bar=(
 	padding_right=1
 	topmost=window
   corner_radius=10
-	# y_offset=4
+	y_offset=4
 	margin=5
   color=$SKETCHYBAR_BG
 )

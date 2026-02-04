@@ -1,4 +1,4 @@
-theme = catppuccin-macchiato
+theme = catppuccin-mocha
 macos-titlebar-style = hidden
 window-padding-y = 0
 window-padding-x = 0

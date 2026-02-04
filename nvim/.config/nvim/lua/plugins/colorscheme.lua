@@ -1,5 +1,7 @@
-local override = function()
-	local hl = {}
+local merge = require("config.utils").merge
+
+local override = function(base, overriding)
+	local hl = base or {}
 	hl.Pmenu = { bg = "none", fg = "none" }
 	hl.PmenuThumb = { bg = "#5b6078" }
 	hl.BlinkCmpMenuBorder = { fg = "", bg = "none" }
@@ -23,7 +25,8 @@ local override = function()
 	-- hl.CursorLineNr = { fg = c.func }
 	-- hl["@lsp.type.class"] = hl.Number
 
-	return hl
+	return merge(hl, overriding or {})
+	-- return hl
 end
 -- {  }
 return {
@@ -32,9 +35,9 @@ return {
 	lazy = false,
 	priority = 1000,
 	opts = {
-		flavour = "macchiato",
+		flavour = "mocha",
 		transparent_background = true,
-		custom_highlights = override(),
+		custom_highlights = override({}, {}),
 	},
 	init = function()
 		vim.cmd.colorscheme("catppuccin")
