@@ -119,6 +119,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export EDITOR=nvim
+
 # alias scripts
 alias generate-secret="openssl rand -base64 32"
 
@@ -134,8 +136,6 @@ alias air='$(go env GOPATH)/bin/air'
 
 # shortcut running python with uv venv
 alias puv="uv run python"
-
-alias tetrigo='$(go env GOPATH)/bin/tetrigo'
 
 alias dcurl='f() {curl $1 | pbcopy};f'
 alias getip="ipconfig getifaddr en0"
@@ -182,9 +182,6 @@ function y() {
 
 . "$HOME/.local/bin/env"
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
@@ -198,4 +195,3 @@ eval "$(uv generate-shell-completion zsh)"
 
 # opencode
 export PATH=/Users/radagv/.opencode/bin:$PATH
-export EDITOR=nvim

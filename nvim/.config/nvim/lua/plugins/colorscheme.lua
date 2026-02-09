@@ -28,18 +28,35 @@ local override = function(base, overriding)
 	return merge(hl, overriding or {})
 	-- return hl
 end
--- {  }
-return {
-	"catppuccin/nvim",
-	name = "catppuccin",
+
+local M = {
+	"folke/tokyonight.nvim",
+	name = "tokyonight",
 	lazy = false,
 	priority = 1000,
 	opts = {
-		flavour = "mocha",
-		transparent_background = true,
-		custom_highlights = override({}, {}),
+		transparent = true,
+		styles = {
+			sidebars = "transparent",
+			floats = "transparent",
+		},
+		on_highlights = function(hl, _colors)
+			return override(hl, {})
+		end,
 	},
-	init = function()
-		vim.cmd.colorscheme("catppuccin")
-	end,
+	-- "catppuccin/nvim",
+	-- name = "catppuccin",
+	-- lazy = false,
+	-- priority = 1000,
+	-- opts = {
+	-- 	flavour = "mocha",
+	-- 	transparent_background = true,
+	-- 	custom_highlights = override({}, {}),
+	-- },
 }
+
+M.init = function()
+	vim.cmd.colorscheme("tokyonight")
+end
+
+return M

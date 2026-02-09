@@ -14,6 +14,7 @@ vim.lsp.enable({
 	"astro",
 	"terraform",
 	"angularls",
+	"prismals",
 })
 
 vim.keymap.set("n", "<leader>uh", function()

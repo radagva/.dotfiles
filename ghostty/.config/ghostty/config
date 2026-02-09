@@ -1,9 +1,11 @@
-theme = catppuccin-mocha
-macos-titlebar-style = hidden
+command = "/bin/bash"
+
+theme = TokyoNight Moon
+# macos-titlebar-style = hidden
 window-padding-y = 0
 window-padding-x = 0
-background-opacity = 0.8
-background-blur = 50
+background-opacity = 1
+background-blur = 65
 
 # font-family = "JetBrains Mono NL"
 # font-family = "SF Pro"
