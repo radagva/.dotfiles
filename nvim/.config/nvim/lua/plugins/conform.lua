@@ -4,6 +4,7 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			javascript = { "prettier" },
+			vue = { "prettier" },
 			astro = { "prettier" },
 			javascriptreact = { "prettier" },
 			typescript = { "prettier" },

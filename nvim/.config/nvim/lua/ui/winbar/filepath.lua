@@ -28,5 +28,5 @@ return function()
 		end
 	end
 
-	return colors.hl(colors.highlights.comment, table.concat(parts, "/"):gsub("/", "  ") .. "  ") .. split[#split]
+	return colors.hl(colors.highlights.comment, table.concat(parts, "/") .. "/") .. split[#split]
 end

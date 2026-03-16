@@ -7,7 +7,7 @@ return {
 	lazy = false,
 	opts = {
 		gh = {},
-		dashboard = {},
+		-- dashboard = {},
 		lazygit = {
 			configure = true,
 		},
@@ -17,6 +17,66 @@ return {
 			matcher = {
 				frecency = true,
 			},
+			sources = {
+				explorer = {
+					layout = {
+						preview = "main",
+						-- Optional: customize layout for better visuals
+						preset = "sidebar",
+						position = "right",
+					},
+				},
+			},
+			-- layout = {
+			-- 	preview = "right",
+			-- 	layout = {
+			-- 		box = "vertical",
+			-- 		backdrop = false,
+			-- 		width = 0,
+			-- 		height = 0.4,
+			-- 		position = "bottom",
+			-- 		border = "top",
+			-- 		title = " {title} {live} {flags}",
+			-- 		title_pos = "left",
+			-- 		{ win = "input", height = 1, border = "bottom" },
+			-- 		{
+			-- 			box = "horizontal",
+			-- 			{ win = "list", border = "none" },
+			-- 			{ win = "preview", title = "{preview}", width = 0.6, border = "left" },
+			-- 		},
+			-- 	},
+			-- },
+			-- sources = {
+			-- 	explorer = {
+			-- 		cycle = true,
+			-- 		auto_close = true,
+			-- 		layout = {
+			-- 			preset = "sidebar",
+			-- 			-- preview = "main",
+			-- 			layout = {
+			-- 				width = 0.2,
+			-- 				min_width = 120,
+			-- 				position = "left",
+			-- 				-- preview = "main",
+			-- 			},
+			-- 			-- box = "horizontal",
+			-- 			-- width = 0.8,
+			-- 			-- min_width = 120,
+			-- 			-- height = 0.8,
+			-- 			-- {
+			-- 			-- 	box = "vertical",
+			-- 			-- 	border = true,
+			-- 			-- 	title = "{title} {live} {flags}",
+			-- 			-- 	{ win = "input", height = 1, border = "bottom" },
+			-- 			-- 	{ win = "list", border = "none" },
+			-- 			-- },
+			-- 			-- { win = "preview", title = "{preview}", border = true, width = 0.5 },
+			-- 		},
+			-- 		-- layout = { preview = "right" },
+			-- 	},
+			-- },
+			--
+			-- -- layout = { preset = "ivy_split", layout = { position = "bottom" } },
 			formatters = {
 				text = {
 					ft = nil, ---@type string? filetype for highlighting

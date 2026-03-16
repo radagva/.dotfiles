@@ -2,7 +2,7 @@ add_newline = false
 format = """$directory$git_branch$git_status"""
 # right_format = """$nodejs$python$java$go"""
 right_format = """$nodejs$python$java$go"""
-palette = "catppuccin_mocha"
+# palette = "catppuccin_mocha"
 
 [palettes.catppuccin_mocha]
 bg = "#1e1e2e"

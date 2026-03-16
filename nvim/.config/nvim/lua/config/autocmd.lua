@@ -56,7 +56,7 @@ end
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "startify",
 	callback = function()
-		vim.keymap.set("n", "o", ":LoadLastSession<CR>", { buffer = true, desc = "Open file explorer" })
+		vim.keymap.set("n", "o", ":LoadLastSession<CR>", { buffer = true, desc = "Load last session", silent = true })
 	end,
 })
 
@@ -95,3 +95,60 @@ vim.api.nvim_create_autocmd("FileType", {
 -- 		end, 100)
 -- 	end,
 -- })
+
+vim.api.nvim_create_user_command("TermHl", function()
+	local b = vim.api.nvim_create_buf(false, true)
+	local chan = vim.api.nvim_open_term(b, {})
+	vim.api.nvim_chan_send(chan, table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n"))
+	vim.api.nvim_win_set_buf(0, b)
+end, { desc = "Highlights ANSI termcodes in curbuf" })
+
+local winbar_filetype_exclude = {
+	"help",
+	"snacks_layout_box",
+	-- "startify",
+	-- "dashboard",
+	-- "packer",
+	-- "neogitstatus",
+	-- "NvimTree",
+	-- "Trouble",
+	-- "alpha",
+	-- "lir",
+	-- "Outline",
+	-- "spectre_panel",
+	-- "toggleterm",
+	-- pt
+}
+
+local excludes = function()
+	if vim.tbl_contains(winbar_filetype_exclude, vim.bo.filetype) then
+		vim.opt_local.winbar = nil
+		return true
+	end
+
+	return false
+end
+
+-- vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "BufWritePost" }, {
+-- 	callback = function()
+-- 		require("ui.winbar")()
+-- 	end,
+-- })
+
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+-- 	pattern = winbar_filetype_exclude,
+-- 	callback = function()
+-- 		-- if excludes() then
+-- 		vim.opt_local.winbar = nil
+-- 		-- end
+-- 	end,
+-- })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = { "*.go" },
+	callback = function(args)
+		vim.lsp.buf.format()
+		vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
+		vim.lsp.buf.code_action({ context = { only = { "source.fixAll" } }, apply = true })
+	end,
+})

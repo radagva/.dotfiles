@@ -114,6 +114,13 @@ map("n", "<leader>,", "<Nop>", { silent = true })
 map("n", "<leader>,-", "<cmd>below split | terminal<cr><C-w>J", { silent = true, desc = "New terminal below" })
 map("n", "<leader>,|", "<cmd>below split | terminal<cr><C-w>L", { silent = true, desc = "New terminal right" })
 
+local wrap = false
+
+map("n", "<leader>uw", function()
+	wrap = not wrap
+	vim.opt.wrap = wrap
+end, { desc = "Toggle line wrap", silent = true })
+
 -- vim.keymap.set("n", "<C-h>", function()
 -- 	require("smart-splits").move_cursor_left()
 -- end)

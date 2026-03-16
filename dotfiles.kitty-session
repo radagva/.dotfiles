@@ -1,0 +1,11 @@
+
+new_tab .dotfiles
+layout splits
+enabled_layouts splits,stack
+set_layout_state {"pairs": {"one": 5}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [5], "window_groups": [{"id": 5, "window_ids": [5]}]}}
+cd .
+
+launch 'kitty-unserialize-data={"id": 5}'
+focus
+
+focus_tab 3

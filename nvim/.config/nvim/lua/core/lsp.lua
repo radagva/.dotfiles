@@ -1,20 +1,24 @@
 vim.lsp.enable({
 	"lua_ls",
-	"vtsls",
 	"gopls",
-	-- "sqlls",
+	"gofumpt",
 	"postgres_lsp",
 	"eslint",
 	"clangd",
-	"ty",
-	-- "basedpyright",
+	"basedpyright",
+	-- "ty",
 	"tailwindcss",
 	"emmet_ls",
 	"cssls",
+	"cssmodules_ls",
 	"astro",
 	"terraform",
-	"angularls",
+	-- "angularls",
+	"vue_ls",
+	"vtsls",
 	"prismals",
+	"yamlls",
+	"jsonls",
 })
 
 vim.keymap.set("n", "<leader>uh", function()
@@ -29,8 +33,13 @@ vim.keymap.set("n", "K", function()
 	vim.lsp.buf.hover({ border = "rounded", max_width = 600, max_height = 400 })
 end, { desc = "Hover Documentation" })
 
+vim.keymap.set("n", "<leader>cli", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle [i]nlay hints", silent = true })
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
+		vim.lsp.inlay_hint.enable()
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		local bufnr = args.buf
 

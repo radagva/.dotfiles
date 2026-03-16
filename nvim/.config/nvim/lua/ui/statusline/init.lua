@@ -4,6 +4,8 @@ local mode = require("ui.statusline.mode")
 local dap = require("ui.statusline.dap")
 local diagnostics = require("ui.statusline.diagnostics")
 local lsps = require("ui.statusline.attachedlsps")
+local filepath = require("ui.winbar.filepath")
+-- local filetypeicon = require("ui.statusline.filetypeicon")
 
 Statusline = {}
 
@@ -12,14 +14,17 @@ function Statusline.activate()
 		.. table.concat({
 			mode(),
 			git(),
+			filepath(),
 			diagnostics(),
+			-- vim.fn.expand("%"),
+			-- "%=",
 			"%=",
 			dap(),
-			"%=",
 			"%l:%c",
+			-- filetypeicon(),
 			lsps(),
 			-- filetype(),
-			ipaddress(),
+			-- ipaddress(),
 		}, " ")
 		.. ""
 end

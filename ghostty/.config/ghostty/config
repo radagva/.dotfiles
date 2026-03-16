@@ -1,10 +1,11 @@
 command = "/bin/bash"
 
-theme = TokyoNight Moon
+theme = Atom One Dark
+background = #0f0f11
 # macos-titlebar-style = hidden
 window-padding-y = 0
 window-padding-x = 0
-background-opacity = 1
+background-opacity = 0.92
 background-blur = 65
 
 # font-family = "JetBrains Mono NL"

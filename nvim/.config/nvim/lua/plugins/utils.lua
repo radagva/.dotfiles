@@ -6,6 +6,7 @@ return {
 		init = function()
 			vim.api.nvim_create_user_command("LoadLastSession", function()
 				require("persistence").load()
+				print("") -- clean cmdline
 			end, { desc = "Load last saved session in persistence" })
 		end,
 	},
