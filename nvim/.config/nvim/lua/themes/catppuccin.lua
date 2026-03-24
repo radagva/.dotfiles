@@ -1,0 +1,25 @@
+return {
+	"catppuccin/nvim",
+	name = "catppuccin",
+	lazy = false,
+	priority = 1000,
+	opts = {
+		flavour = "mocha",
+		transparent_background = true,
+		custom_highlights = {
+			Pmenu = { bg = "none", fg = "none" },
+			PmenuThumb = { bg = "#5b6078" },
+			BlinkCmpMenuBorder = { fg = "", bg = "none" },
+			NormalFloat = { bg = "none" },
+			Float = { bg = "none" },
+			FloatBorder = { bg = "none" },
+			FloatTitle = { bg = "none" },
+			WinBar = { bg = "none" },
+			WinBarNC = { bg = "none" },
+			TabLineFill = { bg = "none", fg = "none" },
+			StatusLine = { bg = "none" },
+			StatusLineNC = { bg = "none" },
+			GitSignsCurrentLineBlame = { fg = "#5b6078" },
+		},
+	},
+}

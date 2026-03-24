@@ -1,7 +1,7 @@
 shell /opt/homebrew/bin/bash
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# Gruvbox Material Dark Medium
 include current-theme.conf
 # END_KITTY_THEME
 
@@ -17,11 +17,11 @@ tab_bar_align left
 tab_bar_style powerline
 tab_powerline_style angled
 macos_option_as_alt right
-macos_titlebar_color background
+# macos_titlebar_color background
 
 
 #- UI theme
-background_opacity 0.95
+background_opacity 0.9
 background_blur 65
 
 #- third party
@@ -108,7 +108,7 @@ map cmd+7 goto_tab 7
 map cmd+8 goto_tab 8
 map cmd+9 goto_tab 9
 
-
+map alt+h send_key h
 
 # BEGIN_KITTY_FONTS
 font_family      family="Monaco"

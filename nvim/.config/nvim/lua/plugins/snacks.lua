@@ -1,82 +1,14 @@
 return {
 	"folke/snacks.nvim",
-	dependencies = {
-		"folke/which-key.nvim",
-	},
 	priority = 1000,
 	lazy = false,
 	opts = {
-		gh = {},
-		-- dashboard = {},
-		lazygit = {
-			configure = true,
-		},
 		bigfile = { enabled = true },
 		picker = {
 			enabled = true,
 			matcher = {
 				frecency = true,
 			},
-			sources = {
-				explorer = {
-					layout = {
-						preview = "main",
-						-- Optional: customize layout for better visuals
-						preset = "sidebar",
-						position = "right",
-					},
-				},
-			},
-			-- layout = {
-			-- 	preview = "right",
-			-- 	layout = {
-			-- 		box = "vertical",
-			-- 		backdrop = false,
-			-- 		width = 0,
-			-- 		height = 0.4,
-			-- 		position = "bottom",
-			-- 		border = "top",
-			-- 		title = " {title} {live} {flags}",
-			-- 		title_pos = "left",
-			-- 		{ win = "input", height = 1, border = "bottom" },
-			-- 		{
-			-- 			box = "horizontal",
-			-- 			{ win = "list", border = "none" },
-			-- 			{ win = "preview", title = "{preview}", width = 0.6, border = "left" },
-			-- 		},
-			-- 	},
-			-- },
-			-- sources = {
-			-- 	explorer = {
-			-- 		cycle = true,
-			-- 		auto_close = true,
-			-- 		layout = {
-			-- 			preset = "sidebar",
-			-- 			-- preview = "main",
-			-- 			layout = {
-			-- 				width = 0.2,
-			-- 				min_width = 120,
-			-- 				position = "left",
-			-- 				-- preview = "main",
-			-- 			},
-			-- 			-- box = "horizontal",
-			-- 			-- width = 0.8,
-			-- 			-- min_width = 120,
-			-- 			-- height = 0.8,
-			-- 			-- {
-			-- 			-- 	box = "vertical",
-			-- 			-- 	border = true,
-			-- 			-- 	title = "{title} {live} {flags}",
-			-- 			-- 	{ win = "input", height = 1, border = "bottom" },
-			-- 			-- 	{ win = "list", border = "none" },
-			-- 			-- },
-			-- 			-- { win = "preview", title = "{preview}", border = true, width = 0.5 },
-			-- 		},
-			-- 		-- layout = { preview = "right" },
-			-- 	},
-			-- },
-			--
-			-- -- layout = { preset = "ivy_split", layout = { position = "bottom" } },
 			formatters = {
 				text = {
 					ft = nil, ---@type string? filetype for highlighting
@@ -105,111 +37,69 @@ return {
 		},
 	},
 	init = function()
-		require("which-key").add({
-			{
-				"<leader><leader>",
-				function()
-					Snacks.picker.files({
-						hidden = true,
-						layout = { preset = "vertical" },
-						-- layout = { preset = "ivy", layout = { position = "bottom" } },
-						win = {
-							list = {
-								keys = {
-									["H"] = { "preview_scroll_left", mode = { "i", "n" } },
-									["J"] = { "preview_scroll_down", mode = { "i", "n" } },
-									["K"] = { "preview_scroll_up", mode = { "i", "n" } },
-									["L"] = { "preview_scroll_right", mode = { "i", "n" } },
-									-- ["<M-h>"] = { "toggle_hidden", mode = { "i", "n" } },
-								},
-							},
-						},
-						show_empty = true,
-						supports_live = true,
-					})
-				end,
-				silent = true,
-			},
-			{
-				"<leader>sb",
-				function()
-					Snacks.picker.buffers({
-						-- layout = { preset = "ivy", layout = { position = "bottom" } }
-					})
-				end,
-				desc = "Search for buffers",
-				silent = true,
-			},
-			{
-				"<leader>sc",
-				function()
-					Snacks.picker.files({
-						cwd = "~/.dotfiles",
-						hidden = true,
-						-- layout = { preset = "ivy", layout = { position = "bottom" } },
-					})
-				end,
-				desc = "Search .dot configs",
-				silent = true,
-			},
-			{
-				"<leader>sg",
-				function()
-					Snacks.picker.grep({
-						hidden = true,
-						-- layout = { preset = "ivy", layout = { position = "bottom" } }
-					})
-				end,
-				desc = "Search for text",
-				silent = true,
-			},
-			{
-				"<leader>sd",
-				function()
-					Snacks.picker.diagnostics()
-				end,
-				desc = "LSP Diagnostics",
-				silent = true,
-			},
-			{
-				"<leader>ss",
-				function()
-					Snacks.picker.lsp_symbols()
-				end,
-				desc = "LSP Symbols",
-				silent = true,
-			},
-			{
-				"<leader>e",
-				function()
-					Snacks.explorer.open()
-				end,
-				desc = "Show explorer",
-				silent = true,
-			},
-			{
-				"<leader>lg",
-				function()
-					Snacks.lazygit.open()
-				end,
-				desc = "Open lazygit",
-			},
-			{
-				"<leader>gp",
-				function()
-					Snacks.picker.gh_pr()
-				end,
-				desc = "GitHub Pull Requests (open)",
-				silent = true,
-			},
-			{
-				"<leader>gP",
-				function()
-					Snacks.picker.gh_pr({ state = "all" })
-				end,
-				desc = "GitHub Pull Requests (all)",
-				silent = true,
-			},
-		})
+		local function searchfiles()
+			local keys = {
+				["H"] = { "preview_scroll_left", mode = { "i", "n" } },
+				["<C-j>"] = { "preview_scroll_down", mode = { "i", "n" } },
+				["<C-k>"] = { "preview_scroll_up", mode = { "i", "n" } },
+				["L"] = { "preview_scroll_right", mode = { "i", "n" } },
+				["<c-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+				["<c-i>"] = { "toggle_ignored", mode = { "i", "n" } },
+			}
+
+			Snacks.picker.files({
+				-- hidden = true,
+				-- layout = { preset = "vscode", hidden = {}, preview = "main" },
+				win = {
+					list = { keys = keys },
+					input = { keys = keys },
+					preview = { keys = keys },
+				},
+				show_empty = true,
+				supports_live = true,
+			})
+		end
+
+		local function searchbuffers()
+			Snacks.picker.buffers({
+				-- layout = { preset = "ivy", layout = { position = "bottom" } }
+			})
+		end
+
+		local function searchfordotfiles()
+			Snacks.picker.files({
+				cwd = "~/.dotfiles",
+				hidden = true,
+				-- layout = { preset = "ivy", layout = { position = "bottom" } },
+			})
+		end
+
+		local function searchforfiles()
+			Snacks.picker.grep({
+				hidden = true,
+				-- layout = { preset = "ivy", layout = { position = "bottom" } }
+			})
+		end
+
+		local function searchforsymbols()
+			Snacks.picker.lsp_symbols()
+		end
+
+		local function searchfordiagnostics()
+			Snacks.picker.diagnostics()
+		end
+
+		local function openexplorer()
+			Snacks.explorer.open()
+		end
+
+		vim.keymap.set("n", "<leader><leader>", searchfiles, { silent = true, desc = "Search for files" })
+		vim.keymap.set("n", "<leader>s", "", { silent = true, desc = "Search" })
+		vim.keymap.set("n", "<leader>sb", searchbuffers, { silent = true, desc = "Search for buffers" })
+		vim.keymap.set("n", "<leader>sc", searchfordotfiles, { silent = true, desc = "Search for dotfiles" })
+		vim.keymap.set("n", "<leader>sg", searchforfiles, { silent = true, desc = "Search for dotfiles" })
+		vim.keymap.set("n", "<leader>ss", searchforsymbols, { silent = true, desc = "Search for dotfiles" })
+		vim.keymap.set("n", "<leader>sd", searchfordiagnostics, { silent = true, desc = "Search for dotfiles" })
+		vim.keymap.set("n", "<leader>e", openexplorer, { silent = true, desc = "Search for dotfiles" })
 	end,
 }

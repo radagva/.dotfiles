@@ -22,7 +22,6 @@ return {
 		dependencies = {
 			"ibhagwan/fzf-lua",
 			"nvim-lua/plenary.nvim",
-			"folke/which-key.nvim",
 		},
 		opts = {
 			legacy_commands = false,
@@ -70,9 +69,11 @@ return {
 				-- end,
 			},
 		},
-		keys = {
-			{ "<leader>os", ":Obsidian search<cr>", desc = "[O]bsidian [S]earch", silent = true },
-			{ "<leader>on", ":Obsidian new<cr>", desc = "[O]bsidian [N]ew", silent = true },
-		},
+		init = function()
+			local map = vim.keymap.set
+
+			map("n", "<leader>os", ":Obisidian search<cr>", { desc = "Search notes" })
+			map("n", "<leader>on", ":Obisidian new<cr>", { desc = "New note" })
+		end,
 	},
 }

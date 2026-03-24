@@ -24,41 +24,33 @@ return {
 			},
 		})
 	end,
-	keys = {
-		{
-			"<leader>tr",
-			function()
-				require("neotest").run.run()
-			end,
-			desc = "Run nearest test",
-		},
-		{
-			"<leader>tt",
-			function()
-				require("neotest").run.run(vim.fn.expand("%"))
-			end,
-			desc = "Run all test of current file",
-		},
-		{
-			"<leader>td",
-			function()
-				require("neotest").run.run({ strategy = "dap" })
-			end,
-			desc = "Run the nearest test with DAP",
-		},
-		{
-			"<leader>tq",
-			function()
-				require("neotest").run.stop()
-			end,
-			desc = "Stop the current test case",
-		},
-		{
-			"<leader>ts",
-			function()
-				require("neotest").summary.toggle()
-			end,
-			desc = "Stop the current test case",
-		},
-	},
+	init = function()
+		local map = vim.keymap.set
+		local function run()
+			require("neotest").run.run()
+		end
+
+		local function runall()
+			require("neotest").run.run(vim.fn.expand("%"))
+		end
+
+		local function rundebug()
+			require("neotest").run.run({ strategy = "dap" })
+		end
+
+		local function stoptests()
+			require("neotest").run.stop()
+		end
+
+		local function toggletestssummary()
+			require("neotest").summary.toggle()
+		end
+
+		map("n", "<leader>t", run, { desc = "Testing" })
+		map("n", "<leader>tr", run, { desc = "Run nearest test" })
+		map("n", "<leader>ta", runall, { desc = "Run all tests of file" })
+		map("n", "<leader>td", rundebug, { desc = "Run nearest test with DAP" })
+		map("n", "<leader>tq", stoptests, { desc = "Stop testcase" })
+		map("n", "<leader>ts", toggletestssummary, { desc = "Toggle tests summary" })
+	end,
 }

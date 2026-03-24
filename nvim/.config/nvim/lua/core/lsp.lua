@@ -2,21 +2,17 @@ vim.lsp.enable({
 	"lua_ls",
 	"gopls",
 	"gofumpt",
-	"postgres_lsp",
-	"eslint",
-	"clangd",
 	"basedpyright",
-	-- "ty",
+	"ruff",
+	"eslint",
 	"tailwindcss",
-	"emmet_ls",
+	"postgres_lsp",
+	"clangd",
 	"cssls",
 	"cssmodules_ls",
-	"astro",
 	"terraform",
-	-- "angularls",
-	"vue_ls",
+	"angularls",
 	"vtsls",
-	"prismals",
 	"yamlls",
 	"jsonls",
 })
@@ -27,10 +23,10 @@ end, { desc = "Toggle inlay hints" })
 
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "code inline actions" })
 
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[R]ename symbol", expr = true })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[R]ename symbol" })
 
 vim.keymap.set("n", "K", function()
-	vim.lsp.buf.hover({ border = "rounded", max_width = 600, max_height = 400 })
+	vim.lsp.buf.hover({ border = "rounded", max_width = 80, max_height = 80 })
 end, { desc = "Hover Documentation" })
 
 vim.keymap.set("n", "<leader>cli", function()

@@ -15,6 +15,7 @@ return {
 				local gitsigns = require("gitsigns")
 				local map = vim.keymap.set
 
+				map("n", "<leader>g", "", { desc = "Git" })
 				map("n", "<leader>ggs", gitsigns.stage_hunk, { desc = "Stage hunk" })
 				map("n", "<leader>ggr", gitsigns.reset_hunk, { desc = "Reset hunk" })
 

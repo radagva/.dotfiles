@@ -1,8 +1,22 @@
 local colors = require("utils.colors")
 
 return function()
+	local bg = "#88C0D0"
+	local fg = "#2E3440"
+
 	local status = require("dap").status()
-	return status ~= "" and colors.hl(colors.highlights.debugger, " ") .. status or ""
+	local a = colors.exthl({ fg = bg, bg = "none" }, "")
+	local b = colors.exthl({ bg = bg, fg = fg }, " ")
+	local c = colors.exthl({ bg = bg, fg = fg }, " " .. (status or ""))
+	local d = colors.exthl({ fg = bg, bg = "none" }, "")
+
+	if status ~= "" then
+		return table.concat({ a, b, c, d })
+	end
+
+	return ""
+	-- return status ~= "" and
+	-- return status ~= "" and colors.exthl({ bg = "#E6A75A", fg = "#151515" }, " ") .. status or ""
 end
 -- M.debugger = {
 -- 	function()

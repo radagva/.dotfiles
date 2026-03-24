@@ -19,7 +19,9 @@ map({ "n" }, "<C-_>|", "<cmd>vsplit | terminal<CR>a", opts({ desc = "Create new 
 map({ "t" }, "<C-\\>", "<C-\\><C-n><C-w>h", { silent = true })
 
 -- save file with ctrl + s
-map({ "n", "i" }, "<C-s>", "<cmd>w<CR><Esc>", opts({ expr = false }))
+map({ "n", "i" }, "<C-s>", function()
+	vim.cmd("silent w")
+end, opts({ expr = false }))
 
 -- for better copying and pasting
 map("n", "x", '"_x', { silent = true })

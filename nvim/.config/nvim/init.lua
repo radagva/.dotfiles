@@ -7,3 +7,5 @@ require("core.lsp")
 
 require("ui.statusline")
 require("ui.winbar")
+
+vim.cmd.colorscheme("jellybeans")

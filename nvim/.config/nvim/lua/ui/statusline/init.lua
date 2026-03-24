@@ -1,9 +1,9 @@
-local ipaddress = require("ui.statusline.ipaddress")
+-- local ipaddress = require("ui.statusline.ipaddress")
 local git = require("ui.statusline.git")
 local mode = require("ui.statusline.mode")
 local dap = require("ui.statusline.dap")
 local diagnostics = require("ui.statusline.diagnostics")
-local lsps = require("ui.statusline.attachedlsps")
+-- local lsps = require("ui.statusline.attachedlsps")
 local filepath = require("ui.winbar.filepath")
 -- local filetypeicon = require("ui.statusline.filetypeicon")
 
@@ -22,7 +22,7 @@ function Statusline.activate()
 			dap(),
 			"%l:%c",
 			-- filetypeicon(),
-			lsps(),
+			-- lsps(),
 			-- filetype(),
 			-- ipaddress(),
 		}, " ")

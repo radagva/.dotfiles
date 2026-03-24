@@ -23,8 +23,8 @@ return function()
 	return table.concat({
 		c.hl(c.highlights.git_branch, " "), -- branch icon
 		head .. " ",
-		added,
-		changed,
-		removed,
+		c.hl("GitSignsAdd", added),
+		c.hl("GitSignsChange", changed),
+		c.hl("GitSignsDelete", removed),
 	})
 end

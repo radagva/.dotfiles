@@ -3,9 +3,9 @@ local javascript = require("extensions.debugging.javascript")
 return {
 	{
 		"mfussenegger/nvim-dap",
-		dependencies = { "mxsdev/nvim-dap-vscode-js", "folke/which-key.nvim" },
+		dependencies = { "mxsdev/nvim-dap-vscode-js" },
 		config = function()
-			local dap, widgets, wk = require("dap"), require("dap.ui.widgets"), require("which-key")
+			local dap, widgets = require("dap"), require("dap.ui.widgets")
 
 			dap.defaults.fallback.switchbuf = "usetab,uselast"
 
@@ -17,25 +17,19 @@ return {
 			sign("DapBreakpointRejected", { text = " ", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 			sign("DapStopped", { text = " ", texthl = "DiagnosticSignWarn", linehl = "Visual", numhl = "" })
 
-			wk.add({
-				{ "<leader>d", group = "Debugging" },
-				{ "<leader>dc", dap.continue, desc = "Continue" },
-				{ "<leader>db", dap.toggle_breakpoint, desc = "Toggle Breakpoint" },
-				{ "<leader>dq", dap.terminate, desc = "Terminate" },
-				{
-					"<leader>dh",
-					function(val)
-						widgets.hover(val, { border = "rounded" })
-					end,
-					desc = "Hover",
-				},
-			})
+			vim.keymap.set("n", "<leader>d", "", { desc = "Debug" })
+			vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue", silent = true })
+			vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint", silent = true })
+			vim.keymap.set("n", "<leader>dq", dap.terminate, { desc = "Terminate", silent = true })
+			vim.keymap.set("n", "<leader>dh", function(val)
+				widgets.hover(val, { border = "rounded" })
+			end, { desc = "Hover", silent = true })
 		end,
 	},
 
 	{
 		"igorlfs/nvim-dap-view",
-		dependencies = { "mfussenegger/nvim-dap", "folke/which-key.nvim" },
+		dependencies = { "mfussenegger/nvim-dap" },
 		lazy = false,
 		opts = {
 			winbar = {
@@ -44,7 +38,7 @@ return {
 			},
 		},
 		init = function()
-			local dap, wk = require("dap"), require("which-key")
+			local dap = require("dap")
 
 			dap.listeners.before.attach.dapui_config = function()
 				vim.cmd("DapViewOpen")
@@ -59,9 +53,7 @@ return {
 				vim.cmd("DapViewClose")
 			end
 
-			wk.add({
-				{ "<leader>du", ":DapViewToggle<cr>", desc = "Toggle DapView", silent = true },
-			})
+			vim.keymap.set("n", "<leader>du", ":DapViewToggle<cr>", { desc = "Toggle DapView", silent = true })
 		end,
 	},
 
@@ -70,6 +62,13 @@ return {
 		dependencies = { "mfussenegger/nvim-dap" },
 		config = function()
 			require("dap-python").setup("uv")
+		end,
+	},
+	{
+		"leoluz/nvim-dap-go",
+		dependencies = { "mfussenegger/nvim-dap" },
+		config = function()
+			require("dap-go").setup()
 		end,
 	},
 }
