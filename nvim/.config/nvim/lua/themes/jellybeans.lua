@@ -8,6 +8,7 @@ return {
 			hl.Pmenu = { bg = "none", fg = "none" }
 			hl.PmenuThumb = { bg = "#5b6078" }
 			hl.BlinkCmpMenuBorder = { fg = "", bg = "none" }
+			hl.BlinkCmpMenu = { bg = "none" }
 			hl.NormalFloat = { bg = "none" }
 			hl.Float = { bg = "none" }
 			hl.FloatBorder = { bg = "none" }
@@ -18,6 +19,8 @@ return {
 			hl.StatusLine = { bg = "none" }
 			hl.StatusLineNC = { bg = "none" }
 			hl.GitSignsCurrentLineBlame = { fg = "#5b6078" }
+			hl.WhichKeyNormal = { bg = "#1F1F1F" }
+			hl.WhichKeyBorder = { fg = "#1F1F1F", bg = "#1F1F1F" }
 		end,
 	},
 }

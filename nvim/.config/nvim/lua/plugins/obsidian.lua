@@ -9,9 +9,6 @@ return {
 			dash = {
 				right_pad = 1,
 			},
-			-- heading = {
-			-- 	left_padding = 1,
-			-- },
 		},
 	},
 	{
@@ -72,6 +69,7 @@ return {
 		init = function()
 			local map = vim.keymap.set
 
+			map("n", "<leader>o", "", { desc = "Obisdian" })
 			map("n", "<leader>os", ":Obisidian search<cr>", { desc = "Search notes" })
 			map("n", "<leader>on", ":Obisidian new<cr>", { desc = "New note" })
 		end,

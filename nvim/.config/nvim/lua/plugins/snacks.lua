@@ -3,6 +3,9 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
+		scope = {},
+		input = { enabled = false },
+		rename = { enabled = false },
 		bigfile = { enabled = true },
 		picker = {
 			enabled = true,
@@ -97,9 +100,9 @@ return {
 		vim.keymap.set("n", "<leader>s", "", { silent = true, desc = "Search" })
 		vim.keymap.set("n", "<leader>sb", searchbuffers, { silent = true, desc = "Search for buffers" })
 		vim.keymap.set("n", "<leader>sc", searchfordotfiles, { silent = true, desc = "Search for dotfiles" })
-		vim.keymap.set("n", "<leader>sg", searchforfiles, { silent = true, desc = "Search for dotfiles" })
-		vim.keymap.set("n", "<leader>ss", searchforsymbols, { silent = true, desc = "Search for dotfiles" })
-		vim.keymap.set("n", "<leader>sd", searchfordiagnostics, { silent = true, desc = "Search for dotfiles" })
-		vim.keymap.set("n", "<leader>e", openexplorer, { silent = true, desc = "Search for dotfiles" })
+		vim.keymap.set("n", "<leader>sg", searchforfiles, { silent = true, desc = "Search for text" })
+		vim.keymap.set("n", "<leader>ss", searchforsymbols, { silent = true, desc = "Search for symbols" })
+		vim.keymap.set("n", "<leader>sd", searchfordiagnostics, { silent = true, desc = "Search for diagnostics" })
+		vim.keymap.set("n", "<leader>e", openexplorer, { silent = true, desc = "Open file explorer" })
 	end,
 }

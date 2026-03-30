@@ -5,12 +5,14 @@ local map = vim.keymap.set
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-map({ "n" }, "<leader>`", "viw~", opts({ silent = true, desc = "Uppercase word" }))
+-- Remove default Space action
+map({ "n", "v" }, "<Space>", "<Nop>", opts({ silent = true, desc = "󱁐" }))
+map({ "n" }, "<leader>f", "<Nop>", opts({ silent = true, desc = "Format" }))
+map({ "n" }, "<leader>fw", "<Nop>", opts({ silent = true, desc = "Word" }))
+map({ "n" }, "<leader>fwU", "viwU", opts({ silent = true, desc = "Uppercase" }))
+map({ "n" }, "<leader>fwu", "viwu", opts({ silent = true, desc = "Lowercase" }))
 -- Remove highlight after search by pressing Esc
 map({ "n" }, "<Esc>", "<cmd>nohl<cr>", opts({ silent = true }))
-
--- Remove default Space action
-map({ "n", "v" }, "<Space>", "<Nop>", opts({ silent = true }))
 
 map({ "n" }, "<C-_>-", "<cmd>split | terminal<CR>a", opts({ desc = "Create new terminal in H Split" }))
 
@@ -21,6 +23,9 @@ map({ "t" }, "<C-\\>", "<C-\\><C-n><C-w>h", { silent = true })
 -- save file with ctrl + s
 map({ "n", "i" }, "<C-s>", function()
 	vim.cmd("silent w")
+	if vim.fn.mode() == "i" then
+		vim.cmd("stopinsert")
+	end
 end, opts({ expr = false }))
 
 -- for better copying and pasting
@@ -46,6 +51,9 @@ local function setup_regular_buffer_keybindings()
 		map({ "n" }, "yag", "ggyG", { desc = "[Y]ank file contents", buffer = true, noremap = true, silent = true })
 	end
 end
+
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
@@ -79,6 +87,7 @@ map("v", "<", "<gv", { silent = true })
 map("v", ">", ">gv", { silent = true })
 
 -- buffers
+map("n", "<leader>b", "", { desc = "Buffers", silent = true })
 map("n", "<leader>bd", ":bp|bd#<cr>", { desc = "Delete current buffer", silent = true })
 map("n", "<leader>bo", function()
 	local bufs = vim.api.nvim_list_bufs()
@@ -93,6 +102,7 @@ map("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Go to next buffer" })
 map("n", "<S-h>", "<cmd>bprev<CR>", { desc = "Go to prev buffer" })
 
 -- utils
+map("n", "<leader>u", "", { desc = "UI", silent = true })
 map("n", "<leader>uip", function()
 	local handle = io.popen("ipconfig getifaddr en0")
 	if handle ~= nil then
@@ -106,6 +116,7 @@ map("n", "<leader>uip", function()
 	end
 end, { desc = "Get router IP Address" })
 
+map("n", "<leader><Tab>", "", opts({ desc = "Tabs" }))
 map("n", "<leader><Tab><Tab>", "<cmd>tabnew<cr>", opts({ desc = "New tab" }))
 map("n", "<leader><Tab>x", "<cmd>tabclose<cr>", opts({ desc = "Close current tab" }))
 map("n", "<leader><Tab>o", "<cmd>tabonly<cr>", opts({ desc = "Close other tabs" }))
@@ -113,14 +124,12 @@ map("n", "<leader><Tab>n", "<cmd>tabnext<cr>", opts({ desc = "Next tab" }))
 map("n", "<leader><Tab>p", "<cmd>tabprevious<cr>", opts({ desc = "Prev tab" }))
 
 map("n", "<leader>,", "<Nop>", { silent = true })
-map("n", "<leader>,-", "<cmd>below split | terminal<cr><C-w>J", { silent = true, desc = "New terminal below" })
-map("n", "<leader>,|", "<cmd>below split | terminal<cr><C-w>L", { silent = true, desc = "New terminal right" })
 
 local wrap = false
 
 map("n", "<leader>uw", function()
 	wrap = not wrap
-	vim.opt.wrap = wrap
+	vim.o.wrap = wrap
 end, { desc = "Toggle line wrap", silent = true })
 
 -- vim.keymap.set("n", "<C-h>", function()

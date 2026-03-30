@@ -11,6 +11,13 @@ return {
 			current_line_blame_opts = {
 				delay = 250,
 			},
+			signs = {
+				add = { text = "+" },
+				delete = { text = "-" },
+				change = { text = "~" },
+				topdelete = { text = "-" },
+				changedelete = { text = "!" },
+			},
 			on_attach = function()
 				local gitsigns = require("gitsigns")
 				local map = vim.keymap.set
@@ -38,28 +45,5 @@ return {
 				map("n", "<leader>ggd", gitsigns.diffthis, { desc = "Diff this" })
 			end,
 		},
-	},
-
-	{
-		"pwntester/octo.nvim",
-		lazy = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"ibhagwan/fzf-lua",
-			"nvim-tree/nvim-web-devicons",
-		},
-		opts = {
-			picker = "snacks",
-		},
-		keys = {
-			{
-				"<leader>go",
-				":Octo actions<CR>",
-				desc = "Open Octo",
-			},
-		},
-		config = function(_, opts)
-			require("octo").setup(opts)
-		end,
 	},
 }

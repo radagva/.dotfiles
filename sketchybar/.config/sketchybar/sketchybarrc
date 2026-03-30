@@ -30,7 +30,7 @@ bar=(
   corner_radius=10
 	y_offset=4
 	margin=5
-  color=$TRANSPARENT
+  color=$BG
 )
 
 sketchybar --bar "${bar[@]}"

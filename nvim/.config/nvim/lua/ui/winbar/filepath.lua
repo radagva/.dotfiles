@@ -28,5 +28,23 @@ return function()
 		end
 	end
 
-	return colors.hl(colors.highlights.comment, table.concat(parts, "/") .. "/") .. split[#split]
+	local filename = split[#split]
+	local path_prefix = colors.hl(colors.highlights.comment, table.concat(parts, "/") .. "/")
+
+	local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+	local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+
+	local filename_colored = filename
+	if errors > 0 then
+		filename_colored = colors.hl("ErrorMsg", filename)
+	elseif warnings > 0 then
+		filename_colored = colors.hl("WarningMsg", filename)
+	end
+
+	local modified_indicator = ""
+	if vim.bo.modified then
+		modified_indicator = colors.hl("WarningMsg", " ●")
+	end
+
+	return path_prefix .. filename_colored .. modified_indicator
 end

@@ -28,6 +28,6 @@ require("lazy").setup({
 	ui = {
 		border = "rounded",
 	},
-	install = { colorscheme = { "jellybeans" } },
+	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true, notify = false },
 })

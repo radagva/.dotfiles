@@ -2,6 +2,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"gopls",
 	"gofumpt",
+	-- "ty",
 	"basedpyright",
 	"ruff",
 	"eslint",
@@ -21,6 +22,7 @@ vim.keymap.set("n", "<leader>uh", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
 end, { desc = "Toggle inlay hints" })
 
+vim.keymap.set("n", "<leader>c", "", { desc = "Code" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "code inline actions" })
 
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[R]ename symbol" })

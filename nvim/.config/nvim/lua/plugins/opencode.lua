@@ -16,6 +16,7 @@ return {
 		vim.o.autoread = true
 
 		-- Recommended/example keymaps.
+		vim.keymap.set({ "n", "x" }, "<leader>a", "", { desc = "AI", silent = true })
 		vim.keymap.set({ "n", "x" }, "<leader>aa", function()
 			require("opencode").ask("@this: ", { submit = true })
 		end, { desc = "Ask opencode…" })

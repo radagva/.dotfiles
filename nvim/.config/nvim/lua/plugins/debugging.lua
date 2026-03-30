@@ -28,32 +28,48 @@ return {
 	},
 
 	{
-		"igorlfs/nvim-dap-view",
-		dependencies = { "mfussenegger/nvim-dap" },
-		lazy = false,
-		opts = {
-			winbar = {
-				sections = { "console", "repl", "scopes", "breakpoints", "watches", "exceptions", "threads" },
-				default_section = "scopes",
-			},
-		},
+		"rcarriga/nvim-dap-ui",
+		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+		config = function()
+			require("dapui").setup({
+				winopts = {
+					-- General window options for all elements
+					border = "single", -- Use 'single', 'double', 'round', or 'none'
+					-- Set the title position (e.g., 'left', 'center', 'right')
+					title_pos = "center",
+				},
+				layouts = {
+					{
+						elements = {
+							{ id = "scopes", size = 0.25, title = "Scopes" },
+							{ id = "breakpoints", size = 0.25 },
+							{ id = "stacks", size = 0.25 },
+							{ id = "watches", size = 0.25 },
+						},
+						position = "left", -- Or "right"
+						size = 40, -- Sets the fixed width of the sidebar to 40 columns
+					},
+					{
+						elements = {
+							{ id = "repl", size = 1.0 },
+						},
+						position = "bottom",
+						size = 10,
+					},
+				},
+			})
+		end,
 		init = function()
-			local dap = require("dap")
+			local map = vim.keymap.set
+			local dap, dapui = require("dap"), require("dapui")
+			dap.listeners.before.attach.dapui_config = dapui.open
+			dap.listeners.before.launch.dapui_config = dapui.open
+			dap.listeners.before.event_terminated.dapui_config = dapui.close
+			dap.listeners.before.event_exited.dapui_config = dapui.close
 
-			dap.listeners.before.attach.dapui_config = function()
-				vim.cmd("DapViewOpen")
-			end
-			dap.listeners.before.launch.dapui_config = function()
-				vim.cmd("DapViewOpen")
-			end
-			dap.listeners.before.event_terminated.dapui_config = function()
-				vim.cmd("DapViewClose")
-			end
-			dap.listeners.before.event_exited.dapui_config = function()
-				vim.cmd("DapViewClose")
-			end
-
-			vim.keymap.set("n", "<leader>du", ":DapViewToggle<cr>", { desc = "Toggle DapView", silent = true })
+			map("n", "<leader>du", function()
+				dapui.toggle({ reset = true })
+			end, { desc = "Toggle DAP UI" })
 		end,
 	},
 
