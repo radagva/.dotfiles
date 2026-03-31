@@ -10,7 +10,7 @@ AEROSPACE_LIST_OF_WINDOWS_IN_FOCUSED_MONITOR=$(aerospace list-windows --workspac
 
 if [ "$SENDER" = "front_app_switched" ]; then
   #echo name:$NAME INFO: $INFO SENDER: $SENDER, SID: $SID >> ~/aaaa
-  sketchybar --animate tanh 10 --set "$NAME" label="$INFO" label.padding_right=10 icon.background.image="app.$INFO" icon.background.image.scale=0.6
+  sketchybar --animate tanh 10 --set "$NAME" label="$AEROSPACE_FOCUSED_MONITOR_NO - $INFO" label.padding_right=10 icon.background.image="app.$INFO" icon.background.image.scale=0.6
 
   # apps=$AEROSPACE_LIST_OF_WINDOWS_IN_FOCUSED_MONITOR
   # icon_strip=" "
