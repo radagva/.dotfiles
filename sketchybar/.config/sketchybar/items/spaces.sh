@@ -6,13 +6,11 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
     sid=$i
     space=(
       space="$sid"
-      icon="$sid"
       icon.color=$SPACE_FG_COLOR
       label.color=$SPACE_FG_COLOR
+      label="⏺"
       icon.highlight_color=$SPACE_FG_COLOR_ACTIVE
       label.highlight_color=$SPACE_FG_COLOR_ACTIVE
-      label.font="sketchybar-app-font:Regular:12.0"
-      icon.font="$FONT:Regular:12"
       icon.padding_left=10
       icon.padding_right=0
       display=$m
@@ -20,8 +18,6 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
       padding_right=2
       label.padding_right=12
       label.y_offset=-1
-      # background.border_width=1
-      # background.border_color=$SPACE_FG_COLOR_ACTIVE
       script="$PLUGIN_DIR/spaces.sh"
     )
 
@@ -29,20 +25,20 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
                --set space.$sid "${space[@]}" \
                --subscribe space.$sid mouse.clicked
 
-    apps=$(aerospace list-windows --workspace $sid | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
-
-    icon_strip=" "
-    if [ "${apps}" != "" ]; then
-      while read -r app
-      do
-        # osascript -e "display notification \"$app\" with title "App""
-        icon_strip+=$(__icon_map "$app")
-      done <<< "${apps}"
-    else
-      icon_strip=" —"
-    fi
-
-    sketchybar --set space.$sid label="$icon_strip"
+    # apps=$(aerospace list-windows --workspace $sid | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+    #
+    # icon_strip=" "
+    # if [ "${apps}" != "" ]; then
+    #   while read -r app
+    #   do
+    #     # osascript -e "display notification \"$app\" with title "App""
+    #     icon_strip+=$(__icon_map "$app")
+    #   done <<< "${apps}"
+    # else
+    #   icon_strip=" —"
+    # fi
+    #
+    # sketchybar --set space.$sid label="$icon_strip"
   done
 
   for i in $(aerospace list-workspaces --monitor $m --empty); do

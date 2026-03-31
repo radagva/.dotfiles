@@ -1,7 +1,7 @@
 shell /opt/homebrew/bin/bash
 
 # BEGIN_KITTY_THEME
-# Jellybeans
+# Gruvbox Material Dark Hard
 include current-theme.conf
 # END_KITTY_THEME
 

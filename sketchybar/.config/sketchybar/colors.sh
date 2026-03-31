@@ -101,7 +101,7 @@ export BATTERY_4=$(color $LIGHT_RED $DARK_RED)
 export BATTERY_5=$(color $LIGHT_RED $DARK_RED)
 
 export BG_SOLID=$(color $LIGHT_BG0 $DARK_BG0)
-export BG=$(withopacity $(color $LIGHT_BG0 $DARK_BG0) 0xf1)
+export BG=$(withopacity 0xFF111212 0xf1)
 export BG2=$(color $LIGHT_BG2 $DARK_BG2)
 
 export APP_ICON_COLOR=$MAGENTA
@@ -109,7 +109,7 @@ export APP_ICON_COLOR=$MAGENTA
 # UI Components
 export SKETCHYBAR_BG=$BG_SOLID
 
-export SPACE_FG_COLOR_ACTIVE=$(color $LIGHT_BLUE $DARK_BLUE)
+export SPACE_FG_COLOR_ACTIVE=$(color 0xFFE6A75A 0xFFE6A75A)
 export SPACE_BG_COLOR=$(withopacity $SPACE_FG_COLOR_ACTIVE 80)
 export SPACE_FG_COLOR=$WHITE
 

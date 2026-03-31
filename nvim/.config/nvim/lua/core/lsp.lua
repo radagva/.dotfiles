@@ -2,7 +2,6 @@ vim.lsp.enable({
 	"lua_ls",
 	"gopls",
 	"gofumpt",
-	-- "ty",
 	"basedpyright",
 	"ruff",
 	"eslint",
@@ -12,7 +11,6 @@ vim.lsp.enable({
 	"cssls",
 	"cssmodules_ls",
 	"terraform",
-	"angularls",
 	"vtsls",
 	"yamlls",
 	"jsonls",
@@ -46,45 +44,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 
-		-- Helper function to safely bind LSP functions
-		local function safe_lsp_buf_bind(lsp_func, _)
-			if type(lsp_func) == "function" then
-				return lsp_func
-			end
-
-			return function()
-				vim.notify("LSP function not available", vim.log.levels.WARN)
-			end
-		end
-
-		vim.keymap.set(
-			"n",
-			"gd",
-			safe_lsp_buf_bind(Snacks.picker.lsp_definitions),
-			-- safe_lsp_buf_bind(vim.lsp.buf.definition),
-			{ buffer = bufnr, desc = "LSP: Go to definition" }
-		)
-		vim.keymap.set(
-			"n",
-			"gD",
-			safe_lsp_buf_bind(Snacks.picker.lsp_type_definitions),
-			-- safe_lsp_buf_bind(vim.lsp.buf.type_definition),
-			{ buffer = bufnr, desc = "LSP: Go to type definition" }
-		)
-		vim.keymap.set(
-			"n",
-			"gr",
-			safe_lsp_buf_bind(Snacks.picker.lsp_references),
-			-- safe_lsp_buf_bind(vim.lsp.buf.references),
-			{ buffer = bufnr, desc = "LSP: Go to references" }
-		)
-		vim.keymap.set(
-			"n",
-			"gi",
-			safe_lsp_buf_bind(Snacks.picker.lsp_implementations),
-			-- safe_lsp_buf_bind(vim.lsp.buf.implementation),
-			{ buffer = bufnr, desc = "LSP: Go to implementations" }
-		)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "LSP: Go to definition" })
+		vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "LSP: Go to type definition" })
+		vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "LSP: Go to references" })
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "LSP: Go to implementations" })
 
 		vim.keymap.set("n", "]d", function()
 			vim.diagnostic.jump({ count = 1, float = true })
@@ -99,9 +62,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-vim.lsp.config("*", {
-	capabilities = require("blink.cmp").get_lsp_capabilities(),
-})
+-- vim.lsp.config("*", {
+-- 	capabilities = require("blink.cmp").get_lsp_capabilities(),
+-- })
 
 vim.diagnostic.config({
 	virtual_text = true,

@@ -1,11 +1,6 @@
-require("config.globals")
+require("core.lsp")
 require("config.options")
 require("config.keymaps")
 require("config.autocmd")
-require("core.lazy")
-require("core.lsp")
-
 require("ui.statusline")
-require("ui.winbar")
-
-vim.cmd.colorscheme("catppuccin")
+-- require("ui.winbar")
