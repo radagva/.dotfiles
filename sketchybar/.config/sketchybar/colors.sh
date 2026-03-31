@@ -112,6 +112,7 @@ export SKETCHYBAR_BG=$BG_SOLID
 export SPACE_FG_COLOR_ACTIVE=$(color 0xFFE6A75A 0xFFE6A75A)
 export SPACE_BG_COLOR=$(withopacity $SPACE_FG_COLOR_ACTIVE 80)
 export SPACE_FG_COLOR=$WHITE
+export SPACE_FG_COLOR_EMPTY=$(withopacity $WHITE 0x22)
 
 
 # General bar colors

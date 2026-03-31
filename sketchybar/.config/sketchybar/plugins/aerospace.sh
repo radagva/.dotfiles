@@ -11,6 +11,12 @@ get_icon_strip() {
   echo "⏺"
 }
 
+is_workspace_empty() {
+  local workspace=$1
+  local windows=$(aerospace list-windows --workspace "$workspace" 2>/dev/null)
+  [ -z "$windows" ]
+}
+
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
   # 1. Highlight the new focused workspace
   # 2. Unhighlight the previous workspace
@@ -25,23 +31,28 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
   ARGS=()
 
   # --- Handle Empty Workspaces on the Focused Monitor ---
-  # Hide empty workspaces first. 
-  # If the focused workspace is empty, it will be un-hidden by the next block.
+  # Show empty workspaces with transparency instead of hiding them
   EMPTY_WORKSPACES=$(aerospace list-workspaces --monitor focused --empty)
   for i in $EMPTY_WORKSPACES; do
-     ARGS+=(--set space.$i display=0)
+    ARGS+=(--set space.$i display=$FOCUSED_MONITOR label.color=$SPACE_FG_COLOR_EMPTY)
   done
 
   # --- Update FOCUSED Workspace ---
   if [ -n "$AEROSPACE_FOCUSED_WORKSPACE" ]; then
     icon_strip_focused=$(get_icon_strip "$AEROSPACE_FOCUSED_WORKSPACE")
 
+    if is_workspace_empty "$AEROSPACE_FOCUSED_WORKSPACE"; then
+      LABEL_COLOR=$SPACE_FG_COLOR_EMPTY
+    else
+      LABEL_COLOR=$ORANGE
+    fi
+
     ARGS+=(--set space.$AEROSPACE_FOCUSED_WORKSPACE \
            display=$FOCUSED_MONITOR \
            icon.highlight=true \
            label.highlight=true \
            icon.color=$BLACK \
-           label.color=$ORANGE \
+           label.color=$LABEL_COLOR \
            # background.color=$(color $SPACE_BG_COLOR $SPACE_BG_COLOR) \
            label="$icon_strip_focused")
   fi
@@ -50,11 +61,17 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
   if [ -n "$AEROSPACE_PREV_WORKSPACE" ] && [ "$AEROSPACE_PREV_WORKSPACE" != "$AEROSPACE_FOCUSED_WORKSPACE" ]; then
     icon_strip_prev=$(get_icon_strip "$AEROSPACE_PREV_WORKSPACE")
 
+    if is_workspace_empty "$AEROSPACE_PREV_WORKSPACE"; then
+      LABEL_COLOR=$SPACE_FG_COLOR_EMPTY
+    else
+      LABEL_COLOR=$SPACE_FG_COLOR
+    fi
+
     ARGS+=(--set space.$AEROSPACE_PREV_WORKSPACE \
            icon.highlight=false \
            label.highlight=false \
            icon.color=$SPACE_FG_COLOR \
-           label.color=$SPACE_FG_COLOR \
+           label.color=$LABEL_COLOR \
            background.color=$TRANSPARENT \
            label="$icon_strip_prev")
   fi

@@ -11,7 +11,7 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
       label="⏺"
       icon.highlight_color=$SPACE_FG_COLOR_ACTIVE
       label.highlight_color=$SPACE_FG_COLOR_ACTIVE
-      icon.padding_left=10
+      icon.padding_left=0
       icon.padding_right=0
       display=$m
       padding_left=2
