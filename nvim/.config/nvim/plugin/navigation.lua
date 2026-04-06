@@ -15,6 +15,6 @@ vim.keymap.set("n", "<C-\\>", smartsplits.move_cursor_previous)
 
 local flashmodes = { "n", "x", "o" }
 
-vim.keymap.set(flashmodes, "s", flash.treesitter, { desc = "Flash", noremap = true })
+vim.keymap.set(flashmodes, "s", flash.jump, { desc = "Flash", noremap = true })
 vim.keymap.set(flashmodes, "S", flash.treesitter, { desc = "Flash Treesitter", noremap = true })
-vim.keymap.set(flashmodes, "R", flash.treesitter, { desc = "Flash Remote", noremap = true })
+vim.keymap.set(flashmodes, "R", flash.remote, { desc = "Flash Remote", noremap = true })

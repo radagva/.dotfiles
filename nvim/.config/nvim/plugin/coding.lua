@@ -62,12 +62,11 @@ tsautotag.setup({
 conform.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		javascript = { "prettier" },
-		vue = { "prettier" },
+		javascript = { "prettier", "biome" },
+		javascriptreact = { "prettier", "biome" },
+		typescript = { "prettier", "biome" },
+		typescriptreact = { "prettier", "biome" },
 		astro = { "prettier" },
-		javascriptreact = { "prettier" },
-		typescript = { "prettier" },
-		typescriptreact = { "prettier" },
 		css = { "prettier" },
 		html = { "prettier" },
 		json = { "prettier" },
@@ -77,12 +76,15 @@ conform.setup({
 		go = { "gofumpt" },
 		sql = { "sql_formatter" },
 		cpp = { "clang-format" },
-		["*"] = { "injected" },
+		-- ["*"] = { "injected" },
 	},
-	format_on_save = {
-		timeout_ms = 500,
-		lsp_format = "fallback",
-	},
+	notify_on_error = false,
+	format_on_save = function(bufnr)
+		return {
+			timeout_ms = 500,
+			lsp_format = "never",
+		}
+	end,
 })
 
 treesitter.setup({
@@ -116,6 +118,13 @@ treesitter.setup({
 	incremental_selection = { enable = true },
 	textobjects = { enable = true },
 })
+
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	-- pattern = { "*" },
+-- 	callback = function()
+-- 		vim.treesitter.start()
+-- 	end,
+-- })
 
 mason.setup({
 	ensure_installed = { "http", "c", "css-lsp" },

@@ -10,7 +10,8 @@ include current-theme.conf
 
 #- UI window
 tab_bar_edge top
-# hide_window_decorations titlebar-only
+window_title_template {custom}
+# tab_title_template "{index}: {title.split('/')[-1]}"
 tab_title_template {title}
 cursor_trail 1
 tab_bar_align left
@@ -20,7 +21,7 @@ macos_option_as_alt right
 macos_titlebar_color background
 
 #- UI theme
-background_opacity 0.95
+background_opacity 1.0
 background_blur 65
 
 #- third party

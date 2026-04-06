@@ -15,7 +15,7 @@ vim.api.nvim_create_user_command("LoadLastSession", function()
 	print("") -- clean cmdline
 end, { desc = "Load last saved session in persistence" })
 
-yanky, notify, fidget, icons, jellybeans =
+local yanky, notify, fidget, icons, jellybeans =
 	require("yanky"), require("notify"), require("fidget"), require("mini.icons"), require("jellybeans")
 
 icons.setup()

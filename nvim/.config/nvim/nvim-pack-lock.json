@@ -9,10 +9,6 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'v1.10.1'"
     },
-    "catppuccin": {
-      "rev": "a7788416689dbefea659d9e9415c87926b0ba5d8",
-      "src": "https://github.com/catppuccin/nvim"
-    },
     "conform.nvim": {
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -44,10 +40,6 @@
     "jellybeans.nvim": {
       "rev": "f75e0cfba0cdf3b7530301df8375367c29fbd310",
       "src": "https://github.com/wtfox/jellybeans.nvim"
-    },
-    "kulala.nvim": {
-      "rev": "6656c9d332735ca6a27725e0fb45a1715c4372d9",
-      "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
@@ -92,10 +84,6 @@
     "neotest-vitest": {
       "rev": "f01addc6f07b79ef1be5f4297eafbee9e0959018",
       "src": "https://github.com/marilari88/neotest-vitest"
-    },
-    "nvim": {
-      "rev": "a7788416689dbefea659d9e9415c87926b0ba5d8",
-      "src": "https://github.com/catppuccin/nvim"
     },
     "nvim-colorizer.lua": {
       "rev": "a065833f35a3a7cc3ef137ac88b5381da2ba302e",

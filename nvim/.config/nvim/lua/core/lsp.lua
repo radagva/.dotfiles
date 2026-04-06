@@ -2,7 +2,8 @@ vim.lsp.enable({
 	"lua_ls",
 	"gopls",
 	"gofumpt",
-	"basedpyright",
+	"ty",
+	"astro",
 	"ruff",
 	"eslint",
 	"tailwindcss",
@@ -15,23 +16,6 @@ vim.lsp.enable({
 	"yamlls",
 	"jsonls",
 })
-
-vim.keymap.set("n", "<leader>uh", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
-end, { desc = "Toggle inlay hints" })
-
-vim.keymap.set("n", "<leader>c", "", { desc = "Code" })
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "code inline actions" })
-
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[R]ename symbol" })
-
-vim.keymap.set("n", "K", function()
-	vim.lsp.buf.hover({ border = "rounded", max_width = 80, max_height = 80 })
-end, { desc = "Hover Documentation" })
-
-vim.keymap.set("n", "<leader>cli", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, { desc = "Toggle [i]nlay hints", silent = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
@@ -57,8 +41,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.diagnostic.jump({ count = -1, float = true })
 		end, { desc = "Previous Diagnostic" })
 
+		vim.keymap.set("n", "<leader>uh", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
+		end, { desc = "Toggle inlay hints", noremap = true })
+
+		-- vim.keymap.set("n", "<leader>c", "<Nop>", { desc = "Code" })
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "code inline actions" })
+
+		vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[R]ename symbol", noremap = true })
+
+		vim.keymap.set("n", "K", function()
+			vim.lsp.buf.hover({ border = "rounded", max_width = 80, max_height = 80 })
+		end, { desc = "Hover Documentation" })
+
+		vim.keymap.set("n", "<leader>cli", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, { desc = "Toggle [i]nlay hints", silent = true })
+
 		vim.opt.foldmethod = "expr"
 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+		vim.treesitter.start()
 	end,
 })
 
