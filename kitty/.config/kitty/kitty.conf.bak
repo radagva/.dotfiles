@@ -1,7 +1,7 @@
 shell /opt/homebrew/bin/bash
 
 # BEGIN_KITTY_THEME
-# Jellybeans
+# Rosé Pine
 include current-theme.conf
 # END_KITTY_THEME
 
@@ -17,8 +17,8 @@ tab_bar_align left
 tab_bar_style powerline
 tab_powerline_style angled
 macos_option_as_alt right
-macos_titlebar_color background
-# hide_window_decorations yes
+# macos_titlebar_color background
+hide_window_decorations yes
 
 #- UI theme
 background_opacity 1.0

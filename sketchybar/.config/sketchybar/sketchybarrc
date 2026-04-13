@@ -31,6 +31,7 @@ bar=(
 	y_offset=0
 	margin=0
   color=$BG
+  blur_radius=65
 )
 
 sketchybar --bar "${bar[@]}"

@@ -101,7 +101,7 @@ export BATTERY_4=$(color $LIGHT_RED $DARK_RED)
 export BATTERY_5=$(color $LIGHT_RED $DARK_RED)
 
 export BG_SOLID=$(color $LIGHT_BG0 $DARK_BG0)
-export BG=$(withopacity 0xFF111212 0xf1)
+export BG=$(withopacity 0xFF111111 0xf1)
 export BG2=$(color $LIGHT_BG2 $DARK_BG2)
 
 export APP_ICON_COLOR=$MAGENTA

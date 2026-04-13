@@ -1,5 +1,5 @@
 vim.pack.add({
-	{ src = "https://github.com/sainnhe/gruvbox-material" },
+	{ src = "https://github.com/ember-theme/nvim" },
 	{ src = "https://github.com/wtfox/jellybeans.nvim" },
 	{ src = "https://github.com/echasnovski/mini.icons" },
 	{ src = "https://github.com/folke/persistence.nvim", event = "BufReadPre" },
@@ -8,6 +8,7 @@ vim.pack.add({
 	{ src = "https://github.com/j-hui/fidget.nvim", name = "fidget" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/folke/todo-comments.nvim" },
+	{ src = "https://github.com/nvimdev/dashboard-nvim" },
 })
 
 vim.api.nvim_create_user_command("LoadLastSession", function()
@@ -15,8 +16,14 @@ vim.api.nvim_create_user_command("LoadLastSession", function()
 	print("") -- clean cmdline
 end, { desc = "Load last saved session in persistence" })
 
-local yanky, notify, fidget, icons, jellybeans =
-	require("yanky"), require("notify"), require("fidget"), require("mini.icons"), require("jellybeans")
+local dashboard, yanky, notify, fidget, icons, jellybeans, ember =
+	require("dashboard"),
+	require("yanky"),
+	require("notify"),
+	require("fidget"),
+	require("mini.icons"),
+	require("jellybeans"),
+	require("ember")
 
 icons.setup()
 
@@ -25,6 +32,31 @@ fidget.setup({
 		window = {
 			winblend = 0,
 		},
+	},
+})
+
+dashboard.setup({
+	theme = "doom",
+	config = {
+		header = {
+			"  ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣭⣿⣶⣿⣦⣼⣆        ",
+			"   ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦      ",
+			"     ⠈   ⠈⢿⣿⣟⠦⠄⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄    ",
+			"          ⣸⣿⣿⢧⠄⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄   ",
+			"         ⢠⣿⣿⣿⠈  ⠡⠌⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀  ",
+			"  ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿  ",
+			" ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷⠄  ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄  ",
+			"⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄ ",
+			"⠙⠃   ⣼⣿⡟⠌ ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿⠐⣿⣿⡇ ⠛⠻⢷⣄",
+			"     ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆   ⠁",
+			"      ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣀⣤⣾⡿⠃    ",
+			"⢀⣀⠀⣠⣀⣠⣾⣿⣿⡿⠛⠋⠉⠉⠉   ⠉⠉⠉⠉⠛⠻⣿⣿⣷⣄⣀⢿⡽⢻⣦",
+			"⠻⠶⠾⠿⠿⠿⠋⠉   R A D A G V   ⠉⠻⠿⠿⠿⠿⠿⠋",
+		},
+		center = {
+			{ icon = "󰁯 ", desc = "Restore session", key = "s", action = "" },
+		},
+		vertical_center = true,
 	},
 })
 
@@ -38,46 +70,12 @@ yanky.setup({
 	timer = 150,
 })
 
--- vim.g.gruvbox_material_foreground = "mix"
--- vim.g.gruvbox_material_background = "hard"
--- vim.g.gruvbox_material_ui_contrast = "high"
--- vim.g.gruvbox_material_float_style = "bright"
--- vim.g.gruvbox_material_statusline_style = "mix"
--- vim.g.gruvbox_material_cursor = "auto"
--- vim.g.gruvbox_material_transparent_background = "1"
---
--- vim.api.nvim_create_autocmd("ColorScheme", {
--- 	group = vim.api.nvim_create_augroup("custom_highlights_gruvboxmaterial", {}),
--- 	pattern = "gruvbox-material",
--- 	callback = function()
--- 		local config = vim.fn["gruvbox_material#get_configuration"]()
--- 		local palette =
--- 			vim.fn["gruvbox_material#get_palette"](config.background, config.foreground, config.colors_override)
--- 		local set_hl = vim.fn["gruvbox_material#highlight"]
---
--- 		set_hl("WinBar", palette.none, palette.none)
--- 		set_hl("WinBarNC", palette.none, palette.none)
--- 		set_hl("StatusLine", palette.none, palette.none)
--- 		set_hl("StatusLineNC", palette.none, palette.none)
---
--- 		set_hl("PMenu", palette.none, palette.none)
--- 		set_hl("PMenuThumb", palette.none, palette.bg_visual_red)
--- 		set_hl("BlinkCmpMenuBorder", palette.none, palette.none)
--- 		--
--- 		set_hl("NormalFloat", palette.none, palette.none)
--- 		set_hl("Float", palette.none, palette.none)
--- 		set_hl("FloatBorder", palette.none, palette.none)
--- 		set_hl("FloatTitle", palette.none, palette.none)
---
--- 		set_hl("TabLineSel", palette.fg0, palette.none)
--- 		set_hl("TabLine", palette.grey0, palette.none) -- = { bg = "none", fg = c.comment }
--- 		set_hl("TabLineFill", palette.none, palette.none)
--- 		-- hl.GitSignsCurrentLineBlame = { fg = "#606079" }
--- 	end,
--- })
-
 jellybeans.setup({
 	transparent = true,
+	-- background = {
+	-- 	dark = "jellybeans-muted",
+	-- 	light = "jellybeans-muted",
+	-- },
 	on_highlights = function(hl)
 		hl.Pmenu = { bg = "none", fg = "none" }
 		hl.PmenuThumb = { bg = "#5b6078" }
@@ -98,4 +96,8 @@ jellybeans.setup({
 	end,
 })
 
-vim.cmd.colorscheme("jellybeans")
+ember.setup({
+	variant = "ember",
+})
+
+vim.cmd.colorscheme("ember")

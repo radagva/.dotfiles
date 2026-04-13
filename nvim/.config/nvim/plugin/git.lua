@@ -22,6 +22,8 @@ gitsigns.setup({
 	},
 	on_attach = function()
 		vim.keymap.set("n", "<leader>g", "", { desc = "Git" })
+		vim.keymap.set("n", "<leader>gg]", gitsigns.next_hunk, { desc = "Stage hunk" })
+		vim.keymap.set("n", "<leader>gg[", gitsigns.prev_hunk, { desc = "Stage hunk" })
 		vim.keymap.set("n", "<leader>ggs", gitsigns.stage_hunk, { desc = "Stage hunk" })
 		vim.keymap.set("n", "<leader>ggr", gitsigns.reset_hunk, { desc = "Reset hunk" })
 

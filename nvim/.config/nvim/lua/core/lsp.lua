@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[R]ename symbol", noremap = true })
 
 		vim.keymap.set("n", "K", function()
-			vim.lsp.buf.hover({ border = "rounded", max_width = 80, max_height = 80 })
+			vim.lsp.buf.hover({ border = "rounded", max_width = 80, max_height = 80, title = "docs" })
 		end, { desc = "Hover Documentation" })
 
 		vim.keymap.set("n", "<leader>cli", function()

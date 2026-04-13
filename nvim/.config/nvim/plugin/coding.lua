@@ -9,7 +9,7 @@ vim.pack.add({
 	{ src = "https://github.com/dmmulroy/tsc.nvim" },
 	{ src = "https://github.com/folke/lazydev.nvim" },
 	{ src = "https://github.com/benomahony/uv.nvim" },
-	{ src = "https://github.com/norcalli/nvim-colorizer.lua" },
+	{ src = "https://github.com/catgoose/nvim-colorizer.lua" },
 })
 
 local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer =
@@ -24,8 +24,36 @@ local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer 
 	require("colorizer")
 
 colorizer.setup({
-	"*",
-}, { mode = "background" })
+	filetypes = { "*" },
+	options = {
+		parsers = {
+			tailwind = { enable = true, lsp = true },
+			hex = {
+				default = true, -- default value for unset format keys (see above)
+				rgb = true, -- #RGB (3-digit)
+				rgba = true, -- #RGBA (4-digit)
+				rrggbb = true, -- #RRGGBB (6-digit)
+				rrggbbaa = false, -- #RRGGBBAA (8-digit)
+				hash_aarrggbb = false, -- #AARRGGBB (QML-style, alpha first)
+				aarrggbb = true, -- 0xAARRGGBB
+				no_hash = false, -- hex without '#' at word boundaries
+			},
+		},
+		display = {
+			mode = "virtualtext", -- string or list: "background"|"foreground"|"underline"|"virtualtext"
+			virtualtext = {
+				char = "⏺", -- character used for virtualtext
+				position = "eol", -- "eol"|"before"|"after"
+				hl_mode = "foreground", -- "background"|"foreground"
+			},
+			priority = {
+				default = 150, -- extmark priority for normal highlights
+				lsp = 200, -- extmark priority for LSP/Tailwind highlights
+			},
+			disable_document_color = true, -- true (all LSPs) | false | { lsp_name = true, ... }
+		},
+	},
+})
 
 uv.setup({
 	picker_integration = true,
@@ -62,10 +90,10 @@ tsautotag.setup({
 conform.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		javascript = { "prettier", "biome" },
-		javascriptreact = { "prettier", "biome" },
-		typescript = { "prettier", "biome" },
-		typescriptreact = { "prettier", "biome" },
+		javascript = { "prettier" },
+		javascriptreact = { "prettier" },
+		typescript = { "prettier" },
+		typescriptreact = { "prettier" },
 		astro = { "prettier" },
 		css = { "prettier" },
 		html = { "prettier" },
@@ -73,15 +101,12 @@ conform.setup({
 		yaml = { "prettier" },
 		markdown = { "prettier" },
 		python = { "ruff_format", "ruff_fix", "isort" },
-		go = { "gofumpt" },
-		sql = { "sql_formatter" },
-		cpp = { "clang-format" },
 		-- ["*"] = { "injected" },
 	},
 	notify_on_error = false,
 	format_on_save = function(bufnr)
 		return {
-			timeout_ms = 500,
+			timeout_ms = 700,
 			lsp_format = "never",
 		}
 	end,

@@ -7,6 +7,12 @@ snacks.setup({
 	input = { enabled = false },
 	rename = { enabled = false },
 	bigfile = { enabled = true },
+	-- dashboard = {
+	-- 	preset = {
+	-- 		header = [[
+	--    ]],
+	-- 	},
+	-- },
 	picker = {
 		enabled = true,
 		matcher = {
