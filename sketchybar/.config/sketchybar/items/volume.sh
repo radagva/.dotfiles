@@ -11,11 +11,13 @@ volume_slider=(
   slider.background.color=$BACKGROUND_2
   slider.knob=􀀁
   slider.knob.drawing=on
+  y_offset=1
 )
 
 volume_icon=(
   click_script="$PLUGIN_DIR/volume_click.sh"
   padding_left=5
+  y_offset=1
   icon=$VOLUME_100
   icon.width=0
   icon.align=left

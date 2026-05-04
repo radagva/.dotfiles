@@ -76,10 +76,6 @@ common=(
   blur_radius=35
 )
 
-# sketchybar --add bracket app front_app left --set app "${common[@]}"
-# sketchybar --add bracket spaces space.1 space.2 space.3 space.4 space.5 space.6 space.7 space.8 space.9 center --set spaces "${common[@]}"
-# sketchybar --add bracket plugins calendar tmetric left --set plugins "${common[@]}"
-
 sketchybar --hotload on
 
 # Forcing all item scripts to run (never do this outside of sketchybarrc)

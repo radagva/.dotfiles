@@ -77,10 +77,10 @@ map("n", "<leader>|", "<C-w>v", { silent = false, desc = "Open new V split" })
 map("n", "<leader>-", "<C-w>s", { silent = false, desc = "Open new H Split" })
 
 -- move between buffers
-map("n", "<C-h>", ":wincmd h<CR>", { silent = true })
-map("n", "<C-j>", ":wincmd j<CR>", { silent = true })
-map("n", "<C-k>", ":wincmd k<CR>", { silent = true })
-map("n", "<C-l>", ":wincmd l<CR>", { silent = true })
+map("n", "<C-h>", ":wincmd h<CR>", { silent = true, noremap = true })
+map("n", "<C-j>", ":wincmd j<CR>", { silent = true, noremap = true })
+map("n", "<C-k>", ":wincmd k<CR>", { silent = true, noremap = true })
+map("n", "<C-l>", ":wincmd l<CR>", { silent = true, noremap = true })
 
 -- for better indentation
 map("v", "<", "<gv", { silent = true })

@@ -3,7 +3,6 @@ export EDITOR=nvim
 export VISUAL=$EDITOR
 
 
-
 export PATH=$PATH:/opt/homebrew/bin
 
 
@@ -28,6 +27,7 @@ alias getip="ipconfig getifaddr en0"
 alias nvim-plugin='nvim -c "set rtp+=./"'
 alias simulator="/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator"
 alias python="python3"
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
 # Android CLI
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
@@ -36,8 +36,8 @@ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 # pnpm
 export PNPM_HOME="/Users/radagv/Library/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
 

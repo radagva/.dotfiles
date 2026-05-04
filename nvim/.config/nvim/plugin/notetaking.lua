@@ -54,9 +54,9 @@ obsidian.setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>o", "", { desc = "Obisdian" })
-vim.keymap.set("n", "<leader>os", ":Obisidian search<cr>", { desc = "Search notes" })
-vim.keymap.set("n", "<leader>on", ":Obisidian new<cr>", { desc = "New note" })
+-- vim.keymap.set("n", "<leader>o", "", { desc = "Obisdian" })
+vim.keymap.set("n", "<leader>os", ":Obisidian search<cr>", { desc = "Search notes", silent = true })
+vim.keymap.set("n", "<leader>on", ":Obisidian new<cr>", { desc = "New note", silent = true })
 
 markdown.setup({
 	bullet = {

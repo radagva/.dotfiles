@@ -5,6 +5,7 @@ battery=(
   icon.font="$FONT:Regular:19.0"
   padding_right=3
   padding_left=5
+  y_offset=2
   label.drawing=on
   update_freq=120
   updates=on

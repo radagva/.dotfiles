@@ -13,8 +13,12 @@ vim.lsp.enable({
 	"cssmodules_ls",
 	"terraform",
 	"vtsls",
+	"vue_ls",
 	"yamlls",
 	"jsonls",
+	"jdtls",
+	"laravel_ls",
+	"phpactor",
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {

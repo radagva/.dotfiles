@@ -10,6 +10,8 @@ vim.pack.add({
 	{ src = "https://github.com/folke/lazydev.nvim" },
 	{ src = "https://github.com/benomahony/uv.nvim" },
 	{ src = "https://github.com/catgoose/nvim-colorizer.lua" },
+	{ src = "https://github.com/MunifTanjim/nui.nvim" },
+	{ src = "https://github.com/mfussenegger/nvim-dap" },
 })
 
 local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer =
@@ -101,7 +103,6 @@ conform.setup({
 		yaml = { "prettier" },
 		markdown = { "prettier" },
 		python = { "ruff_format", "ruff_fix", "isort" },
-		-- ["*"] = { "injected" },
 	},
 	notify_on_error = false,
 	format_on_save = function(bufnr)

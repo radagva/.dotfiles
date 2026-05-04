@@ -13,11 +13,8 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
       label.highlight_color=$SPACE_FG_COLOR_ACTIVE
       icon.padding_left=0
       icon.padding_right=0
+      y_offset=1
       display=$m
-      padding_left=2
-      padding_right=2
-      label.padding_right=12
-      label.y_offset=-1
       script="$PLUGIN_DIR/spaces.sh"
     )
 

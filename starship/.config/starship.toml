@@ -2,19 +2,19 @@ add_newline = false
 format = """$directory$nodejs$python$java$go$git_branch$git_status"""
 # right_format = """$nodejs$python$java$go"""
 # right_format = """$nodejs $python $java $go"""
-palette = "catppuccin_mocha"
+palette = "ember"
 
-[palettes.catppuccin_mocha]
-bg = "#1e1e2e"
-fg = "#cdd6f4"
-red = "#f38ba8"
-green = "#a6e3a1"
-yellow = "#f9e2af"
-blue = "#89b4fa"
-purple = "#cba6f7"
-aqua = "#94e2d5"
-orange = "#fab387"
-gray = "#6c7086"
+[palettes.ember]
+bg = "#0d0b0a"
+fg = "#a89878"
+red = "#e85a50"
+green = "#7a8146"
+yellow = "#c9a959"
+blue = "#6e7888"
+purple = "#9c6b8e"
+aqua = "#5a8a80"
+orange = "#d4935a"
+gray = "#3d3526"
 
 
 [aws]
