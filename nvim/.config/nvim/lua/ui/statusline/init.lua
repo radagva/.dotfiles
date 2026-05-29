@@ -14,7 +14,7 @@ function Statusline.activate()
 		.. table.concat({
 			mode(),
 			git(),
-			filepath(),
+			-- filepath(),
 			diagnostics(),
 			-- vim.fn.expand("%"),
 			-- "%=",

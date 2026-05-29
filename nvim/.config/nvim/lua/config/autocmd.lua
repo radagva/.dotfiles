@@ -25,3 +25,35 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		vim.lsp.buf.code_action({ context = { only = { "source.fixAll" } }, apply = true })
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = "*.html",
+	callback = function(args)
+		local buf_path = vim.api.nvim_buf_get_name(args.buf)
+		if buf_path == "" then
+			return
+		end
+		local found = vim.fs.find("angular.json", { upward = true, path = buf_path })
+		if #found > 0 then
+			vim.bo[args.buf].filetype = "htmlangular"
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "Start treesitter for highlighting and indentation",
+	callback = function()
+		pcall(vim.treesitter.start)
+		-- vim.bo.indentexpr = "v:lua.vim.treesitter.indentexpr()"
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "typescript", "typescriptreact" },
+	callback = function(ev)
+		vim.keymap.set("n", "K", require("ts_expand_hover").hover, {
+			buffer = ev.buf,
+			desc = "TypeScript expandable hover",
+		})
+	end,
+})

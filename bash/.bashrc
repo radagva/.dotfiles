@@ -84,3 +84,4 @@ if [ -f '/Users/radagv/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Use
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/radagv/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/radagv/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+. "$HOME/.cargo/env"

@@ -3,6 +3,7 @@ require("config.options")
 require("config.keymaps")
 require("config.autocmd")
 require("ui.statusline")
+
 -- require("ui.winbar")
 
 --

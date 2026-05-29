@@ -1,35 +1,32 @@
+local github = require("config.utils").github
+
 vim.pack.add({
-	{ src = "https://github.com/edeneast/nightfox.nvim" },
-	{ src = "https://github.com/rebelot/kanagawa.nvim" },
-	{ src = "https://github.com/echasnovski/mini.icons" },
-	{ src = "https://github.com/gbprod/yanky.nvim" },
-	{ src = "https://github.com/rcarriga/nvim-notify" },
-	{ src = "https://github.com/j-hui/fidget.nvim", name = "fidget" },
-	{ src = "https://github.com/nvim-lua/plenary.nvim" },
-	{ src = "https://github.com/folke/todo-comments.nvim" },
-	{ src = "https://github.com/nvimdev/dashboard-nvim" },
+	{ src = github("echasnovski/mini.icons") },
+	{ src = github("gbprod/yanky.nvim") },
+	{ src = github("rcarriga/nvim-notify") },
+	{ src = github("j-hui/fidget.nvim"), name = "fidget" },
+	{ src = github("nvim-lua/plenary.nvim") },
+	{ src = github("folke/todo-comments.nvim") },
+	{ src = github("nvimdev/dashboard-nvim") },
+	{ src = github("folke/which-key.nvim") },
+	{ src = github("nvim-tree/nvim-web-devicons") },
+	{ src = github("fgheng/winbar.nvim") },
+	{ src = github("A7Lavinraj/fyler.nvim"), name = "fyler", version = "stable" },
 })
 
--- vim.api.nvim_create_user_command("LoadLastSession", function()
--- 	require("persistence").load()
--- 	print("") -- clean cmdline
--- end, { desc = "Load last saved session in persistence" })
-
-local dashboard, yanky, notify, fidget, icons, kanagawa =
+local dashboard, yanky, notify, fidget, icons, whichkey =
 	require("dashboard"),
 	require("yanky"),
 	require("notify"),
 	require("fidget"),
 	require("mini.icons"),
-	require("kanagawa")
+	require("which-key")
 
 icons.setup()
 
 fidget.setup({
 	notification = {
-		window = {
-			winblend = 0,
-		},
+		window = { winblend = 0 },
 	},
 })
 
@@ -76,59 +73,18 @@ dashboard.setup({
 			-- "⠻⠶⠾⠿⠿⠿⠋⠉   R A D A G V   ⠉⠻⠿⠿⠿⠿⠿⠋",
 		},
 		center = {
-			{ icon = "󰁯 ", desc = "Restore session", key = "s", action = "" },
+			-- { icon = "󰁯 ", desc = "Restore session", key = "s", action = "" },
 		},
 		vertical_center = true,
 	},
 })
 
-notify.setup({
-	background_colour = "#000000",
-})
+notify.setup({ background_colour = "#000000", merge_duplicates = true })
 
 vim.notify = notify
 
-yanky.setup({
-	timer = 15,
-})
+yanky.setup({ timer = 15 })
 
--- ember.setup({
--- 	variant = "ember",
--- 	transparent = true,
--- 	-- transparent_floats = true,
--- 	on_highlights = function(hl, _)
--- 		hl.RenderMarkdownCode = { bg = "none" }
--- 	end,
--- })
+whichkey.setup({ preset = "modern" })
 
-kanagawa.setup({
-	transparent = true,
-	background = {
-		light = "dragon",
-		dark = "dragon",
-	},
-	colors = {
-		theme = {
-			all = {
-				ui = {
-					bg_gutter = "none",
-				},
-			},
-		},
-	},
-	overrides = function(colors)
-		return {
-			NormalFloat = { bg = "none" },
-			FloatBorder = { bg = "none" },
-			FloatTitle = { bg = "none" },
-			BlinkCmpMenu = { bg = colors.palette.dragonBlack3 },
-			BlinkCmpMenuBorder = { bg = colors.palette.dragonBlack3 },
-			BlinkCmpLabelDetail = { bg = colors.palette.dragonBlack3 },
-			BlinkCmpMenuSelection = { bg = colors.palette.waveBlue1 },
-			StatusLine = { bg = "none" },
-			StatusLineLN = { bg = "none" },
-		}
-	end,
-})
-
-vim.cmd.colorscheme("nordfox")
+vim.cmd.colorscheme("gruvbox-material")

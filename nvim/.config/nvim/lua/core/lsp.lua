@@ -1,4 +1,6 @@
 vim.lsp.enable({
+	"protols",
+	"angularls",
 	"lua_ls",
 	"gopls",
 	"gofumpt",
@@ -13,12 +15,16 @@ vim.lsp.enable({
 	"cssmodules_ls",
 	"terraform",
 	"vtsls",
-	"vue_ls",
 	"yamlls",
 	"jsonls",
-	"jdtls",
-	"laravel_ls",
-	"phpactor",
+	"kulala_ls",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "<filetype>" },
+	callback = function()
+		vim.treesitter.start()
+	end,
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -62,9 +68,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 		end, { desc = "Toggle [i]nlay hints", silent = true })
 
-		vim.opt.foldmethod = "expr"
-		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-		vim.treesitter.start()
+		-- vim.opt.foldmethod = "expr"
+		-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+		-- vim.treesitter.start()
 	end,
 })
 

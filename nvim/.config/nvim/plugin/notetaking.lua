@@ -55,8 +55,14 @@ obsidian.setup({
 })
 
 -- vim.keymap.set("n", "<leader>o", "", { desc = "Obisdian" })
-vim.keymap.set("n", "<leader>os", ":Obisidian search<cr>", { desc = "Search notes", silent = true })
-vim.keymap.set("n", "<leader>on", ":Obisidian new<cr>", { desc = "New note", silent = true })
+vim.keymap.set("n", "<leader>og", ":Obsidian search<cr>", { desc = "Search notes", silent = true })
+vim.keymap.set("n", "<leader>on", ":Obsidian new<cr>", { desc = "New note", silent = true })
+vim.keymap.set("n", "<leader>os", function()
+	Snacks.picker.files({
+		cwd = "~/Documents/Obsidian Vault",
+		hidden = true,
+	})
+end, { desc = "New note", silent = true })
 
 markdown.setup({
 	bullet = {

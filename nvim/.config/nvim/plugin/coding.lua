@@ -1,20 +1,24 @@
+local gh = require("config.utils").github
+
 vim.pack.add({
-	{ src = "https://github.com/mason-org/mason.nvim" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/neovim/nvim-lspconfig" },
-	{ src = "https://github.com/saghen/blink.cmp", version = "v1.10.1" },
-	{ src = "https://github.com/stevearc/conform.nvim" },
-	{ src = "https://github.com/tpope/vim-dotenv" },
-	{ src = "https://github.com/windwp/nvim-ts-autotag" },
-	{ src = "https://github.com/dmmulroy/tsc.nvim" },
-	{ src = "https://github.com/folke/lazydev.nvim" },
-	{ src = "https://github.com/benomahony/uv.nvim" },
-	{ src = "https://github.com/catgoose/nvim-colorizer.lua" },
-	{ src = "https://github.com/MunifTanjim/nui.nvim" },
-	{ src = "https://github.com/mfussenegger/nvim-dap" },
+	{ src = gh("nemanjamalesija/ts-expand-hover.nvim") },
+	{ src = gh("mistweaverco/kulala.nvim") },
+	{ src = gh("mason-org/mason.nvim") },
+	{ src = gh("nvim-treesitter/nvim-treesitter") },
+	{ src = gh("neovim/nvim-lspconfig") },
+	{ src = gh("saghen/blink.cmp"), version = "v1.10.1" },
+	{ src = gh("stevearc/conform.nvim") },
+	{ src = gh("tpope/vim-dotenv") },
+	{ src = gh("windwp/nvim-ts-autotag") },
+	{ src = gh("dmmulroy/tsc.nvim") },
+	{ src = gh("folke/lazydev.nvim") },
+	{ src = gh("benomahony/uv.nvim") },
+	{ src = gh("catgoose/nvim-colorizer.lua") },
+	{ src = gh("MunifTanjim/nui.nvim") },
+	{ src = gh("mfussenegger/nvim-dap") },
 })
 
-local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer =
+local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer, kulala, tsexpandhover =
 	require("mason"),
 	require("blink.cmp"),
 	require("nvim-treesitter"),
@@ -23,7 +27,21 @@ local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer 
 	require("tsc"),
 	require("lazydev"),
 	require("uv"),
-	require("colorizer")
+	require("colorizer"),
+	require("kulala"),
+	require("ts_expand_hover")
+
+tsexpandhover.setup()
+
+kulala.setup({
+	global_keymaps = true,
+	global_keymaps_prefix = "<leader>R",
+	kulala_keymaps_prefix = "",
+})
+
+vim.keymap.set({ "n", "v" }, "<C-r>", function()
+	kulala.run()
+end)
 
 colorizer.setup({
 	filetypes = { "*" },
@@ -92,22 +110,23 @@ tsautotag.setup({
 conform.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		javascript = { "prettier" },
-		javascriptreact = { "prettier" },
-		typescript = { "prettier" },
-		typescriptreact = { "prettier" },
-		astro = { "prettier" },
-		css = { "prettier" },
-		html = { "prettier" },
-		json = { "prettier" },
-		yaml = { "prettier" },
-		markdown = { "prettier" },
+		javascript = { "prettierd" },
+		javascriptreact = { "prettierd" },
+		typescript = { "prettierd", "biome" },
+		typescriptreact = { "prettierd", "biome" },
+		astro = { "prettierd" },
+		css = { "prettierd" },
+		html = { "prettierd", "biome" },
+		htmlangular = { "prettierd", "biome" },
+		json = { "prettierd" },
+		yaml = { "prettierd" },
+		markdown = { "prettierd" },
 		python = { "ruff_format", "ruff_fix", "isort" },
 	},
 	notify_on_error = false,
 	format_on_save = function(bufnr)
 		return {
-			timeout_ms = 700,
+			timeout_ms = 3000,
 			lsp_format = "never",
 		}
 	end,
@@ -145,12 +164,11 @@ treesitter.setup({
 	textobjects = { enable = true },
 })
 
--- vim.api.nvim_create_autocmd("FileType", {
--- 	-- pattern = { "*" },
--- 	callback = function()
--- 		vim.treesitter.start()
--- 	end,
--- })
+vim.filetype.add({
+	extension = {
+		["http"] = "http",
+	},
+})
 
 mason.setup({
 	ensure_installed = { "http", "c", "css-lsp" },
@@ -176,22 +194,24 @@ blink.setup({
 			border = "rounded",
 			draw = {
 				columns = {
-					{ "item_idx" },
-					{ "label", "label_description", gap = 2 },
-					{ "kind_icon" },
+					{ "kind_icon", "label", gap = 1 },
 					{ "kind" },
+					-- { "item_idx" },
+					-- { "label", "label_description", gap = 2 },
+					-- { "kind_icon" },
+					-- { "kind" },
 				},
-				components = {
-					label_description = {
-						highlight = "PMenu",
-					},
-					item_idx = {
-						text = function(ctx)
-							return ctx.idx == 10 and "0" or ctx.idx >= 10 and " " or tostring(ctx.idx)
-						end,
-						highlight = "BlinkCmpItemIdx", -- optional, only if you want to change its color
-					},
-				},
+				-- components = {
+				-- 	label_description = {
+				-- 		highlight = "PMenu",
+				-- 	},
+				-- 	item_idx = {
+				-- 		text = function(ctx)
+				-- 			return ctx.idx == 10 and "0" or ctx.idx >= 10 and " " or tostring(ctx.idx)
+				-- 		end,
+				-- 		highlight = "BlinkCmpItemIdx", -- optional, only if you want to change its color
+				-- 	},
+				-- },
 			},
 		},
 	},

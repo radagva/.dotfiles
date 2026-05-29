@@ -35,4 +35,4 @@ vim.o.foldlevel = 99
 vim.o.foldcolumn = "1"
 vim.o.winborder = "rounded"
 -- vim.o.winbar = "%f %m"
--- vim.opt.winbar = '%{%v:lua.require("ui.winbar")()%}'
+vim.opt.winbar = '%{%v:lua.require("ui.winbar")()%}'

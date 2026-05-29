@@ -10,7 +10,7 @@ local vue_plugin = {
 }
 
 return {
-	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	settings = {
 		typescript = {
 			inlayHints = {

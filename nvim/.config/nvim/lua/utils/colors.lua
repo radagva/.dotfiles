@@ -29,22 +29,4 @@ utils.exthl = function(colors, text)
 	return string.format("%%#%s#%s%%*", hl_name, text)
 end
 
--- utils.override = function(hl, overrides)
--- 	hl.Pmenu = { bg = "none", fg = "none" }
--- 	hl.PmenuThumb = { bg = "#5b6078" }
--- 	hl.BlinkCmpMenuBorder = { fg = "", bg = "none" }
--- 	hl.NormalFloat = { bg = "none" }
--- 	hl.Float = { bg = "none" }
--- 	hl.FloatBorder = { bg = "none" }
--- 	hl.FloatTitle = { bg = "none" }
--- 	hl.WinBar = { bg = "none" }
--- 	hl.WinBarNC = { bg = "none" }
--- 	hl.TabLineFill = { bg = "none", fg = "none" }
--- 	hl.StatusLine = { bg = "none" }
--- 	hl.StatusLineNC = { bg = "none" }
--- 	hl.GitSignsCurrentLineBlame = { fg = "#5b6078" }
---
--- 	return merge(hl, overrides or {})
--- end
-
 return utils

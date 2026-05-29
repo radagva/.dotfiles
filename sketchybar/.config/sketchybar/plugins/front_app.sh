@@ -12,6 +12,7 @@ if [ "$SENDER" = "front_app_switched" ]; then
   if [ -z "$INFO" ] || [ "$INFO" = "Mission Control" ]; then
     sketchybar --animate tanh 10 --set "$NAME" label="$AEROSPACE_FOCUSED_MONITOR_NO - Empty" label.padding_right=10 icon.background.image=""
   else
-    sketchybar --animate tanh 10 --set "$NAME" label="$AEROSPACE_FOCUSED_MONITOR_NO - $INFO" label.padding_right=10 icon.background.image="app.$INFO" icon.background.image.scale=0.6
+    # sketchybar --animate tanh 10 --set "$NAME" label="$AEROSPACE_FOCUSED_MONITOR_NO - $INFO" label.padding_right=10 icon.background.image="app.$INFO" icon.background.image.scale=0.6
+    sketchybar --animate tanh 10 --set "$NAME" label="$INFO" label.padding_right=10 icon.background.image="app.$INFO" icon.background.image.scale=0.6
   fi
 fi
