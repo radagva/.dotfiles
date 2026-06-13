@@ -36,3 +36,4 @@ vim.o.foldcolumn = "1"
 vim.o.winborder = "rounded"
 -- vim.o.winbar = "%f %m"
 vim.opt.winbar = '%{%v:lua.require("ui.winbar")()%}'
+vim.opt.exrc = true -- enable project-specific config via .nvim.lua

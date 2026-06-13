@@ -39,9 +39,9 @@ kulala.setup({
 	kulala_keymaps_prefix = "",
 })
 
-vim.keymap.set({ "n", "v" }, "<C-r>", function()
-	kulala.run()
-end)
+-- vim.keymap.set({ "n", "v" }, "<C-r>", function()
+-- 	kulala.run()
+-- end)
 
 colorizer.setup({
 	filetypes = { "*" },

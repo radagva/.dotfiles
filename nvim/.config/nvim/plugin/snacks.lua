@@ -1,4 +1,6 @@
-vim.pack.add({ "https://github.com/folke/snacks.nvim" })
+local gh = require("config.utils").github
+
+vim.pack.add({ gh("folke/snacks.nvim"), gh("folke/persistence.nvim") })
 
 local snacks = require("snacks")
 
@@ -59,6 +61,7 @@ local function searchfiles()
 	snacks.picker.files({
 		-- hidden = true,
 		-- layout = { preset = "vscode", hidden = {}, preview = "main" },
+		layout = { preset = "ivy", layout = { position = "bottom" } },
 		win = {
 			list = { keys = keys },
 			input = { keys = keys },
@@ -71,7 +74,7 @@ end
 
 local function searchbuffers()
 	snacks.picker.buffers({
-		-- layout = { preset = "ivy", layout = { position = "bottom" } }
+		layout = { preset = "ivy", layout = { position = "bottom" } },
 	})
 end
 
@@ -79,23 +82,23 @@ local function searchfordotfiles()
 	snacks.picker.files({
 		cwd = "~/.dotfiles",
 		hidden = true,
-		-- layout = { preset = "ivy", layout = { position = "bottom" } },
+		layout = { preset = "ivy", layout = { position = "bottom" } },
 	})
 end
 
 local function searchforfiles()
 	snacks.picker.grep({
 		hidden = true,
-		-- layout = { preset = "ivy", layout = { position = "bottom" } }
+		layout = { preset = "ivy", layout = { position = "bottom" } },
 	})
 end
 
 local function searchforsymbols()
-	snacks.picker.lsp_symbols()
+	snacks.picker.lsp_symbols({ layout = { preset = "ivy", layout = { position = "bottom" } } })
 end
 
 local function searchfordiagnostics()
-	snacks.picker.diagnostics()
+	snacks.picker.diagnostics({ layout = { preset = "ivy", layout = { position = "bottom" } } })
 end
 
 local function openexplorer()
@@ -109,4 +112,4 @@ vim.keymap.set("n", "<leader>sc", searchfordotfiles, { silent = true, desc = "Se
 vim.keymap.set("n", "<leader>sg", searchforfiles, { silent = true, desc = "Search for text" })
 vim.keymap.set("n", "<leader>ss", searchforsymbols, { silent = true, desc = "Search for symbols" })
 vim.keymap.set("n", "<leader>sd", searchfordiagnostics, { silent = true, desc = "Search for diagnostics" })
-vim.keymap.set("n", "<leader>e", openexplorer, { silent = true, desc = "Open file explorer" })
+-- vim.keymap.set("n", "<leader>e", openexplorer, { silent = true, desc = "Open file explorer" })

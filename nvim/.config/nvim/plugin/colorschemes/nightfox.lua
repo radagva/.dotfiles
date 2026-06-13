@@ -13,6 +13,8 @@ require("nightfox").setup({
 		},
 	},
 	groups = {
-		all = highlights({}),
+		all = highlights({
+			["@function.angular"] = { fg = "#E4B287" },
+		}),
 	},
 })

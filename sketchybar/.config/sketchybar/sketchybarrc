@@ -32,7 +32,7 @@ bar=(
 	margin=0
   # color=0xDF141415
   # color=0xDF16191B
-  color=0xDF111111
+  # color=0xDF111111
   blur_radius=65
 )
 

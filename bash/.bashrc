@@ -3,7 +3,8 @@ export EDITOR=nvim
 export VISUAL=$EDITOR
 
 
-export PATH=$PATH:/opt/homebrew/bin
+export PATH="$PATH:/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
 
 # alias scripts

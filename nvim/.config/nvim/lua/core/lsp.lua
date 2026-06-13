@@ -1,5 +1,6 @@
 vim.lsp.enable({
 	"protols",
+	"emmet_language_server",
 	"angularls",
 	"lua_ls",
 	"gopls",

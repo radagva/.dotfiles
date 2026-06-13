@@ -6,6 +6,6 @@ vim.pack.add({ github("vague-theme/vague.nvim") })
 require("vague").setup({
 	transparent = true,
 	on_highlights = function(hl, _)
-		highlights(hl)
+		highlights(hl, {}, { LspInlayHint = { fg = "#444555" } })
 	end,
 })

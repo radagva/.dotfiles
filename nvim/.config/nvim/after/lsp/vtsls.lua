@@ -13,14 +13,14 @@ return {
 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	settings = {
 		typescript = {
-			inlayHints = {
-				parameterNames = { enabled = "literals" },
-				parameterTypes = { enabled = true },
-				variableTypes = { enabled = false },
-				propertyDeclarationTypes = { enabled = true },
-				functionLikeReturnTypes = { enabled = true },
-				enumMemberValues = { enabled = true },
-			},
+			-- inlayHints = {
+			-- 	parameterNames = { enabled = "literals" },
+			-- 	parameterTypes = { enabled = true },
+			-- 	variableTypes = { enabled = false },
+			-- 	propertyDeclarationTypes = { enabled = true },
+			-- 	functionLikeReturnTypes = { enabled = true },
+			-- 	enumMemberValues = { enabled = true },
+			-- },
 		},
 		vtsls = {
 			tsserver = {

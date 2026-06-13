@@ -30,7 +30,7 @@ M.github = function(repo)
 	return "https://github.com/" .. repo
 end
 
-M.highlights = function(hl, _)
+M.highlights = function(hl, _, overrides)
 	hl.Pmenu = { bg = "none", fg = "none" }
 
 	hl.BlinkCmpKind = { link = "Special" }
@@ -75,9 +75,10 @@ M.highlights = function(hl, _)
 
 	hl.GitSignsCurrentLineBlame = { fg = "#5b6078" }
 	hl["@lsp.type.class.python"] = { fg = "#E0A363" }
-	hl["@lsp.typemod.class.definition.python"] = { fg = "#C38282" }
+	-- hl["@lsp.typemod.class.definition.python"] = { fg = "#C38282" }
+	hl.LspInlayHint = { bg = "none" }
 
-	return hl
+	return M.merge(hl, overrides or {})
 end
 
 return M
