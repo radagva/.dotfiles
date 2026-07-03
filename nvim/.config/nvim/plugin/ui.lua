@@ -56,7 +56,7 @@ fidget.setup({
 dashboard.setup({
 	theme = "doom",
 	config = {
-		header = ascii.node,
+		header = ascii.semicolon,
 		center = {
 			{
 				icon = "󰁯  ",

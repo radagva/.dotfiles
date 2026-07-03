@@ -34,15 +34,6 @@ alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-# pnpm
-export PNPM_HOME="/Users/radagv/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-esac
-# pnpm end
-
-
 # fnm
 export PATH="/Users/radagv/Library/Application Support/fnm:$PATH"
 eval "`fnm env`"
@@ -86,3 +77,27 @@ if [ -f '/Users/radagv/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Use
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/radagv/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/radagv/Downloads/google-cloud-sdk/completion.bash.inc'; fi
 . "$HOME/.cargo/env"
+
+# pnpm
+export PNPM_HOME="/Users/radagv/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+
+# Sourced Kitty Session Picker with fzf
+ksess() {
+    # Update this path to where you store your session files
+    local session_dir="$HOME/.config/kitty/sessions"
+    local selected
+
+    # Find files ending in .session or .kitty-session and pass them to fzf
+    selected=$(find "$session_dir" -type f \( -name "*.session" -o -name "*.kitty-session" \) -printf "%P\n" | fzf --prompt="⚡ Kitty Session: " --height=40% --reverse)
+
+    # If a selection was made, inject it directly into the current window
+    if [ -n "$selected" ]; then
+        kitten @ action "goto_session $session_dir/$selected"
+    fi
+}

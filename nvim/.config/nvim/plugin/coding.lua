@@ -16,9 +16,10 @@ vim.pack.add({
 	{ src = gh("catgoose/nvim-colorizer.lua") },
 	{ src = gh("MunifTanjim/nui.nvim") },
 	{ src = gh("mfussenegger/nvim-dap") },
+	{ src = gh("MagicDuck/grug-far.nvim") },
 })
 
-local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer, kulala, tsexpandhover =
+local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer, kulala, tsexpandhover, grugfar =
 	require("mason"),
 	require("blink.cmp"),
 	require("nvim-treesitter"),
@@ -29,7 +30,14 @@ local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer,
 	require("uv"),
 	require("colorizer"),
 	require("kulala"),
-	require("ts_expand_hover")
+	require("ts_expand_hover"),
+	require("grug-far")
+
+grugfar.setup()
+
+vim.keymap.set("n", "<leader>gs", function()
+	grugfar.open({ prefills = { search = vim.fn.expand("<cword>") } })
+end, { desc = "Search and replace" })
 
 tsexpandhover.setup()
 

@@ -19,6 +19,7 @@ vim.lsp.enable({
 	"yamlls",
 	"jsonls",
 	"kulala_ls",
+	"prismals",
 })
 
 vim.api.nvim_create_autocmd("FileType", {

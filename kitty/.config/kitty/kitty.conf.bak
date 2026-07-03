@@ -1,7 +1,7 @@
-# shell /opt/homebrew/bin/bash
+shell /opt/homebrew/bin/bash
 
 # BEGIN_KITTY_THEME
-# Vague
+# Rosé Pine
 include current-theme.conf
 # END_KITTY_THEME
 # active_border_color #3F3F4F
@@ -11,16 +11,13 @@ map ctrl+a>t kitten toggle_dark_mode.py
 
 #- UI window
 window_title_template {custom}
-# tab_title_template {title}
+tab_title_template {title}
 cursor_trail 1
 tab_bar_align left
+tab_bar_style powerline
 macos_option_as_alt right
 macos_titlebar_color background
 # hide_window_decorations titlebar-only
-tab_bar_style custom
-tab_separator       " "
-tab_bar_background none
-tab_bar_min_tabs 1
 
 #- UI theme
 background_opacity 0.95

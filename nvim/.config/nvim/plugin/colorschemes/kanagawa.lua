@@ -2,11 +2,13 @@ local github = require("config.utils").github
 
 vim.pack.add({ github("rebelot/kanagawa.nvim") })
 
+local theme = "wave"
+
 require("kanagawa").setup({
 	transparent = true,
 	background = {
-		light = "dragon",
-		dark = "dragon",
+		light = theme,
+		dark = theme,
 	},
 	colors = {
 		theme = {

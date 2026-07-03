@@ -4,7 +4,7 @@ require("config.keymaps")
 require("config.autocmd")
 require("ui.statusline")
 
--- require("ui.winbar")
+require("ui.winbar").setup()
 
 --
 -- Minimalistic vim.pack UI
