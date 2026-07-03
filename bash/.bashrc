@@ -85,19 +85,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
-
-
-# Sourced Kitty Session Picker with fzf
-ksess() {
-    # Update this path to where you store your session files
-    local session_dir="$HOME/.config/kitty/sessions"
-    local selected
-
-    # Find files ending in .session or .kitty-session and pass them to fzf
-    selected=$(find "$session_dir" -type f \( -name "*.session" -o -name "*.kitty-session" \) -printf "%P\n" | fzf --prompt="⚡ Kitty Session: " --height=40% --reverse)
-
-    # If a selection was made, inject it directly into the current window
-    if [ -n "$selected" ]; then
-        kitten @ action "goto_session $session_dir/$selected"
-    fi
-}

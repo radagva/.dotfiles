@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Include your Apple Silicon Homebrew path for fzf
 PATH="$PATH:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$HOME/.fzf/bin:$HOME/.local/bin"
 SESSIONS_DIR="$HOME/.config/kitty/sessions"
 
@@ -15,22 +16,26 @@ if ! command -v fzf &> /dev/null; then
     exit 1
 fi
 
+# Parse session files and send them to fzf
 selected=$(for file in "$SESSIONS_DIR"/*.kitty-session; do
     [ -e "$file" ] || continue
     session_name=$(basename "$file" .kitty-session)
-    tabs=$(awk '/^tab / {sub(/^tab +/, ""); print}' "$file" | paste -sd, - | sed 's/,/, /g')
-    echo "$session_name - [$tabs]"
+
+    # Extract tab names defined by 'new_tab' in the session file
+    tabs=$(awk '/^new_tab/ {sub(/^new_tab[ \t]*/, ""); print ($0 ? $0 : "Tab")}' "$file" | paste -sd, - | sed 's/,/, /g')
+
+    # If a session file doesn't explicitly define tabs, fall back to [Default]
+    if [ -z "$tabs" ]; then
+        echo "$session_name - [Default]"
+    else
+        echo "$session_name - [$tabs]"
+    fi
 done | fzf --prompt="⚡ Select Kitty Session: " --height=100% --reverse)
 
 if [ -n "$selected" ]; then
+    # Safely strip the tab list to extract just the raw session file name
     session_to_load=$(echo "$selected" | awk -F ' - ' '{print $1}')
-    
-    # 1. Launch the new session in the background
-    kitty --session "$SESSIONS_DIR/$session_to_load.kitty-session" &
-    
-    # 2. Give the OS a tiny split-second to hand off the process safely
-    sleep 0.1
-    
-    # 3. Terminate the original window that spawned this overlay
-    kitty @ close-window --match state:overlay_parent
+
+    # Tell Kitty to load the selected session directly onto the parent window
+    kitty @ action --match state:overlay_parent goto_session "$SESSIONS_DIR/$session_to_load.kitty-session"
 fi
