@@ -1,21 +1,22 @@
 
-new_tab comnties
+new_tab Nestjs
 layout splits
 enabled_layouts splits,stack
-set_layout_state {"pairs": {"horizontal": "no", "one": 2}, "opts": {"default_axis_is_horizontal": "yes", "equalize_on_close": "no"}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [3, 2], "window_groups": [{"id": 2, "window_ids": [3]}]}}
-cd $HOME/Developer/Projects/personal/communities
-
-launch 'kitty-unserialize-data={"id": 3, "cmd_at_shell_startup": "nvim"}' '--var=IS_NVIM=1 '
-focus
-
-new_tab runners
-layout splits
-enabled_layouts splits,stack
-set_layout_state {"pairs": {"one": 7, "two": 8}, "opts": {"default_axis_is_horizontal": "yes", "equalize_on_close": "no"}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [7, 8], "window_groups": [{"id": 7, "window_ids": [8]}, {"id": 8, "window_ids": [9]}]}}
+set_layout_state {"pairs": {"horizontal": "no", "one": 1, "two": 3}, "opts": {"default_axis_is_horizontal": "yes", "equalize_on_close": "no"}, "class": "Splits", "all_windows": {"active_group_idx": 1, "active_group_history": [1], "window_groups": [{"id": 1, "window_ids": [1]}, {"id": 3, "window_ids": [5]}]}}
 cd $HOME/Developer/Projects/personal/communities/comnties-api
 
-launch 'kitty-unserialize-data={"id": 8}'
+launch 'kitty-unserialize-data={"id": 1}'
+launch 'kitty-unserialize-data={"id": 5}'
 focus
-launch 'kitty-unserialize-data={"id": 9}' --cwd=$HOME/Developer/Projects/personal/communities/comnties-web
+
+new_tab Angular
+layout splits
+enabled_layouts splits,stack
+set_layout_state {"pairs": {"horizontal": "no", "one": 2, "two": 4}, "opts": {"default_axis_is_horizontal": "yes", "equalize_on_close": "no"}, "class": "Splits", "all_windows": {"active_group_idx": 1, "active_group_history": [2], "window_groups": [{"id": 2, "window_ids": [2]}, {"id": 4, "window_ids": [6]}]}}
+cd $HOME/Developer/Projects/personal/communities/comnties-web
+
+launch 'kitty-unserialize-data={"id": 2}'
+launch 'kitty-unserialize-data={"id": 6}'
+focus
 
 focus_tab 1
