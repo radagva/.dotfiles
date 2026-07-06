@@ -6,17 +6,15 @@
       "custom_name": "comnties",
       "identity_cwd": "/Users/radagv/Developer/Projects/personal/communities",
       "public_pane_numbers": {
-        "10": 7,
         "7": 4,
-        "24": 14,
+        "10": 7,
         "22": 12
       },
-      "next_public_pane_number": 15,
+      "next_public_pane_number": 16,
       "public_tab_numbers": [
         2,
         3,
-        7,
-        9
+        7
       ],
       "next_public_tab_number": 10,
       "tabs": [
@@ -67,23 +65,9 @@
           "zoomed": false,
           "focused": 22,
           "root_pane": 22
-        },
-        {
-          "custom_name": "dots",
-          "layout": {
-            "Pane": 24
-          },
-          "panes": {
-            "24": {
-              "cwd": "/Users/radagv/.dotfiles"
-            }
-          },
-          "zoomed": false,
-          "focused": 24,
-          "root_pane": 24
         }
       ],
-      "active_tab": 3
+      "active_tab": 1
     },
     {
       "id": "w5",
@@ -132,10 +116,10 @@
             }
           },
           "panes": {
-            "19": {
+            "18": {
               "cwd": "/Users/radagv/Developer/Projects/personal/trackit/apps/trackit-app"
             },
-            "18": {
+            "19": {
               "cwd": "/Users/radagv/Developer/Projects/personal/trackit/apps/trackit-app"
             }
           },
@@ -158,11 +142,41 @@
           "root_pane": 21
         }
       ],
-      "active_tab": 1
+      "active_tab": 0
+    },
+    {
+      "id": "w7",
+      "custom_name": ".dotfiles",
+      "identity_cwd": "/Users/radagv/.dotfiles",
+      "public_pane_numbers": {
+        "26": 1
+      },
+      "next_public_pane_number": 2,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 2,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 26
+          },
+          "panes": {
+            "26": {
+              "cwd": "/Users/radagv/.dotfiles"
+            }
+          },
+          "zoomed": false,
+          "focused": 26,
+          "root_pane": 26
+        }
+      ],
+      "active_tab": 0
     }
   ],
-  "active": 0,
-  "selected": 0,
+  "active": 2,
+  "selected": 2,
   "sidebar_width": 26,
   "sidebar_section_split": 0.5,
   "collapsed_space_keys": []
