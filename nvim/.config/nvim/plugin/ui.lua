@@ -95,4 +95,4 @@ yanky.setup({ timer = 15 })
 
 whichkey.setup({ preset = "modern" })
 
-vim.cmd.colorscheme("vague")
+vim.cmd.colorscheme("vesper")

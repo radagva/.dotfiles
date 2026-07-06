@@ -18,9 +18,9 @@ def draw_tab(
 ) -> int:
 
     # Color palette
-    COLOR_WHITE = as_rgb(int("ffffff", 16))
-    COLOR_DIM = as_rgb(int("6c7086", 16))  # Dimmed slate gray
-    COLOR_DATETIME = as_rgb(int("cba6f7", 16))  # Mauve accent
+    COLOR_WHITE = as_rgb(int("C4746E", 16))
+    COLOR_DIM = as_rgb(int("625E5A", 16))  # Dimmed slate gray
+    COLOR_DATETIME = as_rgb(int("8A9A7B", 16))  # Mauve accent
 
     # Keep the entire bar background transparent/default
     screen.cursor.bg = 0
@@ -45,7 +45,7 @@ def draw_tab(
 
     # Handle the right-aligned datetime on the last tab
     if is_last:
-        now = datetime.datetime.now().strftime(" %H:%M ")
+        now = datetime.datetime.now().strftime("%b %a %d, %H:%M ")
         status_length = len(now)
         start_of_status = screen.columns - status_length
 

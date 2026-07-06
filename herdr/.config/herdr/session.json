@@ -1,0 +1,169 @@
+{
+  "version": 3,
+  "workspaces": [
+    {
+      "id": "w3",
+      "custom_name": "comnties",
+      "identity_cwd": "/Users/radagv/Developer/Projects/personal/communities",
+      "public_pane_numbers": {
+        "10": 7,
+        "7": 4,
+        "24": 14,
+        "22": 12
+      },
+      "next_public_pane_number": 15,
+      "public_tab_numbers": [
+        2,
+        3,
+        7,
+        9
+      ],
+      "next_public_tab_number": 10,
+      "tabs": [
+        {
+          "custom_name": "Claude",
+          "layout": {
+            "Pane": 7
+          },
+          "panes": {
+            "7": {
+              "cwd": "/Users/radagv/Developer/Projects/personal/communities",
+              "agent_session": {
+                "source": "herdr:claude",
+                "agent": "claude",
+                "kind": "id",
+                "value": "a4774e94-c321-46a8-aecf-cfd34881b989"
+              }
+            }
+          },
+          "zoomed": false,
+          "focused": 7,
+          "root_pane": 7
+        },
+        {
+          "custom_name": "Angular",
+          "layout": {
+            "Pane": 10
+          },
+          "panes": {
+            "10": {
+              "cwd": "/Users/radagv/Developer/Projects/personal/communities/comnties-web"
+            }
+          },
+          "zoomed": false,
+          "focused": 10,
+          "root_pane": 10
+        },
+        {
+          "custom_name": "NestJS",
+          "layout": {
+            "Pane": 22
+          },
+          "panes": {
+            "22": {
+              "cwd": "/Users/radagv/Developer/Projects/personal/communities/comnties-api"
+            }
+          },
+          "zoomed": false,
+          "focused": 22,
+          "root_pane": 22
+        },
+        {
+          "custom_name": "dots",
+          "layout": {
+            "Pane": 24
+          },
+          "panes": {
+            "24": {
+              "cwd": "/Users/radagv/.dotfiles"
+            }
+          },
+          "zoomed": false,
+          "focused": 24,
+          "root_pane": 24
+        }
+      ],
+      "active_tab": 3
+    },
+    {
+      "id": "w5",
+      "custom_name": null,
+      "identity_cwd": "/Users/radagv/Developer/Projects/personal/trackit",
+      "public_pane_numbers": {
+        "21": 6,
+        "12": 1,
+        "19": 4,
+        "18": 3
+      },
+      "next_public_pane_number": 7,
+      "public_tab_numbers": [
+        1,
+        2,
+        3
+      ],
+      "next_public_tab_number": 4,
+      "tabs": [
+        {
+          "custom_name": "Claude",
+          "layout": {
+            "Pane": 12
+          },
+          "panes": {
+            "12": {
+              "cwd": "/Users/radagv/Developer/Projects/personal/trackit"
+            }
+          },
+          "zoomed": false,
+          "focused": 12,
+          "root_pane": 12
+        },
+        {
+          "custom_name": "Expo",
+          "layout": {
+            "Split": {
+              "direction": "Horizontal",
+              "ratio": 0.5,
+              "first": {
+                "Pane": 18
+              },
+              "second": {
+                "Pane": 19
+              }
+            }
+          },
+          "panes": {
+            "19": {
+              "cwd": "/Users/radagv/Developer/Projects/personal/trackit/apps/trackit-app"
+            },
+            "18": {
+              "cwd": "/Users/radagv/Developer/Projects/personal/trackit/apps/trackit-app"
+            }
+          },
+          "zoomed": true,
+          "focused": 18,
+          "root_pane": 18
+        },
+        {
+          "custom_name": "NestJS",
+          "layout": {
+            "Pane": 21
+          },
+          "panes": {
+            "21": {
+              "cwd": "/Users/radagv/Developer/Projects/personal/trackit/apps/trackit-nest"
+            }
+          },
+          "zoomed": false,
+          "focused": 21,
+          "root_pane": 21
+        }
+      ],
+      "active_tab": 1
+    }
+  ],
+  "active": 0,
+  "selected": 0,
+  "sidebar_width": 26,
+  "sidebar_section_split": 0.5,
+  "collapsed_space_keys": []
+}

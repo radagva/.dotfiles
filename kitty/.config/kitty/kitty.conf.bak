@@ -1,7 +1,7 @@
 # shell /opt/homebrew/bin/bash
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# Kanagawa_dragon
 include current-theme.conf
 # END_KITTY_THEME
 # active_border_color #3F3F4F

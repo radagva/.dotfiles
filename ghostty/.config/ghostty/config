@@ -1,6 +1,6 @@
 # command = "/bin/bash"
 
-theme = Vague
+theme = Vesper
 # macos-titlebar-style = hidden
 # window-decoration = none
 macos-window-shadow = false
