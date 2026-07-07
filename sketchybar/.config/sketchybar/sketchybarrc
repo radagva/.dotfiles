@@ -30,9 +30,7 @@ bar=(
   corner_radius=0
 	y_offset=0
 	margin=0
-  # color=0xDF141415
-  # color=0xDF16191B
-  # color=0xDF111111
+  color=0xFF101010
   blur_radius=65
 )
 
@@ -70,7 +68,6 @@ source "$ITEM_DIR/front_app.sh"
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/battery.sh"
-source "$ITEM_DIR/tmetric.sh"
 
 common=(
   background.color=$BG_SOLID

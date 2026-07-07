@@ -16,7 +16,9 @@ theme.setup({
 	},
 	groups = {
 		all = highlights({}, {}, {
-			StatusLine = { fg = "#8B949E" },
+			["@type.typescript"] = { fg = "#ffffff" },
+			["@string.typescript"] = { fg = "#FFA658" },
+			StatusLine = { bg = "none", fg = "none" },
 		}),
 	},
 })

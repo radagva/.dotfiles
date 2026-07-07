@@ -6,17 +6,20 @@
       "custom_name": "comnties",
       "identity_cwd": "/Users/radagv/Developer/Projects/personal/communities",
       "public_pane_numbers": {
-        "7": 4,
         "10": 7,
-        "22": 12
+        "27": 16,
+        "22": 12,
+        "7": 4,
+        "31": 20,
+        "29": 18
       },
-      "next_public_pane_number": 16,
+      "next_public_pane_number": 25,
       "public_tab_numbers": [
         2,
         3,
         7
       ],
-      "next_public_tab_number": 10,
+      "next_public_tab_number": 13,
       "tabs": [
         {
           "custom_name": "Claude",
@@ -25,13 +28,7 @@
           },
           "panes": {
             "7": {
-              "cwd": "/Users/radagv/Developer/Projects/personal/communities",
-              "agent_session": {
-                "source": "herdr:claude",
-                "agent": "claude",
-                "kind": "id",
-                "value": "a4774e94-c321-46a8-aecf-cfd34881b989"
-              }
+              "cwd": "/Users/radagv/Developer/Projects/personal/communities"
             }
           },
           "zoomed": false,
@@ -41,23 +38,59 @@
         {
           "custom_name": "Angular",
           "layout": {
-            "Pane": 10
+            "Split": {
+              "direction": "Horizontal",
+              "ratio": 0.5,
+              "first": {
+                "Pane": 10
+              },
+              "second": {
+                "Split": {
+                  "direction": "Vertical",
+                  "ratio": 0.5,
+                  "first": {
+                    "Pane": 27
+                  },
+                  "second": {
+                    "Pane": 31
+                  }
+                }
+              }
+            }
           },
           "panes": {
+            "27": {
+              "cwd": "/Users/radagv/Developer/Projects/personal/communities/comnties-web"
+            },
+            "31": {
+              "cwd": "/Users/radagv/Developer/Projects/personal/communities/comnties-web"
+            },
             "10": {
               "cwd": "/Users/radagv/Developer/Projects/personal/communities/comnties-web"
             }
           },
-          "zoomed": false,
-          "focused": 10,
+          "zoomed": true,
+          "focused": 31,
           "root_pane": 10
         },
         {
           "custom_name": "NestJS",
           "layout": {
-            "Pane": 22
+            "Split": {
+              "direction": "Horizontal",
+              "ratio": 0.5,
+              "first": {
+                "Pane": 22
+              },
+              "second": {
+                "Pane": 29
+              }
+            }
           },
           "panes": {
+            "29": {
+              "cwd": "/Users/radagv/Developer/Projects/personal/communities/comnties-api"
+            },
             "22": {
               "cwd": "/Users/radagv/Developer/Projects/personal/communities/comnties-api"
             }
@@ -116,14 +149,14 @@
             }
           },
           "panes": {
-            "18": {
+            "19": {
               "cwd": "/Users/radagv/Developer/Projects/personal/trackit/apps/trackit-app"
             },
-            "19": {
+            "18": {
               "cwd": "/Users/radagv/Developer/Projects/personal/trackit/apps/trackit-app"
             }
           },
-          "zoomed": true,
+          "zoomed": false,
           "focused": 18,
           "root_pane": 18
         },
@@ -151,14 +184,14 @@
       "public_pane_numbers": {
         "26": 1
       },
-      "next_public_pane_number": 2,
+      "next_public_pane_number": 4,
       "public_tab_numbers": [
         1
       ],
       "next_public_tab_number": 2,
       "tabs": [
         {
-          "custom_name": null,
+          "custom_name": "dots",
           "layout": {
             "Pane": 26
           },
@@ -175,8 +208,8 @@
       "active_tab": 0
     }
   ],
-  "active": 2,
-  "selected": 2,
+  "active": 1,
+  "selected": 1,
   "sidebar_width": 26,
   "sidebar_section_split": 0.5,
   "collapsed_space_keys": []
