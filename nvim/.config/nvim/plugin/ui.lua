@@ -77,6 +77,12 @@ dashboard.setup({
 				action = "Snacks.picker.files({ cwd = '~/.dotfiles', hidden = true })",
 			},
 			{
+				icon = "  ",
+				desc = "Pack",
+				key = "p",
+				action = ":Pack",
+			},
+			{
 				icon = "󰿅  ",
 				desc = "Exit",
 				key = "q",
@@ -95,4 +101,4 @@ yanky.setup({ timer = 15 })
 
 whichkey.setup({ preset = "modern" })
 
-vim.cmd.colorscheme("vesper")
+vim.cmd.colorscheme("vague")

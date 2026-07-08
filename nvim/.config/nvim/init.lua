@@ -25,6 +25,10 @@ local function setup_highlights()
 		PackUiPluginNotLoaded = "Comment",
 		PackUiPluginMissing = "ErrorMsg",
 		PackUiVersion = "Number",
+		PackUiCommit = "Comment",
+		PackUiTableHeader = "Label",
+		PackUiUpdateCurrent = "Comment",
+		PackUiUpdateAvailable = "WarningMsg",
 		PackUiSectionHeader = "Label",
 		PackUiSeparator = "FloatBorder",
 		PackUiDetail = "Comment",
@@ -46,39 +50,143 @@ local state = {
 	show_help = false,
 }
 
--- Cache of path => installed git tag (false = no tag found)
-local tag_cache = {}
+--
+-- Git-derived version/update info.
+--
+-- Resolving a plugin's tag and newest available version requires spawning git,
+-- which is far too slow to do synchronously for every plugin on every render
+-- (`vim.pack.get({ info = true })` alone costs ~2s for a large config). Instead
+-- we gather this data asynchronously off the render path and cache it keyed by
+-- revision, so renders are pure-Lua and instant, and re-opening within a
+-- session needs no git at all.
+--
 
--- For versioned plugins, return the actual installed tag from git.
--- Results are cached for the session so git is only called once per plugin.
-local function get_installed_tag(path)
-	if not path then
-		return nil
+-- path => { rev = <sha>, version = <str>, updates = <str> }
+-- Cached per revision; a plugin that changes rev (e.g. after an update) is
+-- re-gathered automatically. Module-level so it survives closing the window.
+local info_cache = {}
+local inflight = {} -- path => true while a gather job is running
+
+-- Bounded pool so we never spawn dozens of git processes at once.
+local MAX_JOBS = 16
+local active_jobs = 0
+local job_queue = {}
+
+local function run_job(fn)
+	if active_jobs < MAX_JOBS then
+		active_jobs = active_jobs + 1
+		fn(function()
+			active_jobs = active_jobs - 1
+			local nxt = table.remove(job_queue, 1)
+			if nxt then
+				run_job(nxt)
+			end
+		end)
+	else
+		job_queue[#job_queue + 1] = fn
 	end
-	if tag_cache[path] ~= nil then
-		return tag_cache[path] or nil
-	end
-	local result =
-		vim.fn.system("git -C " .. vim.fn.shellescape(path) .. " describe --tags --exact-match HEAD 2>/dev/null")
-	if vim.v.shell_error == 0 then
-		local tag = vim.trim(result)
-		tag_cache[path] = tag
-		return tag
-	end
-	tag_cache[path] = false
-	return nil
 end
 
--- Get version string from plugin spec
-local function get_version_str(p)
-	local v = p.spec.version
-	if v == nil then
-		return ""
+-- Highest valid semver tag from a list of tags (or nil).
+local function newest_semver_tag(tags)
+	local best = nil
+	for _, t in ipairs(tags) do
+		if vim.version.parse(t) and (not best or vim.version.gt(t, best)) then
+			best = t
+		end
 	end
+	return best
+end
+
+-- Version string derived without git: the spec's tracked ref, with full commit
+-- hashes shortened. Used as the display value until git info is gathered, and
+-- as the fallback for branch/commit-tracked plugins.
+local function fallback_version(p)
+	local v = p.spec.version
 	if type(v) == "string" then
+		if v:match("^%x+$") and #v >= 20 then
+			return v:sub(1, 7)
+		end
 		return v
 	end
-	return tostring(v)
+	return p.rev and p.rev:sub(1, 7) or ""
+end
+
+-- Asynchronously resolve a single plugin's version + update status via git,
+-- storing the result in info_cache. Calls done() when finished (success or not).
+local function gather_one(p, done)
+	local path, rev = p.path, p.rev
+	vim.system(
+		{ "git", "-C", path, "describe", "--tags", "--exact-match", "HEAD" },
+		{ text = true },
+		function(res)
+			local tag = res.code == 0 and vim.trim(res.stdout) or ""
+			local version = tag ~= "" and tag or fallback_version(p)
+
+			-- Only plugins sitting on a semver tag can have a "newer version";
+			-- for everything else the tag list is irrelevant, so skip it.
+			if tag ~= "" and vim.version.parse(tag) then
+				vim.system(
+					{ "git", "-C", path, "tag", "--list", "--sort=-v:refname" },
+					{ text = true },
+					function(res2)
+						local tags = {}
+						if res2.code == 0 and res2.stdout ~= "" then
+							tags = vim.split(vim.trim(res2.stdout), "\n")
+						end
+						local newest = newest_semver_tag(tags)
+						local updates = (newest and vim.version.gt(newest, tag)) and newest or "current"
+						info_cache[path] = { rev = rev, version = version, updates = updates }
+						done()
+					end
+				)
+			else
+				info_cache[path] = { rev = rev, version = version, updates = "current" }
+				done()
+			end
+		end
+	)
+end
+
+-- Kick off gathering for any plugins whose cached info is missing or stale.
+-- Invokes on_updated() once, after this batch of jobs finishes, only if any
+-- work was actually done (so a fully-warm cache triggers no re-render).
+local function refresh_info(plugins, on_updated)
+	local pending = 0
+	for _, p in ipairs(plugins) do
+		local c = info_cache[p.path]
+		if not (c and c.rev == p.rev) and not inflight[p.path] then
+			inflight[p.path] = true
+			pending = pending + 1
+			run_job(function(release)
+				gather_one(p, function()
+					inflight[p.path] = nil
+					release()
+					pending = pending - 1
+					if pending == 0 then
+						on_updated()
+					end
+				end)
+			end)
+		end
+	end
+end
+
+-- Cached display values (pure; safe to call on every render).
+local function display_version(p)
+	local c = info_cache[p.path]
+	if c and c.rev == p.rev then
+		return c.version
+	end
+	return fallback_version(p)
+end
+
+local function display_updates(p)
+	local c = info_cache[p.path]
+	if c and c.rev == p.rev then
+		return c.updates
+	end
+	return "…" -- gathering
 end
 
 -- Build lines and highlights for the buffer
@@ -154,51 +262,143 @@ local function build_content()
 		add("   q/Esc   Close window", "PackUiHelp")
 	end
 
-	-- Compute max name width for alignment
-	local max_name = 0
-	for _, p in ipairs(plugins) do
-		max_name = math.max(max_name, #p.spec.name)
+	-- Build a row descriptor for each plugin (cells resolved up front so we can
+	-- size the columns before drawing anything).
+	local function make_row(p, icon, hl_group)
+		return {
+			p = p,
+			icon = icon,
+			hl = hl_group,
+			name = p.spec.name,
+			commit = p.rev and p.rev:sub(1, 7) or "",
+			version = display_version(p),
+			updates = display_updates(p),
+		}
 	end
 
-	-- Render a plugin line
-	-- Format: '   %s %s%s%s' => 3 spaces, icon, 1 space, name, pad, version
-	-- Byte offsets: icon starts at 3, name starts at 3 + #icon_bytes + 1
-	local function render_plugin(p, icon, hl_group)
-		local name = p.spec.name
-		local pad = string.rep(" ", max_name - #name + 2)
-		local version = get_version_str(p)
-		local tag = p.spec.version and get_installed_tag(p.path) or nil
-		local rev_short = p.rev and p.rev:sub(1, 7) or ""
+	local loaded_rows = {}
+	for _, p in ipairs(loaded) do
+		loaded_rows[#loaded_rows + 1] = make_row(p, "●", "PackUiPluginLoaded")
+	end
+	local not_loaded_rows = {}
+	for _, p in ipairs(not_loaded) do
+		not_loaded_rows[#not_loaded_rows + 1] = make_row(p, "○", "PackUiPluginNotLoaded")
+	end
 
-		local ver_display = tag or (rev_short ~= "" and rev_short or version)
-		local line = string.format("   %s %s%s%s", icon, name, pad, ver_display)
+	-- Display width of a string (multibyte/icon aware).
+	local function dw(s)
+		return api.nvim_strwidth(s)
+	end
+
+	-- Column widths (display cells), seeded from the header titles. The name
+	-- column reserves 2 extra cells for the leading status icon + space so the
+	-- "name" title lines up with the plugin names beneath it.
+	local col = {
+		name = 2 + dw("name"),
+		commit = dw("commit"),
+		version = dw("version"),
+		updates = dw("updates"),
+	}
+	local function measure(rows)
+		for _, r in ipairs(rows) do
+			col.name = math.max(col.name, 2 + dw(r.name))
+			col.commit = math.max(col.commit, dw(r.commit))
+			col.version = math.max(col.version, dw(r.version))
+			col.updates = math.max(col.updates, dw(r.updates))
+		end
+	end
+	measure(loaded_rows)
+	measure(not_loaded_rows)
+
+	local gap = "  " -- inter-column separator
+
+	-- Pad text with trailing spaces to a target display width.
+	local function pad(text, width)
+		local w = dw(text)
+		if w < width then
+			return text .. string.rep(" ", width - w)
+		end
+		return text
+	end
+
+	-- Column titles row (no borders, just aligned headers).
+	local function render_table_header()
+		local line = "   " -- indent
+		line = line .. pad("  name", col.name)
+		line = line .. gap .. pad("commit", col.commit)
+		line = line .. gap .. pad("version", col.version)
+		line = line .. gap .. pad("updates", col.updates)
+		add(line, "PackUiTableHeader")
+	end
+
+	-- Render one plugin as a table row, tracking byte offsets for highlights.
+	local function render_row(r)
 		local lnum_cur = #lines
+		local line = "   " -- indent
+
+		-- name column: icon + space + name, then pad to column width
+		local icon_start = #line
+		line = line .. r.icon
+		local icon_end = #line
+		line = line .. " "
+		local name_start = #line
+		line = line .. r.name
+		local name_end = #line
+		local name_dw = dw(r.icon) + 1 + dw(r.name)
+		if name_dw < col.name then
+			line = line .. string.rep(" ", col.name - name_dw)
+		end
+
+		-- commit column
+		line = line .. gap
+		local commit_start = #line
+		line = line .. r.commit
+		local commit_end = #line
+		line = line .. string.rep(" ", math.max(0, col.commit - dw(r.commit)))
+
+		-- version column
+		line = line .. gap
+		local version_start = #line
+		line = line .. r.version
+		local version_end = #line
+		line = line .. string.rep(" ", math.max(0, col.version - dw(r.version)))
+
+		-- updates column (last, no trailing pad needed)
+		line = line .. gap
+		local updates_start = #line
+		line = line .. r.updates
+		local updates_end = #line
+
 		add(line)
 
-		-- Byte offsets for highlights
-		local icon_bytes = #icon
-		local icon_start = 3
-		local name_start = icon_start + icon_bytes + 1
-
-		add_hl(lnum_cur, icon_start, icon_start + icon_bytes, hl_group)
-		add_hl(lnum_cur, name_start, name_start + #name, hl_group)
-		if #ver_display > 0 then
-			local ver_start = name_start + #name + #pad
-			add_hl(lnum_cur, ver_start, ver_start + #ver_display, "PackUiVersion")
+		add_hl(lnum_cur, icon_start, icon_end, r.hl)
+		add_hl(lnum_cur, name_start, name_end, r.hl)
+		if commit_end > commit_start then
+			add_hl(lnum_cur, commit_start, commit_end, "PackUiCommit")
+		end
+		if version_end > version_start then
+			add_hl(lnum_cur, version_start, version_end, "PackUiVersion")
+		end
+		if updates_end > updates_start then
+			-- Only a concrete newer version is highlighted as "available"; the
+			-- up-to-date and still-loading states stay muted.
+			local available = r.updates ~= "current" and r.updates ~= "…"
+			local uhl = available and "PackUiUpdateAvailable" or "PackUiUpdateCurrent"
+			add_hl(lnum_cur, updates_start, updates_end, uhl)
 		end
 
 		-- Track plugin position (1-based line number for cursor operations)
-		line_to_plugin[lnum_cur + 1] = name
-		plugin_lines[name] = lnum_cur + 1
+		line_to_plugin[lnum_cur + 1] = r.name
+		plugin_lines[r.name] = lnum_cur + 1
 
 		-- Expanded details
-		if state.expanded[name] then
+		if state.expanded[r.name] then
 			local details = {
-				string.format("     Path:    %s", p.path),
-				string.format("     Source:  %s", p.spec.src),
+				string.format("     Path:    %s", r.p.path),
+				string.format("     Source:  %s", r.p.spec.src),
 			}
-			if p.rev then
-				table.insert(details, string.format("     Rev:     %s", p.rev))
+			if r.p.rev then
+				table.insert(details, string.format("     Rev:     %s", r.p.rev))
 			end
 			for _, d in ipairs(details) do
 				add(d, "PackUiDetail")
@@ -209,23 +409,25 @@ local function build_content()
 	-- Loaded section
 	add("")
 	add(string.format(" Loaded (%d)", #loaded), "PackUiSectionHeader")
-	for _, p in ipairs(loaded) do
-		render_plugin(p, "●", "PackUiPluginLoaded")
+	render_table_header()
+	for _, r in ipairs(loaded_rows) do
+		render_row(r)
 	end
 
 	-- Not Loaded section
-	if #not_loaded > 0 then
+	if #not_loaded_rows > 0 then
 		add("")
 		add(string.format(" Not Loaded (%d)", #not_loaded), "PackUiSectionHeader")
-		for _, p in ipairs(not_loaded) do
-			render_plugin(p, "○", "PackUiPluginNotLoaded")
+		render_table_header()
+		for _, r in ipairs(not_loaded_rows) do
+			render_row(r)
 		end
 	end
 
 	state.line_to_plugin = line_to_plugin
 	state.plugin_lines = plugin_lines
 
-	return lines, hls
+	return lines, hls, plugins
 end
 
 -- Render content into the buffer
@@ -234,7 +436,7 @@ local function render()
 		return
 	end
 
-	local lines, hls = build_content()
+	local lines, hls, plugins = build_content()
 
 	vim.bo[state.bufnr].modifiable = true
 	api.nvim_buf_set_lines(state.bufnr, 0, -1, false, lines)
@@ -249,6 +451,13 @@ local function render()
 			hl_group = hl[4],
 		})
 	end
+
+	-- Gather any missing git info in the background, then re-render once it
+	-- lands. A warm cache does no work here, so this is a no-op on re-renders
+	-- (detail/help toggles) and on re-opening within a session.
+	refresh_info(plugins, function()
+		vim.schedule(render)
+	end)
 end
 
 -- Get plugin name at cursor

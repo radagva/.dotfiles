@@ -4,10 +4,6 @@
       "rev": "1900f89dc17c603eec29960f57c00bd9ae696495",
       "src": "https://github.com/antoinemadec/FixCursorHold.nvim"
     },
-    "ayu-vim": {
-      "rev": "01faacb4cb76e8cf72ad9858c581d80876260ab3",
-      "src": "https://github.com/ayu-theme/ayu-vim"
-    },
     "blink.cmp": {
       "rev": "8a2060dff4e68ac17f1c92aed526c76fb0c1ac2f",
       "src": "https://github.com/saghen/blink.cmp",
@@ -37,10 +33,6 @@
       "rev": "62a10d9d55132b338dd742afc3c8a2683f3dd426",
       "src": "https://github.com/nvimdev/dashboard-nvim"
     },
-    "ember": {
-      "rev": "9d22ec7b126d75274a4525840501bf8da55c75f1",
-      "src": "https://github.com/ember-theme/nvim"
-    },
     "everforest": {
       "rev": "aeef62ee97872d2557d25904d160ec93a4a355f8",
       "src": "https://github.com/sainnhe/everforest"
@@ -57,10 +49,6 @@
       "rev": "e87911e6c21d099225063f5aa672e00f6dbb5976",
       "src": "https://github.com/A7Lavinraj/fyler.nvim",
       "version": "'stable'"
-    },
-    "fyler.nvim": {
-      "rev": "e87911e6c21d099225063f5aa672e00f6dbb5976",
-      "src": "https://github.com/A7Lavinraj/fyler.nvim"
     },
     "github-theme": {
       "rev": "c106c9472154d6b2c74b74565616b877ae8ed31d",
