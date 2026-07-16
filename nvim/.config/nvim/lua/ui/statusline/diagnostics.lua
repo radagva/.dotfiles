@@ -1,4 +1,4 @@
-local colors = require("utils.colors")
+local theme = require("ui.statusline.theme")
 
 return function()
 	local diagnostics = {}
@@ -7,11 +7,11 @@ return function()
 	local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
 
 	if errors > 0 then
-		table.insert(diagnostics, colors.hl("ErrorMsg", " " .. errors))
+		table.insert(diagnostics, theme.accent("diag", "error", "\u{ea87} " .. errors))
 	end
 
 	if warnings > 0 then
-		table.insert(diagnostics, colors.hl("WarningMsg", " " .. warnings))
+		table.insert(diagnostics, theme.accent("diag", "warn", "\u{f071} " .. warnings))
 	end
 
 	return table.concat(diagnostics, " ")

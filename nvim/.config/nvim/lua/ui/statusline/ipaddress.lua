@@ -1,6 +1,4 @@
-local colors = require("utils.colors")
-local hl = colors.hl
-local highlights = colors.highlights
+local theme = require("ui.statusline.theme")
 
 return function()
 	local handle = io.popen("ipconfig getifaddr en0")
@@ -9,7 +7,7 @@ return function()
 		local output = handle:read("*a") -- Read all output
 		handle:close()
 
-		return hl(highlights.wifi, colors.exthl({ bg = "#353535", fg = "#A5D6FF" }, "  ")) .. output:gsub("%s+$", "")
+		return theme.accent("lc", "wifi", "\u{f1eb}  ") .. output:gsub("%s+$", "")
 	end
 
 	return "nonip"
