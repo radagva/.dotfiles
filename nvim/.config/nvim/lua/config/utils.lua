@@ -30,6 +30,10 @@ M.github = function(repo)
 	return "https://github.com/" .. repo
 end
 
+M.gh = function(repo, opts)
+	return M.merge({ src = M.github(repo) }, opts or {})
+end
+
 M.highlights = function(hl, _, overrides)
 	hl.Pmenu = { bg = "none", fg = "none" }
 

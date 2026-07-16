@@ -1,25 +1,26 @@
-local gh = require("config.utils").github
+local gh = require("config.utils").gh
 
 vim.pack.add({
-	{ src = gh("nemanjamalesija/ts-expand-hover.nvim") },
-	{ src = gh("mistweaverco/kulala.nvim") },
-	{ src = gh("mason-org/mason.nvim") },
-	{ src = gh("nvim-treesitter/nvim-treesitter") },
-	{ src = gh("neovim/nvim-lspconfig") },
-	{ src = gh("saghen/blink.cmp"), version = "v1.10.1" },
-	{ src = gh("stevearc/conform.nvim") },
-	{ src = gh("tpope/vim-dotenv") },
-	{ src = gh("windwp/nvim-ts-autotag") },
-	{ src = gh("dmmulroy/tsc.nvim") },
-	{ src = gh("folke/lazydev.nvim") },
-	{ src = gh("benomahony/uv.nvim") },
-	{ src = gh("catgoose/nvim-colorizer.lua") },
-	{ src = gh("MunifTanjim/nui.nvim") },
-	{ src = gh("mfussenegger/nvim-dap") },
-	{ src = gh("MagicDuck/grug-far.nvim") },
+	gh("nemanjamalesija/ts-expand-hover.nvim"),
+	gh("mistweaverco/kulala.nvim"),
+	gh("mason-org/mason.nvim"),
+	gh("nvim-treesitter/nvim-treesitter"),
+	gh("neovim/nvim-lspconfig"),
+	gh("saghen/blink.cmp", { "v1.10.1" }),
+	gh("stevearc/conform.nvim"),
+	gh("tpope/vim-dotenv"),
+	gh("windwp/nvim-ts-autotag"),
+	gh("dmmulroy/tsc.nvim"),
+	gh("folke/lazydev.nvim"),
+	gh("benomahony/uv.nvim"),
+	gh("catgoose/nvim-colorizer.lua"),
+	gh("MunifTanjim/nui.nvim"),
+	gh("mfussenegger/nvim-dap"),
+	gh("MagicDuck/grug-far.nvim"),
+	gh("nvim-flutter/flutter-tools.nvim"),
 })
 
-local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer, kulala, tsexpandhover, grugfar =
+local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer, kulala, tsexpandhover, grugfar, flutter =
 	require("mason"),
 	require("blink.cmp"),
 	require("nvim-treesitter"),
@@ -31,7 +32,25 @@ local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer,
 	require("colorizer"),
 	require("kulala"),
 	require("ts_expand_hover"),
-	require("grug-far")
+	require("grug-far"),
+	require("flutter-tools")
+
+flutter.setup({
+	decorations = {
+		statusline = {
+			-- set to true to be able use the 'flutter_tools_decorations.app_version' in your statusline
+			-- this will show the current version of the flutter app from the pubspec.yaml file
+			app_version = false,
+			-- set to true to be able use the 'flutter_tools_decorations.device' in your statusline
+			-- this will show the currently running device if an application was started with a specific
+			-- device
+			device = true,
+			-- set to true to be able use the 'flutter_tools_decorations.project_config' in your statusline
+			-- this will show the currently selected project configuration
+			project_config = false,
+		},
+	},
+})
 
 grugfar.setup()
 

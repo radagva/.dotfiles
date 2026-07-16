@@ -6,8 +6,7 @@
     },
     "blink.cmp": {
       "rev": "8a2060dff4e68ac17f1c92aed526c76fb0c1ac2f",
-      "src": "https://github.com/saghen/blink.cmp",
-      "version": "'v1.10.1'"
+      "src": "https://github.com/saghen/blink.cmp"
     },
     "catppuccin": {
       "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
@@ -29,6 +28,10 @@
       "rev": "f5b6673f374626515401c5bc51b005f784a4f252",
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
+    "darcula-solid.nvim": {
+      "rev": "abd698d7e4630b5c8ccfaa0f07b8ad1a3db8bd08",
+      "src": "https://codeberg.org/brargenzilian/darcula-solid.nvim"
+    },
     "dashboard-nvim": {
       "rev": "62a10d9d55132b338dd742afc3c8a2683f3dd426",
       "src": "https://github.com/nvimdev/dashboard-nvim"
@@ -44,6 +47,10 @@
     "flash.nvim": {
       "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
       "src": "https://github.com/folke/flash.nvim"
+    },
+    "flutter-tools.nvim": {
+      "rev": "7d1acfd139215e02d2784733af69a61aaebe06e8",
+      "src": "https://github.com/nvim-flutter/flutter-tools.nvim"
     },
     "fyler": {
       "rev": "e87911e6c21d099225063f5aa672e00f6dbb5976",

@@ -45,6 +45,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "LSP: Go to references" })
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "LSP: Go to implementations" })
 
+		vim.keymap.set("n", "<space>cf", function()
+			vim.lsp.buf.format({ async = true })
+		end, { desc = "Format file" })
+
 		vim.keymap.set("n", "]d", function()
 			vim.diagnostic.jump({ count = 1, float = true })
 		end, { desc = "Next Diagnostic" })
