@@ -5,7 +5,7 @@ vim.pack.add({ github("rebelot/kanagawa.nvim") })
 local theme = "dragon"
 
 require("kanagawa").setup({
-	transparent = true,
+	transparent = false,
 	background = {
 		light = theme,
 		dark = theme,
