@@ -1,58 +1,61 @@
 #!/bin/sh
+
+# Each aerospace workspace is rendered as:
+#   - an "anchor" item showing the workspace number (space.$sid)
+#   - a fixed pool of "app slot" items showing the app names (space.$sid.app.$i)
+#
+# The visual state (which slots are shown, their labels and colors, and the
+# anchor color) is driven entirely by plugins/aerospace.sh, which repaints on
+# workspace change and front app switch. Using a fixed pool of slots (instead of
+# adding/removing items on the fly) keeps updates flicker-free.
+
 sketchybar --add event aerospace_workspace_change
 
+# Max number of distinct apps shown per workspace (extra apps are hidden).
+MAX_APPS=6
+
 for m in $(aerospace list-monitors | awk '{print $1}'); do
-  for i in $(aerospace list-workspaces --monitor $m); do
-    sid=$i
-    space=(
-      space="$sid"
-      icon.color=$SPACE_FG_COLOR
-      label.color=$SPACE_FG_COLOR
-      label="⏺"
-      icon.highlight_color=$SPACE_FG_COLOR_ACTIVE
-      label.highlight_color=$SPACE_FG_COLOR_ACTIVE
-      icon.padding_left=0
-      icon.padding_right=0
-      y_offset=1
-      display=$m
-      script="$PLUGIN_DIR/spaces.sh"
-    )
+  for sid in $(aerospace list-workspaces --monitor $m); do
 
-    sketchybar --add space space.$sid left \
-               --set space.$sid "${space[@]}" \
-               --subscribe space.$sid mouse.clicked
+    # Workspace anchor: shows the workspace number. Click to switch to it.
+    sketchybar --add item space.$sid left \
+               --set space.$sid \
+                     display=$m \
+                     drawing=off \
+                     icon="$sid" \
+                     icon.font="$FONT:Bold:11.0" \
+                     icon.color=$SPACE_FG_COLOR_EMPTY \
+                     icon.padding_left=8 \
+                     icon.padding_right=4 \
+                     label.drawing=off \
+                     click_script="aerospace workspace $sid"
 
-    # apps=$(aerospace list-windows --workspace $sid | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
-    #
-    # icon_strip=" "
-    # if [ "${apps}" != "" ]; then
-    #   while read -r app
-    #   do
-    #     # osascript -e "display notification \"$app\" with title "App""
-    #     icon_strip+=$(__icon_map "$app")
-    #   done <<< "${apps}"
-    # else
-    #   icon_strip=" —"
-    # fi
-    #
-    # sketchybar --set space.$sid label="$icon_strip"
-  done
-
-  for i in $(aerospace list-workspaces --monitor $m --empty); do
-    sketchybar --set space.$i display=0
+    # App slots: one hidden text item per possible app.
+    i=1
+    while [ $i -le $MAX_APPS ]; do
+      sketchybar --add item space.$sid.app.$i left \
+                 --set space.$sid.app.$i \
+                       display=$m \
+                       drawing=off \
+                       icon.drawing=off \
+                       label.font="$FONT:Semibold:11.0" \
+                       label.color=$GREY \
+                       label.padding_left=0 \
+                       label.padding_right=5 \
+                       click_script="aerospace workspace $sid"
+      i=$((i + 1))
+    done
   done
 done
 
+# Invisible updater item: listens for workspace changes and front app switches
+# and repaints every workspace's anchor + app slots.
+sketchybar --add item aerospace left \
+           --set aerospace \
+                 drawing=off \
+                 updates=on \
+                 script="$PLUGIN_DIR/aerospace.sh" \
+           --subscribe aerospace aerospace_workspace_change front_app_switched
 
-space_creator=(
-  icon.font="$FONT:Heavy:12.0"
-  label.drawing=off
-  display=active
-  width=0
-  script="$PLUGIN_DIR/aerospace.sh"
-  icon.color=$WHITE
-)
-
-sketchybar --add item aerospace left               \
-           --set aerospace "${space_creator[@]}"   \
-           --subscribe aerospace aerospace_workspace_change
+# Initial paint.
+"$PLUGIN_DIR/aerospace.sh"

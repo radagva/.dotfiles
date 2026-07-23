@@ -11,5 +11,6 @@ require("jellybeans").setup({
 	},
 	on_highlights = function(hl, _)
 		highlights(hl)
+		hl.LspInlayHint = { bg = "none", fg = "#535965" }
 	end,
 })

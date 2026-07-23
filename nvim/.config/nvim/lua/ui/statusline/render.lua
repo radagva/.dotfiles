@@ -6,8 +6,8 @@ local theme = require("ui.statusline.theme")
 
 local M = {}
 
-local ARROW_R = "\u{e0b0}" -- , trails a left-side segment
-local ARROW_L = "\u{e0b2}" -- , leads a right-side segment
+local ARROW_R = "" -- , trails a left-side segment
+local ARROW_L = "" -- , leads a right-side segment
 
 local function content_of(seg)
 	-- Components reset with `%*` after their own coloring; rewrite that back to

@@ -101,4 +101,4 @@ yanky.setup({ timer = 15 })
 
 whichkey.setup({ preset = "modern" })
 
-vim.cmd.colorscheme("jellybeans")
+vim.cmd.colorscheme("catppuccin")

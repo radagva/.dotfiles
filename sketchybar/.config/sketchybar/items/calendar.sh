@@ -2,8 +2,9 @@
 
 calendar=(
 	# icon=􀐫
-	icon.font="$FONT:Black:12.0"
+	icon.font="$FONT:Black:11.0"
 	icon.padding_right=4
+	label.font="$FONT:Semibold:11.0"
 	label.align=right
   y_offset=1.5
 	# padding_left=5

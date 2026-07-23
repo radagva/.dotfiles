@@ -1,81 +1,71 @@
 #!/usr/bin/env bash
 
-# Handles the "aerospace_workspace_change" event to update space highlights and window icons.
+# Repaints the per-workspace app labels.
+#
+# For every workspace we list its distinct apps and render one label each:
+#   - the app of the currently focused window (in the focused workspace) -> white
+#   - every other app                                                    -> grey
+#
+# The workspace number anchor is orange when focused, grey when it has apps, and
+# hidden when the workspace is empty (unless it is the focused workspace).
+#
+# Runs on: startup, aerospace_workspace_change, front_app_switched.
 
 source "$CONFIG_DIR/colors.sh"
-source "$CONFIG_DIR/helpers/icon_map.sh"
 
-# Function to get window icons for a space
-# Usage: get_icon_strip <space_id>
-get_icon_strip() {
-  echo "⏺"
-}
+MAX_APPS=6
 
-is_workspace_empty() {
-  local workspace=$1
-  local windows=$(aerospace list-windows --workspace "$workspace" 2>/dev/null)
-  [ -z "$windows" ]
-}
+FOCUSED_MONITOR=$(aerospace list-monitors --focused | awk '{print $1}')
 
-if [ "$SENDER" = "aerospace_workspace_change" ]; then
-  # 1. Highlight the new focused workspace
-  # 2. Unhighlight the previous workspace
-  # 3. Update window icons for both (in case windows moved with the focus change)
+# Focused window -> its workspace and app name (only one app is ever "focused").
+FOCUSED=$(aerospace list-windows --focused --format '%{workspace}|%{app-name}' 2>/dev/null | head -1)
+FOCUSED_WS="${FOCUSED%%|*}"
+FOCUSED_APP="${FOCUSED#*|}"
 
-  # Note: AEROSPACE_FOCUSED_WORKSPACE and AEROSPACE_PREV_WORKSPACE are passed by the trigger
+# All windows across all workspaces in one call: "workspace|app-name" per line.
+ALL=$(aerospace list-windows --all --format '%{workspace}|%{app-name}' 2>/dev/null)
 
-  # Fetch focused monitor once
-  FOCUSED_MONITOR=$(aerospace list-monitors --focused | awk '{print $1}')
+ARGS=()
 
-  # Prepare arguments for a single sketchybar call
-  ARGS=()
+for m in $(aerospace list-monitors | awk '{print $1}'); do
+  for sid in $(aerospace list-workspaces --monitor "$m"); do
 
-  # --- Handle Empty Workspaces on the Focused Monitor ---
-  # Show empty workspaces with transparency instead of hiding them
-  EMPTY_WORKSPACES=$(aerospace list-workspaces --monitor focused --empty)
-  for i in $EMPTY_WORKSPACES; do
-    ARGS+=(--set space.$i display=$FOCUSED_MONITOR label.color=$SPACE_FG_COLOR_EMPTY)
+    # Distinct app names in this workspace, preserving first-seen order.
+    apps=$(echo "$ALL" | awk -F'|' -v ws="$sid" '$1==ws && $2!="" {print $2}' | awk '!seen[$0]++')
+
+    if [ "$sid" = "$FOCUSED_WS" ]; then
+      # Focused workspace: always visible, orange number.
+      ARGS+=(--set space.$sid drawing=on display=$FOCUSED_MONITOR icon.color=$SPACE_FG_COLOR_ACTIVE)
+    elif [ -n "$apps" ]; then
+      # Non-empty workspace: visible, dim number.
+      ARGS+=(--set space.$sid drawing=on icon.color=$GREY)
+    else
+      # Empty and unfocused: hide it.
+      ARGS+=(--set space.$sid drawing=off)
+    fi
+
+    # Fill the app slots.
+    i=1
+    while IFS= read -r app; do
+      [ -z "$app" ] && continue
+      [ $i -gt $MAX_APPS ] && break
+
+      if [ "$sid" = "$FOCUSED_WS" ] && [ "$app" = "$FOCUSED_APP" ]; then
+        col=$WHITE
+      else
+        col=$GREY
+      fi
+
+      ARGS+=(--set space.$sid.app.$i drawing=on label="$app" label.color=$col)
+      i=$((i + 1))
+    done <<< "$apps"
+
+    # Hide any unused slots.
+    while [ $i -le $MAX_APPS ]; do
+      ARGS+=(--set space.$sid.app.$i drawing=off)
+      i=$((i + 1))
+    done
   done
+done
 
-  # --- Update FOCUSED Workspace ---
-  if [ -n "$AEROSPACE_FOCUSED_WORKSPACE" ]; then
-    icon_strip_focused=$(get_icon_strip "$AEROSPACE_FOCUSED_WORKSPACE")
-
-    if is_workspace_empty "$AEROSPACE_FOCUSED_WORKSPACE"; then
-      LABEL_COLOR=$SPACE_FG_COLOR_EMPTY
-    else
-      LABEL_COLOR=$ORANGE
-    fi
-
-    ARGS+=(--set space.$AEROSPACE_FOCUSED_WORKSPACE \
-           display=$FOCUSED_MONITOR \
-           icon.highlight=true \
-           label.highlight=true \
-           icon.color=$BLACK \
-           label.color=$LABEL_COLOR \
-           # background.color=$(color $SPACE_BG_COLOR $SPACE_BG_COLOR) \
-           label="$icon_strip_focused")
-  fi
-
-  # --- Update PREVIOUS Workspace ---
-  if [ -n "$AEROSPACE_PREV_WORKSPACE" ] && [ "$AEROSPACE_PREV_WORKSPACE" != "$AEROSPACE_FOCUSED_WORKSPACE" ]; then
-    icon_strip_prev=$(get_icon_strip "$AEROSPACE_PREV_WORKSPACE")
-
-    if is_workspace_empty "$AEROSPACE_PREV_WORKSPACE"; then
-      LABEL_COLOR=$SPACE_FG_COLOR_EMPTY
-    else
-      LABEL_COLOR=$SPACE_FG_COLOR
-    fi
-
-    ARGS+=(--set space.$AEROSPACE_PREV_WORKSPACE \
-           icon.highlight=false \
-           label.highlight=false \
-           icon.color=$SPACE_FG_COLOR \
-           label.color=$LABEL_COLOR \
-           background.color=$TRANSPARENT \
-           label="$icon_strip_prev")
-  fi
-
-  # Apply all changes in one go
-  sketchybar "${ARGS[@]}"
-fi
+sketchybar "${ARGS[@]}"

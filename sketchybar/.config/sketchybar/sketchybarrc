@@ -62,12 +62,15 @@ sketchybar --default "${defaults[@]}"
 
 # Left
 source "$ITEM_DIR/spaces.sh"
-source "$ITEM_DIR/front_app.sh"
+# Centered front app is redundant now that workspaces show app names
+# source "$ITEM_DIR/front_app.sh"
 
 # Right
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/utilities.sh"
+source "$ITEM_DIR/device_utils.sh"
 
 common=(
   background.color=$BG_SOLID

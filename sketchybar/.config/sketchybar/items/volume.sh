@@ -7,8 +7,8 @@ volume_icon=(
   icon=$VOLUME_100
   icon.align=left
   icon.color=$WHITE
-  icon.font="$FONT:Regular:14.0"
-  label.font="$FONT:SemiBold:12.0"
+  icon.font="$FONT:Regular:13.0"
+  label.font="$FONT:SemiBold:11.0"
   label.y_offset=0
 )
 

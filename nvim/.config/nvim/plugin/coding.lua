@@ -1,6 +1,7 @@
 local gh = require("config.utils").gh
 
 vim.pack.add({
+	gh("nvim-tree/nvim-web-devicons"),
 	gh("nemanjamalesija/ts-expand-hover.nvim"),
 	gh("mistweaverco/kulala.nvim"),
 	gh("mason-org/mason.nvim"),
@@ -40,7 +41,7 @@ flutter.setup({
 		statusline = {
 			-- set to true to be able use the 'flutter_tools_decorations.app_version' in your statusline
 			-- this will show the current version of the flutter app from the pubspec.yaml file
-			app_version = false,
+			app_version = true,
 			-- set to true to be able use the 'flutter_tools_decorations.device' in your statusline
 			-- this will show the currently running device if an application was started with a specific
 			-- device
@@ -49,6 +50,33 @@ flutter.setup({
 			-- this will show the currently selected project configuration
 			project_config = false,
 		},
+	},
+	widget_guides = {
+		enabled = false,
+	},
+	dev_log = {
+		open_cmd = "botright split",
+	},
+	lsp = {
+		on_attach = function()
+			local map = vim.keymap.set
+
+			map("n", "<leader>cf", "<Nop>", { desc = "Flutter" })
+
+			map("n", "<leader>cff", function()
+				vim.keymap.set("n", "<space>cf", function()
+					vim.lsp.buf.format({ async = true })
+				end, { desc = "Format file" })
+			end, { desc = "Format file" })
+
+			map("n", "<leader>cfr", ":FlutterRestart<cr>", { desc = "Flutter restart", silent = true })
+			map("n", "<leader>cfd", ":FlutterDebug<cr>", { desc = "Flutter debug", silent = true })
+			map("n", "<leader>cfx", ":FlutterRun<cr>", { desc = "Flutter run", silent = true })
+			map("n", "<leader>cflt", ":FlutterLogToggle<cr>", { desc = "Flutter log toggle", silent = true })
+			map("n", "<leader>cflc", ":FlutterLogClear<cr>", { desc = "Flutter log clear", silent = true })
+			map("n", "<leader>cft", ":FlutterDevTools<cr>", { desc = "Flutter dev tools", silent = true })
+			map("n", "<leader>cfo", ":FlutterOutlineToggle<cr>", { desc = "Flutter outline toggle", silent = true })
+		end,
 	},
 })
 
