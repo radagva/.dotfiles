@@ -195,3 +195,7 @@ eval "$(uv generate-shell-completion zsh)"
 
 # opencode
 export PATH=/Users/radagv/.opencode/bin:$PATH
+
+kill-port() {
+  kill -9 $(lsof -t -i tcp:"$1")
+}
