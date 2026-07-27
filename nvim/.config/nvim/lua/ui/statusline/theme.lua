@@ -24,6 +24,8 @@ local function specs()
 		git = { bg = p.surface, fg = p.text },
 		diag = { bg = p.surface_dim, fg = p.text_dim, seam = "none" },
 		dap = { bg = p.surface_dim, fg = p.text_dim },
+		flutterapp = { bg = p.surface_dim, fg = p.text_dim },
+		flutterdevice = { bg = p.surface, fg = p.text },
 		lc = { bg = p.surface, fg = p.text },
 	}
 end
@@ -63,6 +65,8 @@ local accents = {
 	error = { group = "ErrorMsg", verbatim = true },
 	warn = { group = "WarningMsg", verbatim = true },
 	wifi = { groups = { c.highlights.wifi, "Constant" } },
+	dart = { groups = { c.highlights.dart, "Type" } },
+	device = { groups = { c.highlights.device, "Constant" } },
 }
 
 local function define(name, opts)

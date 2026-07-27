@@ -30,6 +30,7 @@ require("kanagawa").setup({
 			BlinkCmpMenuSelection = { bg = colors.palette.waveBlue1 },
 			StatusLine = { bg = "none" },
 			StatusLineLN = { bg = "none" },
+			FlutterWidgetGuides = { fg = "#585451" },
 		}
 	end,
 })

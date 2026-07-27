@@ -5,7 +5,7 @@ vim.pack.add({ github("navarasu/onedark.nvim") })
 
 require("onedark").setup({
 	style = "darker",
-	transparent = false,
+	transparent = true,
 	code_style = {
 		comments = "italic",
 		keywords = "bold",

@@ -7,6 +7,8 @@ local mode_mod = require("ui.statusline.mode")
 local git_mod = require("ui.statusline.git")
 local diag_mod = require("ui.statusline.diagnostics")
 local dap_mod = require("ui.statusline.dap")
+local flutter_app_mod = require("ui.statusline.flutterapp")
+local flutter_device_mod = require("ui.statusline.flutterdevice")
 local ip_mod = require("ui.statusline.ipaddress")
 
 Statusline = {}
@@ -24,6 +26,8 @@ function Statusline.activate()
 	push(left, theme.segment("git"), git_mod())
 	push(left, theme.segment("diag"), diag_mod())
 
+	push(right, theme.segment("flutterapp"), flutter_app_mod())
+	push(right, theme.segment("flutterdevice"), flutter_device_mod())
 	push(right, theme.segment("dap"), dap_mod())
 	push(right, theme.segment("lc"), "%l:%c")
 	push(right, theme.segment("lc"), ip_mod())

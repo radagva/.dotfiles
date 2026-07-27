@@ -12,7 +12,7 @@ alias generate-secret="openssl rand -base64 32"
 
 # alias functions
 # to check port usage
-alias check-port='f() { lsof -i tcp:$1 };f'
+alias check-port='f() { lsof -i $1 };f'
 
 # to quickly upload files to a temporary cloud disk
 alias upload='f() { curl bashupload.com -T $1 };f'

@@ -52,13 +52,14 @@ flutter.setup({
 		},
 	},
 	widget_guides = {
-		enabled = false,
+		enabled = true,
 	},
 	dev_log = {
 		open_cmd = "botright split",
 	},
 	lsp = {
 		on_attach = function()
+			vim.lsp.inlay_hint.enable(false)
 			local map = vim.keymap.set
 
 			map("n", "<leader>cf", "<Nop>", { desc = "Flutter" })
@@ -177,6 +178,7 @@ conform.setup({
 		yaml = { "prettierd" },
 		markdown = { "prettierd" },
 		python = { "ruff_format", "ruff_fix", "isort" },
+		dart = { "dart_format" },
 	},
 	notify_on_error = false,
 	format_on_save = function(bufnr)

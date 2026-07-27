@@ -20,6 +20,7 @@ vim.lsp.enable({
 	"jsonls",
 	"kulala_ls",
 	"prismals",
+	"dartls",
 })
 
 vim.api.nvim_create_autocmd("FileType", {

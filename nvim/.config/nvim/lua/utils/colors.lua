@@ -6,6 +6,8 @@ local utils = {
 		wifi = "@constant.builtin",
 		git_branch = "@lsp.type.method",
 		debugger = "@lsp.type.parameter",
+		dart = "@lsp.type.class",
+		device = "@lsp.type.enumMember",
 	},
 }
 
