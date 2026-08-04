@@ -19,9 +19,12 @@ vim.pack.add({
 	gh("mfussenegger/nvim-dap"),
 	gh("MagicDuck/grug-far.nvim"),
 	gh("nvim-flutter/flutter-tools.nvim"),
+	gh("nvim-telescope/telescope.nvim"),
+	gh("nvim-lua/plenary.nvim"),
+	gh("wasabeef/melos.nvim"),
 })
 
-local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer, kulala, tsexpandhover, grugfar, flutter =
+local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer, kulala, tsexpandhover, grugfar, flutter, melos =
 	require("mason"),
 	require("blink.cmp"),
 	require("nvim-treesitter"),
@@ -34,9 +37,21 @@ local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer,
 	require("kulala"),
 	require("ts_expand_hover"),
 	require("grug-far"),
-	require("flutter-tools")
+	require("flutter-tools"),
+	require("melos")
+
+melos.setup()
 
 flutter.setup({
+	debugger = {
+		enabled = true,
+		run_via_dap = true,
+	},
+	-- debugger = {
+	-- 	register_configurations = function()
+	-- 		require("dap.ext.vscode").load_launchjs()
+	-- 	end,
+	-- },
 	decorations = {
 		statusline = {
 			-- set to true to be able use the 'flutter_tools_decorations.app_version' in your statusline

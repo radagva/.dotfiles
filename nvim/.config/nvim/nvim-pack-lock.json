@@ -32,6 +32,10 @@
       "rev": "abd698d7e4630b5c8ccfaa0f07b8ad1a3db8bd08",
       "src": "https://codeberg.org/brargenzilian/darcula-solid.nvim"
     },
+    "dark2026.nvim": {
+      "rev": "3fc6ca199a3537b46e49dbe5eed669fe9ff0d63e",
+      "src": "https://github.com/D0nw0r/dark2026.nvim"
+    },
     "dashboard-nvim": {
       "rev": "62a10d9d55132b338dd742afc3c8a2683f3dd426",
       "src": "https://github.com/nvimdev/dashboard-nvim"
@@ -69,9 +73,17 @@
       "rev": "c995bbacf8229dc096ec1c3d60f8531059c86c1b",
       "src": "https://github.com/MagicDuck/grug-far.nvim"
     },
+    "gruvbox": {
+      "rev": "5d15b2765f59754d7ac263c88a0f6e3e58124951",
+      "src": "https://github.com/morhetz/gruvbox"
+    },
     "gruvbox-material": {
       "rev": "11d779b26a9ab2b3db8c22c6ac9fb6e8ed4fea79",
       "src": "https://github.com/sainnhe/gruvbox-material"
+    },
+    "gruvbox.nvim": {
+      "rev": "154eb5ff5b96d0641307113fa385eaf0d36d9796",
+      "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
     "image_preview.nvim": {
       "rev": "d015f9c707916735768d19b8659fc6d33bdccf92",
@@ -100,6 +112,10 @@
     "mason.nvim": {
       "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "melos.nvim": {
+      "rev": "fe55ea0af37a5faa1382fe54345b4752b07f02bc",
+      "src": "https://github.com/wasabeef/melos.nvim"
     },
     "mini.ai": {
       "rev": "4b0a6207341d895b6cfe9bcb1e4d3e8607bfe4f4",
@@ -185,6 +201,11 @@
     "nvim-dap-python": {
       "rev": "1808458eba2b18f178f990e01376941a42c7f93b",
       "src": "https://github.com/mfussenegger/nvim-dap-python"
+    },
+    "nvim-dap-view": {
+      "rev": "ba5c838e731003abefb8bc1c403c59aa5b3aa194",
+      "src": "https://github.com/igorlfs/nvim-dap-view",
+      "version": "1.0.0 - 2.0.0"
     },
     "nvim-dap-vscode-js": {
       "rev": "03bd29672d7fab5e515fc8469b7d07cc5994bbf6",
@@ -282,6 +303,10 @@
     "springboot-nvim": {
       "rev": "105fb2a0b54fbd819200b244e8079c4c9f1a8415",
       "src": "https://github.com/elmcgill/springboot-nvim"
+    },
+    "telescope.nvim": {
+      "rev": "427b576c16792edad01a92b89721d923c19ad60f",
+      "src": "https://github.com/nvim-telescope/telescope.nvim"
     },
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",

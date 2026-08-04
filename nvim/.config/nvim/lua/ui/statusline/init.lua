@@ -26,10 +26,10 @@ function Statusline.activate()
 	push(left, theme.segment("git"), git_mod())
 	push(left, theme.segment("diag"), diag_mod())
 
+	push(right, theme.segment("flutterapp"), "%l:%c")
 	push(right, theme.segment("flutterapp"), flutter_app_mod())
 	push(right, theme.segment("flutterdevice"), flutter_device_mod())
 	push(right, theme.segment("dap"), dap_mod())
-	push(right, theme.segment("lc"), "%l:%c")
 	push(right, theme.segment("lc"), ip_mod())
 
 	return render.left(left, true) .. render.gap() .. render.right(right, true)

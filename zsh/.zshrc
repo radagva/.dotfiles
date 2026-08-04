@@ -30,6 +30,7 @@ plugins=(git)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.private
 
 # User configuration
 export EDITOR=nvim
@@ -92,7 +93,6 @@ function measure() {
   }'
 }
 
-
 alias dcurl='f() {curl $1 | pbcopy};f'
 # alias check-port='f() { lsof -i tcp:$1 };f'
 
@@ -103,6 +103,7 @@ alias dcurl='f() {curl $1 | pbcopy};f'
 # Android CLI
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # pnpm
 export PNPM_HOME="/Users/radagv/Library/pnpm"

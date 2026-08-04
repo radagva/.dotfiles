@@ -1,5 +1,7 @@
 local filepath = require("ui.winbar.filepath")
 
+local WINBAR = '%{%v:lua.require("ui.winbar").get()%}'
+
 local function should_show_winbar()
 	if vim.bo.buftype ~= "" then
 		return false
@@ -11,6 +13,13 @@ local function should_show_winbar()
 	return true
 end
 
+-- Plugins like dap-view, neo-tree and oil render their own winbar, so leave
+-- those windows alone instead of clearing what they just set
+local function has_foreign_winbar()
+	local current = vim.wo.winbar
+	return current ~= "" and current ~= WINBAR
+end
+
 local M = {}
 
 function M.setup()
@@ -18,9 +27,9 @@ function M.setup()
 
 	local function update_winbar()
 		if should_show_winbar() then
-			vim.wo.winbar = '%{%v:lua.require("ui.winbar").get()%}'
-		else
-			vim.wo.winbar = nil
+			vim.wo.winbar = WINBAR
+		elseif not has_foreign_winbar() then
+			vim.wo.winbar = ""
 		end
 	end
 

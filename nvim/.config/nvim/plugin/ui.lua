@@ -30,12 +30,12 @@ require("neo-tree").setup({
 	},
 })
 
-vim.keymap.set(
-	"n",
-	"<leader>e",
-	":Neotree filesystem toggle left<cr>",
-	{ desc = "Show neo tree", silent = true, noremap = true }
-)
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<leader>e",
+-- 	":Neotree filesystem toggle left<cr>",
+-- 	{ desc = "Show neo tree", silent = true, noremap = true }
+-- )
 
 local dashboard, yanky, notify, fidget, icons, whichkey =
 	require("dashboard"),
@@ -56,7 +56,7 @@ fidget.setup({
 dashboard.setup({
 	theme = "doom",
 	config = {
-		header = ascii.semicolon,
+		header = ascii.dev,
 		center = {
 			{
 				icon = "󰁯  ",
@@ -101,4 +101,4 @@ yanky.setup({ timer = 15 })
 
 whichkey.setup({ preset = "modern" })
 
-vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("dark-2026")
