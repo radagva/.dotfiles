@@ -1,4 +1,9 @@
 local filepath = require("ui.winbar.filepath")
+local lspsymbols = require("ui.winbar.lspsymbols")
+local colors = require("utils.colors")
+
+-- Divider between the file path and the symbol breadcrumbs
+local SEPARATOR = "|"
 
 local WINBAR = '%{%v:lua.require("ui.winbar").get()%}'
 
@@ -40,15 +45,20 @@ function M.setup()
 
 	-- Apply to the initial window as well
 	vim.schedule(update_winbar)
+
+	lspsymbols.setup()
 end
 
 function M.get()
-	local value = " " .. table.concat({
-		filepath(),
-		"%m",
-	}, " ") .. " "
+	local segments = { filepath() }
 
-	return value
+	local symbols = lspsymbols()
+	if symbols ~= "" then
+		table.insert(segments, colors.hl(colors.highlights.comment, SEPARATOR))
+		table.insert(segments, symbols)
+	end
+
+	return " " .. table.concat(segments, " ") .. " "
 end
 
 setmetatable(M, { __call = function(_, ...)
