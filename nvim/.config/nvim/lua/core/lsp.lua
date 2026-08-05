@@ -43,7 +43,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "LSP: Go to definition" })
 		vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "LSP: Go to type definition" })
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "LSP: Go to references" })
+		-- vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "LSP: Go to references" })
+		vim.keymap.set("n", "gr", function()
+			Snacks.picker.lsp_references({
+				layout = { preset = "ivy", layout = { position = "bottom" } },
+			})
+		end, { buffer = bufnr, desc = "LSP: Go to references" })
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "LSP: Go to implementations" })
 
 		vim.keymap.set("n", "<space>cf", function()
