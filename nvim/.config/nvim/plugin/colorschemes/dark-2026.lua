@@ -1,4 +1,4 @@
-local github = require("config.utils").github
+local gh = require("config.utils").gh
 local highlights = require("config.utils").highlights
 
 -- Local development checkout wins over the published plugin, so edits under
@@ -8,7 +8,7 @@ local dev = vim.fn.expand("~/Developer/Projects/personal/nvim-packages/dark-2026
 if vim.uv.fs_stat(dev) then
 	vim.opt.runtimepath:prepend(dev)
 else
-	vim.pack.add({ { src = github("dark-2026-theme/nvim"), name = "dark-2026" } })
+	vim.pack.add({ gh("dark-2026-theme/nvim", { name = "dark-2026" }) })
 end
 
 require("dark-2026").setup({

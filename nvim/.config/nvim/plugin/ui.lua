@@ -1,24 +1,20 @@
 local ascii = require("ui.dashboard")
-local github = require("config.utils").github
+local gh = require("config.utils").gh
 
 vim.pack.add({
-	{
-		src = github("nvim-neo-tree/neo-tree.nvim"),
-		version = vim.version.range("3"),
-	},
-	{ src = github("MunifTanjim/nui.nvim") },
-	{ src = github("echasnovski/mini.icons") },
-	{ src = github("gbprod/yanky.nvim") },
-	{ src = github("rcarriga/nvim-notify") },
-	{ src = github("j-hui/fidget.nvim"), name = "fidget" },
-	{ src = github("nvim-lua/plenary.nvim") },
-	{ src = github("folke/todo-comments.nvim") },
-	{ src = github("nvimdev/dashboard-nvim") },
-	{ src = github("folke/which-key.nvim") },
-	{ src = github("nvim-tree/nvim-web-devicons") },
-	{ src = github("fgheng/winbar.nvim") },
-	{ src = github("A7Lavinraj/fyler.nvim"), name = "fyler", version = "stable" },
-	{ src = github("hat0uma/csvview.nvim") },
+	gh("nvim-neo-tree/neo-tree.nvim", { version = vim.version.range("3") }),
+	gh("MunifTanjim/nui.nvim"),
+	gh("echasnovski/mini.icons"),
+	gh("gbprod/yanky.nvim"),
+	gh("rcarriga/nvim-notify"),
+	gh("j-hui/fidget.nvim", { name = "fidget" }),
+	gh("nvim-lua/plenary.nvim"),
+	gh("folke/todo-comments.nvim"),
+	gh("nvimdev/dashboard-nvim"),
+	gh("folke/which-key.nvim"),
+	gh("nvim-tree/nvim-web-devicons"),
+	gh("A7Lavinraj/fyler.nvim", { name = "fyler", version = "stable" }),
+	gh("hat0uma/csvview.nvim"),
 })
 
 require("csvview").setup()

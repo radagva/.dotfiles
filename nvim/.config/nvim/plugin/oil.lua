@@ -1,6 +1,8 @@
+local gh = require("config.utils").gh
+
 vim.pack.add({
-	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/adelarsq/image_preview.nvim" },
+	gh("stevearc/oil.nvim"),
+	gh("adelarsq/image_preview.nvim"),
 })
 
 require("oil").setup({

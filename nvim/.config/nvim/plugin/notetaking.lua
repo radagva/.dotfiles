@@ -1,9 +1,11 @@
+local gh = require("config.utils").gh
+
 vim.pack.add({
-	{ src = "https://github.com/folke/snacks.nvim" },
-	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim", name = "render-markdown" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/nvim-mini/mini.nvim" },
-	{ src = "https://github.com/obsidian-nvim/obsidian.nvim", name = "obsidian" },
+	gh("folke/snacks.nvim"),
+	gh("MeanderingProgrammer/render-markdown.nvim", { name = "render-markdown" }),
+	gh("nvim-treesitter/nvim-treesitter"),
+	gh("nvim-mini/mini.nvim"),
+	gh("obsidian-nvim/obsidian.nvim", { name = "obsidian" }),
 })
 
 local markdown, obsidian = require("render-markdown"), require("obsidian")

@@ -1,12 +1,15 @@
+local gh = require("config.utils").gh
+
 vim.pack.add({
-	{ src = "https://github.com/nvim-neotest/nvim-nio" },
-	{ src = "https://github.com/nvim-lua/plenary.nvim" },
-	{ src = "https://github.com/antoinemadec/FixCursorHold.nvim" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/nvim-neotest/neotest-python" },
-	{ src = "https://github.com/nvim-neotest/neotest-jest" },
-	{ src = "https://github.com/marilari88/neotest-vitest" },
-	{ src = "https://github.com/nvim-neotest/neotest" },
+	gh("nvim-neotest/nvim-nio"),
+	gh("nvim-lua/plenary.nvim"),
+	gh("antoinemadec/FixCursorHold.nvim"),
+	gh("nvim-treesitter/nvim-treesitter"),
+	gh("nvim-neotest/neotest-python"),
+	gh("nvim-neotest/neotest-jest"),
+	gh("marilari88/neotest-vitest"),
+	gh("nvim-neotest/neotest"),
+	gh("sidlatau/neotest-dart"),
 })
 
 local neotest = require("neotest")
@@ -19,6 +22,14 @@ neotest.setup({
 		require("neotest-python"),
 		require("neotest-jest"),
 		require("neotest-vitest"),
+		require("neotest-dart")({
+			command = "flutter", -- Command being used to run tests. Defaults to `flutter`
+			-- Change it to `fvm flutter` if using FVM
+			-- change it to `dart` for Dart only tests
+			use_lsp = true, -- When set Flutter outline information is used when constructing test name.
+			-- Useful when using custom test names with @isTest annotation
+			custom_test_method_names = {},
+		}),
 	},
 	floating = {
 		border = "rounded",

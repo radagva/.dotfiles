@@ -1,4 +1,4 @@
-local gh = require("config.utils").github
+local gh = require("config.utils").gh
 
 vim.pack.add({
 	gh("folke/flash.nvim"),

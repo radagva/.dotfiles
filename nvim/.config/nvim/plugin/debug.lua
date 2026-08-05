@@ -1,10 +1,12 @@
+local gh = require("config.utils").gh
+
 vim.pack.add({
-	{ src = "https://github.com/mfussenegger/nvim-dap", name = "dap" },
-	{ src = "https://github.com/nvim-neotest/nvim-nio" },
-	{ src = "https://github.com/igorlfs/nvim-dap-view", version = vim.version.range("1.*") },
-	{ src = "https://github.com/mfussenegger/nvim-dap-python" },
-	{ src = "https://github.com/mxsdev/nvim-dap-vscode-js" },
-	{ src = "https://github.com/leoluz/nvim-dap-go" },
+	gh("mfussenegger/nvim-dap", { name = "dap" }),
+	gh("nvim-neotest/nvim-nio"),
+	gh("igorlfs/nvim-dap-view", { version = vim.version.range("1.*") }),
+	gh("mfussenegger/nvim-dap-python"),
+	gh("mxsdev/nvim-dap-vscode-js"),
+	gh("leoluz/nvim-dap-go"),
 })
 
 local dap, dapview, dapgo, dappython = require("dap"), require("dap-view"), require("dap-go"), require("dap-python")

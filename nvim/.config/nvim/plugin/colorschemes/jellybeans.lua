@@ -1,7 +1,7 @@
-local github = require("config.utils").github
+local gh = require("config.utils").gh
 local highlights = require("config.utils").highlights
 
-vim.pack.add({ github("wtfox/jellybeans.nvim") })
+vim.pack.add({ gh("wtfox/jellybeans.nvim") })
 
 require("jellybeans").setup({
 	transparent = true,

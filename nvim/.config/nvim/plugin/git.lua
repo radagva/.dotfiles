@@ -1,6 +1,8 @@
+local gh = require("config.utils").gh
+
 vim.pack.add({
-	{ src = "https://github.com/tpope/vim-fugitive" },
-	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+	gh("tpope/vim-fugitive"),
+	gh("lewis6991/gitsigns.nvim"),
 })
 
 local gitsigns = require("gitsigns")

@@ -1,4 +1,4 @@
-local gh = require("config.utils").github
+local gh = require("config.utils").gh
 
 vim.pack.add({ gh("folke/snacks.nvim"), gh("folke/persistence.nvim") })
 
@@ -142,7 +142,26 @@ local function searchfordiagnostics()
 end
 
 local function openexplorer()
-	snacks.explorer.open()
+	snacks.explorer.open({
+		layout = {
+			preset = "sidebar",
+			preview = true,
+			layout = {
+				position = "left",
+				width = 30,
+				box = "vertical",
+				{
+					win = "input",
+					height = 1,
+					border = "none", -- Removes border from the search component
+				},
+				{
+					win = "list",
+					border = "none",
+				},
+			},
+		},
+	})
 end
 
 vim.keymap.set("n", "<leader><leader>", searchfiles, { silent = true, desc = "Search for files" })

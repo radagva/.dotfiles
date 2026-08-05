@@ -1,6 +1,6 @@
-local github = require("config.utils").github
+local gh = require("config.utils").gh
 
-vim.pack.add({ github("nvim-orgmode/orgmode") })
+vim.pack.add({ gh("nvim-orgmode/orgmode") })
 
 require("orgmode").setup({
 	org_agenda_files = "~/Documents/notes/**/*",
