@@ -16,8 +16,8 @@ if ! command -v fzf &> /dev/null; then
     exit 1
 fi
 
-# Parse session files and send them to fzf
-selected=$(for file in "$SESSIONS_DIR"/*.kitty-session; do
+# Parse session files and send them to fzf (including hidden .private files)
+selected=$(for file in "$SESSIONS_DIR"/*.kitty-session "$SESSIONS_DIR"/.*.kitty-session; do
     [ -e "$file" ] || continue
     session_name=$(basename "$file" .kitty-session)
 

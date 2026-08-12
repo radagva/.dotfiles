@@ -9,12 +9,6 @@ snacks.setup({
 	input = { enabled = false },
 	rename = { enabled = false },
 	bigfile = { enabled = true },
-	-- dashboard = {
-	-- 	preset = {
-	-- 		header = [[
-	--    ]],
-	-- 	},
-	-- },
 	picker = {
 		enabled = true,
 		matcher = {
@@ -37,9 +31,9 @@ snacks.setup({
 
 				-- Create a new scratch buffer for the file
 				local buf = vim.api.nvim_create_buf(false, true)
-				--
+
 				-- Configure the floating window layout
-				local win = vim.api.nvim_open_win(buf, true, {
+				local _ = vim.api.nvim_open_win(buf, true, {
 					relative = "editor",
 					width = width,
 					height = height,
@@ -99,9 +93,29 @@ local function searchfiles()
 	}
 
 	snacks.picker.files({
-		-- hidden = true,
-		-- layout = { preset = "vscode", hidden = {}, preview = "main" },
-		layout = { preset = "ivy", layout = { position = "bottom" } },
+		layout = {
+			preset = "ivy",
+			layout = {
+				position = "bottom",
+				box = "vertical",
+				{
+					win = "input",
+					height = 1,
+					border = "none",
+				},
+				{
+					box = "horizontal",
+					{
+						win = "list",
+						border = "none",
+					},
+					{
+						win = "preview",
+						border = "none",
+					},
+				},
+			},
+		},
 		win = {
 			list = { keys = keys },
 			input = { keys = keys },
@@ -114,7 +128,29 @@ end
 
 local function searchbuffers()
 	snacks.picker.buffers({
-		layout = { preset = "ivy", layout = { position = "bottom" } },
+		layout = {
+			preset = "ivy",
+			layout = {
+				position = "bottom",
+				box = "vertical",
+				{
+					win = "input",
+					height = 1,
+					border = "none",
+				},
+				{
+					box = "horizontal",
+					{
+						win = "list",
+						border = "none",
+					},
+					{
+						win = "preview",
+						border = "none",
+					},
+				},
+			},
+		},
 	})
 end
 
@@ -122,23 +158,115 @@ local function searchfordotfiles()
 	snacks.picker.files({
 		cwd = "~/.dotfiles",
 		hidden = true,
-		layout = { preset = "ivy", layout = { position = "bottom" } },
+		layout = {
+			preset = "ivy",
+			layout = {
+				position = "bottom",
+				box = "vertical",
+				{
+					win = "input",
+					height = 1,
+					border = "none",
+				},
+				{
+					box = "horizontal",
+					{
+						win = "list",
+						border = "none",
+					},
+					{
+						win = "preview",
+						border = "none",
+					},
+				},
+			},
+		},
 	})
 end
 
 local function searchforfiles()
 	snacks.picker.grep({
 		hidden = true,
-		layout = { preset = "ivy", layout = { position = "bottom" } },
+		layout = {
+			preset = "ivy",
+			layout = {
+				position = "bottom",
+				box = "vertical",
+				{
+					win = "input",
+					height = 1,
+					border = "none",
+				},
+				{
+					box = "horizontal",
+					{
+						win = "list",
+						border = "none",
+					},
+					{
+						win = "preview",
+						border = "none",
+					},
+				},
+			},
+		},
 	})
 end
 
 local function searchforsymbols()
-	snacks.picker.lsp_symbols({ layout = { preset = "ivy", layout = { position = "bottom" } } })
+	snacks.picker.lsp_symbols({
+		layout = {
+			preset = "ivy",
+			layout = {
+				position = "bottom",
+				box = "vertical",
+				{
+					win = "input",
+					height = 1,
+					border = "none",
+				},
+				{
+					box = "horizontal",
+					{
+						win = "list",
+						border = "none",
+					},
+					{
+						win = "preview",
+						border = "none",
+					},
+				},
+			},
+		},
+	})
 end
 
 local function searchfordiagnostics()
-	snacks.picker.diagnostics({ layout = { preset = "ivy", layout = { position = "bottom" } } })
+	snacks.picker.diagnostics({
+		layout = {
+			preset = "ivy",
+			layout = {
+				position = "bottom",
+				box = "vertical",
+				{
+					win = "input",
+					height = 1,
+					border = "none",
+				},
+				{
+					box = "horizontal",
+					{
+						win = "list",
+						border = "none",
+					},
+					{
+						win = "preview",
+						border = "none",
+					},
+				},
+			},
+		},
+	})
 end
 
 local function openexplorer()

@@ -9,7 +9,7 @@ vim.pack.add({
 	gh("nvim-neotest/neotest-jest"),
 	gh("marilari88/neotest-vitest"),
 	gh("nvim-neotest/neotest"),
-	gh("sidlatau/neotest-dart"),
+	gh("radagva/neotest-dart", { version = "monorepo-support" }),
 })
 
 local neotest = require("neotest")
@@ -18,19 +18,23 @@ neotest.setup({
 	summary = {
 		open = "botright vsplit | vertical resize 80",
 	},
-	adapters = {
-		require("neotest-python"),
-		require("neotest-jest"),
-		require("neotest-vitest"),
-		require("neotest-dart")({
-			command = "flutter", -- Command being used to run tests. Defaults to `flutter`
-			-- Change it to `fvm flutter` if using FVM
-			-- change it to `dart` for Dart only tests
-			use_lsp = true, -- When set Flutter outline information is used when constructing test name.
-			-- Useful when using custom test names with @isTest annotation
-			custom_test_method_names = {},
-		}),
-	},
+	-- `workspace` returns one adapter per package in the monorepo, so the summary
+	-- gets a section per app/package instead of a single tree for the whole
+	-- repository. Outside a Dart project it falls back to a single adapter.
+	adapters = vim.list_extend(
+		{
+			require("neotest-python"),
+			require("neotest-jest"),
+			require("neotest-vitest"),
+			require("neotest-dart"),
+		},
+		{}
+		-- require("neotest-dart").workspace({
+		-- 	command = "flutter",
+		-- 	use_lsp = true,
+		-- 	custom_test_method_names = {},
+		-- })
+	),
 	floating = {
 		border = "rounded",
 	},

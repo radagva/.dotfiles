@@ -35,6 +35,35 @@ source $HOME/.private
 # User configuration
 export EDITOR=nvim
 
+# Kitty tmux-like keybindings toggle.
+# When true, Kitty's built-in tmux-style keybindings (splits/nav/resize under
+# ctrl+a, ctrl+jkhl, alt+jkhl) are unmapped so they don't clash with real tmux.
+export KITTY_USE_TMUX=false
+
+if [[ -n "$KITTY_WINDOW_ID" && -o interactive ]]; then
+  if [[ "$KITTY_USE_TMUX" == true ]]; then
+    kitty @ load-config \
+      -o "map ctrl+a>m" \
+      -o "map ctrl+a>|" \
+      -o "map ctrl+a>-" \
+      -o "map ctrl+a>shift+k" \
+      -o "map ctrl+a>shift+h" \
+      -o "map ctrl+a>shift+l" \
+      -o "map ctrl+a>shift+j" \
+      -o "map ctrl+j" \
+      -o "map ctrl+k" \
+      -o "map ctrl+h" \
+      -o "map ctrl+l" \
+      -o "map alt+j" \
+      -o "map alt+k" \
+      -o "map alt+h" \
+      -o "map alt+l" \
+      >/dev/null 2>&1
+  else
+    kitty @ load-config --ignore-overrides >/dev/null 2>&1
+  fi
+fi
+
 # alias scripts
 alias generate-secret="openssl rand -base64 32"
 alias getip="ipconfig getifaddr en0"
@@ -108,8 +137,8 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 # pnpm
 export PNPM_HOME="/Users/radagv/Library/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
 

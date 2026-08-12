@@ -111,8 +111,9 @@
       "src": "https://github.com/nvim-neotest/neotest"
     },
     "neotest-dart": {
-      "rev": "f10fc22a17559b3a7abb400e266db0a1201979e7",
-      "src": "https://github.com/sidlatau/neotest-dart"
+      "rev": "81b1329f7011ceea24fb10bb6bbbb833c18b62ce",
+      "src": "https://github.com/radagva/neotest-dart",
+      "version": "'monorepo-support'"
     },
     "neotest-jest": {
       "rev": "3f0cc2cff1ee05394081805c622dc2551b54d8c4",
@@ -266,10 +267,6 @@
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim"
-    },
-    "winbar.nvim": {
-      "rev": "13739fdb31be51a1000486189662596f07a59a31",
-      "src": "https://github.com/fgheng/winbar.nvim"
     },
     "yanky.nvim": {
       "rev": "784188e0a7363e762e53140f39124d786aec0832",

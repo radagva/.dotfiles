@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
-		vim.lsp.inlay_hint.enable()
+		-- vim.lsp.inlay_hint.enable()
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		local bufnr = args.buf
 
