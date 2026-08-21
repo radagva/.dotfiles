@@ -22,9 +22,11 @@ vim.pack.add({
 	gh("nvim-telescope/telescope.nvim"),
 	gh("nvim-lua/plenary.nvim"),
 	gh("wasabeef/melos.nvim"),
+	gh("bennypowers/nvim-regexplainer"),
+	gh("edluffy/hologram.nvim"), -- for graphical mode
 })
 
-local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer, kulala, tsexpandhover, grugfar, flutter, melos =
+local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer, kulala, tsexpandhover, grugfar, flutter, melos, regexplainer =
 	require("mason"),
 	require("blink.cmp"),
 	require("nvim-treesitter"),
@@ -38,7 +40,10 @@ local mason, blink, treesitter, conform, tsautotag, tsc, lazydev, uv, colorizer,
 	require("ts_expand_hover"),
 	require("grug-far"),
 	require("flutter-tools"),
-	require("melos")
+	require("melos"),
+	require("regexplainer")
+
+regexplainer.setup()
 
 melos.setup()
 

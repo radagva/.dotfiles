@@ -46,6 +46,33 @@ snacks.setup({
 				-- Edit the targeted file inside this new floating window
 				vim.cmd("edit " .. vim.fn.fnameescape(item.file))
 			end,
+			create_file = function(picker, item)
+				-- Target directory: directory of highlighted file, or picker cwd / current working directory
+				local base_dir = (item and item.file) and vim.fs.dirname(item.file)
+					or (picker.opts and picker.opts.cwd)
+					or vim.fn.getcwd()
+
+				vim.ui.input({ prompt = "New file name: " }, function(input)
+					if not input or input:match("^%s*$") then
+						return
+					end
+
+					-- Close picker before creating buffer
+					picker:close()
+
+					-- Build full file path and resolve relative paths
+					local target_path = vim.fs.normalize(base_dir .. "/" .. input)
+
+					-- Ensure target directories exist (allows creating deep paths like "foo/bar/baz.lua")
+					local parent = vim.fs.dirname(target_path)
+					if parent then
+						vim.fn.mkdir(parent, "p")
+					end
+
+					-- Open the newly created file in buffer
+					vim.cmd("edit " .. vim.fn.fnameescape(target_path))
+				end)
+			end,
 		},
 		formatters = {
 			text = {
@@ -73,6 +100,7 @@ snacks.setup({
 			input = {
 				keys = {
 					["<C-f>"] = { "open_in_float", mode = { "n", "i" } },
+					["<C-a>"] = { "create_file", mode = { "n", "i" } },
 				},
 			},
 		},

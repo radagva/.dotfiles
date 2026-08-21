@@ -130,9 +130,10 @@ alias dcurl='f() {curl $1 | pbcopy};f'
 
 
 # Android CLI
-export ANDROID_HOME=/Users/$USER/Library/Android/sdk
-export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-export PATH="$PATH":"$HOME/.pub-cache/bin"
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
 
 # pnpm
 export PNPM_HOME="/Users/radagv/Library/pnpm"
@@ -180,4 +181,5 @@ eval "$(uv generate-shell-completion zsh)"
 export PATH=/Users/radagv/.opencode/bin:$PATH
 
 # flutter
-export PATH="/Users/radagv/Downloads/flutter/bin:$PATH"
+export PATH="/Users/radagv/.config/sdk/flutter/bin:$PATH"
+export PATH="$PATH":"$HOME/.pub-cache/bin"

@@ -24,6 +24,7 @@ local function specs()
 		git = { bg = p.surface, fg = p.text },
 		diag = { bg = p.surface_dim, fg = p.text_dim, seam = "none" },
 		dap = { bg = p.surface_dim, fg = p.text_dim },
+		lsp = { bg = p.surface_dim, fg = p.text_dim },
 		flutterapp = { bg = p.surface_dim, fg = p.text_dim },
 		flutterdevice = { bg = p.surface, fg = p.text },
 		lc = { bg = p.surface, fg = p.text },

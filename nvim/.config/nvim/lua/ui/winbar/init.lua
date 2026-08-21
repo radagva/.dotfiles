@@ -50,7 +50,9 @@ function M.setup()
 end
 
 function M.get()
-	local segments = { filepath() }
+	local segments = {
+		filepath(),
+	}
 
 	local symbols = lspsymbols()
 	if symbols ~= "" then
@@ -61,8 +63,10 @@ function M.get()
 	return " " .. table.concat(segments, " ") .. " "
 end
 
-setmetatable(M, { __call = function(_, ...)
-	return M.get(...)
-end })
+setmetatable(M, {
+	__call = function(_, ...)
+		return M.get(...)
+	end,
+})
 
 return M

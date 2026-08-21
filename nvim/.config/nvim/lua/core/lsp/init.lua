@@ -1,27 +1,22 @@
-vim.lsp.enable({
-	"protols",
+local servers = {
 	"emmet_language_server",
-	"angularls",
 	"lua_ls",
-	"gopls",
-	"gofumpt",
 	"ty",
 	"astro",
 	"ruff",
 	"eslint",
 	"tailwindcss",
-	"postgres_lsp",
 	"clangd",
 	"cssls",
 	"cssmodules_ls",
-	"terraform",
 	"vtsls",
 	"yamlls",
 	"jsonls",
 	"kulala_ls",
-	"prismals",
 	"dartls",
-})
+}
+
+vim.lsp.enable(servers)
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "<filetype>" },
@@ -118,3 +113,9 @@ vim.filetype.add({
 		["http"] = "http",
 	},
 })
+
+vim.api.nvim_create_user_command("LspLog", function()
+	vim.cmd.tabnew(vim.lsp.log.get_filename())
+end, { desc = "Open the LSP client log in a new tab" })
+
+return { servers = servers }

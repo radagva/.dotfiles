@@ -57,6 +57,10 @@
       "rev": "154eb5ff5b96d0641307113fa385eaf0d36d9796",
       "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
+    "hologram.nvim": {
+      "rev": "f5194f71ec1578d91b2e3119ff08e574e2eab542",
+      "src": "https://github.com/edluffy/hologram.nvim"
+    },
     "image_preview.nvim": {
       "rev": "d015f9c707916735768d19b8659fc6d33bdccf92",
       "src": "https://github.com/adelarsq/image_preview.nvim"
@@ -167,6 +171,10 @@
     "nvim-notify": {
       "rev": "8701bece920b38ea289b457f902e2ad184131a5d",
       "src": "https://github.com/rcarriga/nvim-notify"
+    },
+    "nvim-regexplainer": {
+      "rev": "5524915648a545e331b2fa7a3c80d32f0c14e8bd",
+      "src": "https://github.com/bennypowers/nvim-regexplainer"
     },
     "nvim-treesitter": {
       "rev": "7caec274fd19c12b55902a5b795100d21531391f",

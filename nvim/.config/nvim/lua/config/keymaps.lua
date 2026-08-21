@@ -132,6 +132,18 @@ map("n", "<leader>uw", function()
 	vim.o.wrap = wrap
 end, { desc = "Toggle line wrap", silent = true })
 
+-- lsp
+map("n", "<leader>l", "", { desc = "LSP", silent = true })
+map("n", "<leader>ls", function()
+	require("core.lsp.panel").open()
+end, { desc = "LSP clients" })
+map("n", "<leader>lr", function()
+	require("core.lsp.restart").restart_buffer_clients()
+end, { desc = "Restart attached LSP" })
+map("n", "<leader>ll", function()
+	require("core.lsp.log").open()
+end, { desc = "LSP logs" })
+
 -- vim.keymap.set("n", "<C-h>", function()
 -- 	require("smart-splits").move_cursor_left()
 -- end)
