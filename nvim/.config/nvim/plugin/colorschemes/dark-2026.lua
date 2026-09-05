@@ -3,7 +3,7 @@ local highlights = require("config.utils").highlights
 
 -- Local development checkout wins over the published plugin, so edits under
 -- ~/Developer show up on the next :colorscheme dark-2026.
-local dev = vim.fn.expand("~/Developer/Projects/personal/nvim-packages/dark-2026")
+local dev = vim.fn.expand("~/Developer/personal/themes/code-2026/nvim")
 
 if vim.uv.fs_stat(dev) then
 	vim.opt.runtimepath:prepend(dev)
@@ -11,8 +11,9 @@ else
 	vim.pack.add({ gh("dark-2026-theme/nvim", { name = "dark-2026" }) })
 end
 
-require("dark-2026").setup({
+require("code-2026").setup({
 	transparent = true,
+	background = "light",
 	styles = {
 		comments = { italic = true },
 		keywords = { italic = true },

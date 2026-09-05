@@ -183,3 +183,9 @@ export PATH=/Users/radagv/.opencode/bin:$PATH
 # flutter
 export PATH="/Users/radagv/.config/sdk/flutter/bin:$PATH"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/radagv/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/radagv/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/radagv/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/radagv/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
