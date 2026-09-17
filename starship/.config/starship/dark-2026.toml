@@ -1,0 +1,293 @@
+# dark-2026 -- Starship
+# Port of the code-2026 palette: https://github.com/code-2026-theme/nvim
+#
+# Install:
+#   mkdir -p ~/.config && ln -sf /path/to/dark-2026.toml ~/.config/starship.toml
+# or copy the file:
+#   cp dark-2026.toml ~/.config/starship.toml
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = '$character$directory$git_branch$git_status$git_commit$git_state$nodejs$python$rust$golang$java$c$cmake$docker_context$package$cmd_duration$line_break$character'
+
+add_newline = false
+
+palette = 'code2026'
+
+# ── Palette ──────────────────────────────────────────────────────────────────
+# Semantic colors from the code-2026 dark palette.
+# Override any key here or in your own starship.toml via [palettes.code2026].
+
+[palettes.code2026]
+# Backgrounds (unused in prompt, documented for reference)
+bg           = '#121314'
+bg_alt       = '#191a1b'
+bg_menu      = '#202122'
+bg_line      = '#242526'
+bg_select    = '#276782'
+bg_match     = '#1e4252'
+border       = '#2a2b2c'
+border_alt   = '#333536'
+
+# Foregrounds
+fg           = '#bbbebf'
+fg_alt       = '#bfbfbf'
+fg_dim       = '#8c8c8c'
+fg_muted     = '#555555'
+white        = '#ffffff'
+
+# Accent
+accent       = '#3994bc'
+accent_dim   = '#297aa0'
+accent_alt   = '#48a0c7'
+
+# Syntax
+comment      = '#8b949e'
+string       = '#a5d6ff'
+regex        = '#7ee787'
+number       = '#79c0ff'
+keyword      = '#ff7b72'
+func         = '#d2a8ff'
+type         = '#4ec9b0'
+variable     = '#bbbebf'
+constant     = '#79c0ff'
+operator     = '#ff7b72'
+preproc      = '#ff7b72'
+annotation   = '#ffa657'
+param        = '#ffa657'
+member       = '#79c0ff'
+tag          = '#7ee787'
+attr         = '#79c0ff'
+module       = '#4ec9b0'
+macro        = '#48a0c7'
+
+# Diagnostics / status
+err          = '#f44747'
+warn         = '#cd9731'
+info         = '#6796e6'
+hint         = '#3a94bc'
+ok           = '#7ee787'
+debug        = '#b267e6'
+
+# ── Character ────────────────────────────────────────────────────────────────
+
+[character]
+success_symbol = '[❯](bold accent)'
+error_symbol   = '[❯](bold keyword)'
+vimcmd_symbol  = '[❮](bold accent)'
+
+# ── Directory ────────────────────────────────────────────────────────────────
+
+[directory]
+style = 'bold accent'
+truncation_length = 3
+truncation_symbol = '…/'
+read_only = ' '
+
+# ── Git ──────────────────────────────────────────────────────────────────────
+
+[git_branch]
+style = 'bold func'
+symbol = ' '
+
+[git_status]
+style = 'bold fg'
+ahead = '[⇡${count}](bold ok)'
+behind = '[⇣${count}](bold warn)'
+diverged = '[⇣${ahead_count}⇡${behind_count}](bold keyword)'
+deleted = '[${count}](bold err)'
+modified = '[${count}](bold annotation)'
+staged = '[${count}](bold accent)'
+untracked = '[${count}](bold fg_dim)'
+renamed = '[${count}](bold string)'
+
+[git_commit]
+style = 'bold comment'
+tag_symbol = ' '
+
+[git_state]
+style = 'bold keyword'
+rebase = 'REBASE'
+merge = 'MERGE'
+cherry_pick = 'CHERRY-PICK'
+bisect = 'BISECT'
+
+# ── Languages ────────────────────────────────────────────────────────────────
+
+[nodejs]
+style = 'bold func'
+symbol = ' '
+
+[python]
+style = 'bold func'
+symbol = ' '
+
+[rust]
+style = 'bold type'
+symbol = ' '
+
+[golang]
+style = 'bold type'
+symbol = ' '
+
+[java]
+style = 'bold type'
+symbol = ' '
+
+[c]
+style = 'bold number'
+symbol = ' '
+
+[cpp]
+style = 'bold number'
+symbol = ' '
+
+[cmake]
+style = 'bold string'
+symbol = ' '
+
+[docker_context]
+style = 'bold accent_alt'
+symbol = ' '
+
+[swift]
+style = 'bold annotation'
+symbol = ' '
+
+[kotlin]
+style = 'bold annotation'
+symbol = ' '
+
+[lua]
+style = 'bold annotation'
+symbol = '  '
+
+[ruby]
+style = 'bold annotation'
+symbol = ' '
+
+[php]
+style = 'bold func'
+symbol = ' '
+
+[haskell]
+style = 'bold debug'
+symbol = ' '
+
+[elixir]
+style = 'bold debug'
+symbol = ' '
+
+[scala]
+style = 'bold annotation'
+symbol = ' '
+
+[zig]
+style = 'bold type'
+symbol = ' '
+
+[terraform]
+style = 'bold accent'
+symbol = ' '
+
+[nix_shell]
+style = 'bold accent_alt'
+symbol = ' '
+
+# ── Package / Environment ───────────────────────────────────────────────────
+
+[package]
+style = 'bold warn'
+symbol = ' '
+
+[conda]
+style = 'bold ok'
+symbol = ' '
+
+[pipenv]
+style = 'bold ok'
+symbol = ' '
+
+[virtualenv]
+style = 'bold ok'
+symbol = ' '
+
+# ── System ───────────────────────────────────────────────────────────────────
+
+[cmd_duration]
+style = 'bold fg_dim'
+min_time = 2000
+
+[time]
+style = 'bold fg_muted'
+disabled = false
+format = 'at [$time]($style)'
+
+[username]
+style = 'bold fg_dim'
+format = '[$user]($style) '
+
+[hostname]
+style = 'bold fg_dim'
+format = '[$hostname]($style) '
+
+[sudo]
+style = 'bold keyword'
+
+[jobs]
+style = 'bold warn'
+symbol = ' '
+
+[battery]
+full_symbol = ' '
+charging_symbol = ' '
+discharging_symbol = ' '
+unknown_symbol = ' '
+empty_symbol = ' '
+
+[[battery.display]]
+threshold = 30
+style = 'bold warn'
+
+[[battery.display]]
+threshold = 10
+style = 'bold err'
+
+# ── Status ───────────────────────────────────────────────────────────────────
+
+[status]
+style = 'bold keyword'
+format = '[$symbol($common_symbol_for_signal_name $signal_name )($meanings )]($style)'
+success_symbol = ''
+signal_symbol = ' '
+
+# ── Container / Shell ───────────────────────────────────────────────────────
+
+[container]
+style = 'bold keyword'
+
+[shell]
+style = 'bold fg_dim'
+bash_indicator = ''
+zsh_indicator = ''
+fish_indicator = ''
+powershell_indicator = ''
+ion_indicator = ''
+elvish_indicator = ''
+nu_indicator = ''
+xonsh_indicator = ''
+unknown_indicator = ''
+
+# ── Discontinued / rarely-used modules ──────────────────────────────────────
+
+[aws]
+disabled = true
+
+[azure]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[openstack]
+disabled = true

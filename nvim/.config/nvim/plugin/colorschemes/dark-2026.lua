@@ -13,7 +13,7 @@ end
 
 require("code-2026").setup({
 	transparent = true,
-	background = "light",
+	background = "sync",
 	styles = {
 		comments = { italic = true },
 		keywords = { italic = true },

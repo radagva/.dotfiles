@@ -5,9 +5,10 @@ vim.pack.add({
 	gh("echasnovski/mini.icons"),
 	gh("folke/which-key.nvim"),
 	gh("nvim-tree/nvim-web-devicons"),
+	gh("nvzone/showkeys"),
 })
 
-local icons, whichkey = require("mini.icons"), require("which-key")
+local icons, whichkey, showkeys = require("mini.icons"), require("which-key"), require("showkeys")
 
 icons.setup()
 
@@ -18,5 +19,13 @@ icons.setup()
 -- })
 
 whichkey.setup({ preset = "modern" })
+
+showkeys.setup({
+	timeout = 1,
+	maxkeys = 5,
+	-- more opts
+})
+
+vim.cmd("ShowkeysToggle")
 
 vim.cmd.colorscheme("dark-2026")

@@ -5,6 +5,7 @@ local servers = {
 	"astro",
 	"ruff",
 	"eslint",
+	"oxlint",
 	"tailwindcss",
 	"clangd",
 	"cssls",
