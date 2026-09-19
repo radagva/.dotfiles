@@ -145,8 +145,7 @@ esac
 
 # fnm
 export PATH="/Users/radagv/Library/Application Support/fnm:$PATH"
-eval "`fnm env`"
-
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive --install-if-missing)"
 
 export PATH="/opt/homebrew/opt/ruby@3.1/bin:$PATH"
 export PATH="/opt/homebrew/lib/ruby/gems/3.1.0/bin:$PATH"
