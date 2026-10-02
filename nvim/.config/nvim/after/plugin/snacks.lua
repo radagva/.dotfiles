@@ -1,11 +1,8 @@
-local gh = require("config.utils").gh
-
-vim.pack.add({ gh("folke/snacks.nvim"), gh("folke/persistence.nvim") })
-
 local snacks = require("snacks")
 
 snacks.setup({
 	scope = {},
+	lazygit = {},
 	input = { enabled = false },
 	rename = { enabled = false },
 	bigfile = { enabled = true },

@@ -1,16 +1,4 @@
-local gh = require("config.utils").gh
-
-vim.pack.add({
-	gh("folke/snacks.nvim"),
-	gh("MeanderingProgrammer/render-markdown.nvim", { name = "render-markdown" }),
-	gh("nvim-treesitter/nvim-treesitter"),
-	gh("nvim-mini/mini.nvim"),
-	gh("obsidian-nvim/obsidian.nvim", { name = "obsidian" }),
-})
-
-local markdown, obsidian = require("render-markdown"), require("obsidian")
-
-obsidian.setup({
+require("obsidian").setup({
 	legacy_commands = false,
 	note_id_func = function(title)
 		if title == nil then
@@ -66,7 +54,7 @@ vim.keymap.set("n", "<leader>os", function()
 	})
 end, { desc = "New note", silent = true })
 
-markdown.setup({
+require("render-markdown").setup({
 	bullet = {
 		right_pad = 1,
 	},

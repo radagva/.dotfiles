@@ -1,20 +1,4 @@
-local gh = require("config.utils").gh
-
-vim.pack.add({
-	gh("nvim-neotest/nvim-nio"),
-	gh("nvim-lua/plenary.nvim"),
-	gh("antoinemadec/FixCursorHold.nvim"),
-	gh("nvim-treesitter/nvim-treesitter"),
-	gh("nvim-neotest/neotest-python"),
-	gh("nvim-neotest/neotest-jest"),
-	gh("marilari88/neotest-vitest"),
-	gh("nvim-neotest/neotest"),
-	gh("radagva/neotest-dart", { version = "monorepo-support" }),
-})
-
-local neotest = require("neotest")
-
-neotest.setup({
+require("neotest").setup({
 	summary = {
 		open = "botright vsplit | vertical resize 80",
 	},

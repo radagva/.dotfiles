@@ -1,0 +1,10 @@
+-- local gh = require("config.utils").github
+--
+-- vim.pack.add({ gh("datsfilipe/vesper.nvim") })
+--
+-- require("vesper").setup({
+-- 	transparent = true,
+-- 	overrides = {
+-- 		NormalFloat = { bg = "none" },
+-- 	},
+-- })

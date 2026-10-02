@@ -1,15 +1,4 @@
-local gh = require("config.utils").gh
-
-vim.pack.add({
-	gh("mfussenegger/nvim-dap", { name = "dap" }),
-	gh("nvim-neotest/nvim-nio"),
-	gh("igorlfs/nvim-dap-view", { version = vim.version.range("1.*") }),
-	gh("mfussenegger/nvim-dap-python"),
-	gh("mxsdev/nvim-dap-vscode-js"),
-	gh("leoluz/nvim-dap-go"),
-})
-
-local dap, dapview, dapgo, dappython = require("dap"), require("dap-view"), require("dap-go"), require("dap-python")
+local dap = require("dap")
 
 dap.defaults.fallback.switchbuf = "usetab,uselast"
 
@@ -20,8 +9,8 @@ sign("DapBreakpoint", { text = " ", texthl = "DiagnosticSignInfo", linehl = "
 sign("DapBreakpointRejected", { text = " ", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 sign("DapStopped", { text = " ", texthl = "DiagnosticSignWarn", linehl = "Visual", numhl = "" })
 
-dappython.setup("uv")
-dapgo.setup()
+require("dap-python").setup("uv")
+require("dap-go").setup()
 
 dap.adapters.dart = {
 	type = "executable",
@@ -34,7 +23,7 @@ dap.adapters.dart = {
 -- dap.listeners.before.event_terminated.dapui_config = dapview.close
 -- dap.listeners.before.event_exited.dapui_config = dapview.close
 
-dapview.setup({
+require("dap-view").setup({
 	winbar = {
 		controls = {
 			enabled = true,

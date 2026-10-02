@@ -26,12 +26,12 @@ function M.merge(t1, t2)
 	return t1
 end
 
-M.github = function(repo)
+M.gh = function(repo)
 	return "https://github.com/" .. repo
 end
 
-M.gh = function(repo, opts)
-	return M.merge({ src = M.github(repo) }, opts or {})
+M.github = function(repo, opts)
+	return M.merge({ src = M.gh(repo) }, opts or {})
 end
 
 M.highlights = function(hl, _, overrides)

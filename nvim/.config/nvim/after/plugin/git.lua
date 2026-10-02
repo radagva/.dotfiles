@@ -1,10 +1,3 @@
-local gh = require("config.utils").gh
-
-vim.pack.add({
-	gh("tpope/vim-fugitive"),
-	gh("lewis6991/gitsigns.nvim"),
-})
-
 local gitsigns = require("gitsigns")
 
 gitsigns.setup({
@@ -48,3 +41,5 @@ gitsigns.setup({
 		vim.keymap.set("n", "<leader>ggd", gitsigns.diffthis, { desc = "Diff this" })
 	end,
 })
+
+vim.keymap.set("n", "<leader>G", Snacks.lazygit.open, { desc = "Open Lazygit", silent = true, noremap = true })

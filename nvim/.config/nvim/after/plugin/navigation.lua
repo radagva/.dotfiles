@@ -1,0 +1,18 @@
+require("persisted").setup()
+
+local smartsplits = require("smart-splits")
+smartsplits.setup()
+
+vim.keymap.set("n", "<C-h>", smartsplits.move_cursor_left)
+vim.keymap.set("n", "<C-j>", smartsplits.move_cursor_down)
+vim.keymap.set("n", "<C-k>", smartsplits.move_cursor_up)
+vim.keymap.set("n", "<C-l>", smartsplits.move_cursor_right)
+vim.keymap.set("n", "<C-\\>", smartsplits.move_cursor_previous)
+
+local flashmodes = { "n", "x", "o" }
+
+local flash = require("flash")
+
+vim.keymap.set(flashmodes, "s", flash.jump, { desc = "Flash", noremap = true })
+vim.keymap.set(flashmodes, "S", flash.treesitter, { desc = "Flash Treesitter", noremap = true })
+vim.keymap.set(flashmodes, "R", flash.remote, { desc = "Flash Remote", noremap = true })

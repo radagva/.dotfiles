@@ -1,10 +1,3 @@
-local gh = require("config.utils").gh
-
-vim.pack.add({
-	gh("stevearc/oil.nvim"),
-	gh("adelarsq/image_preview.nvim"),
-})
-
 require("oil").setup({
 	win_options = {
 		winbar = "%{v:lua.require('oil').get_current_dir()}",
@@ -20,7 +13,5 @@ require("oil").setup({
 		["<C-h>"] = { "actions.select", opts = { horizontal = true, close = true } },
 	},
 })
-
-require("image_preview").setup()
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
