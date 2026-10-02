@@ -10,7 +10,6 @@ sign("DapBreakpointRejected", { text = " ", texthl = "DiagnosticSignError", l
 sign("DapStopped", { text = " ", texthl = "DiagnosticSignWarn", linehl = "Visual", numhl = "" })
 
 require("dap-python").setup("uv")
-require("dap-go").setup()
 
 dap.adapters.dart = {
 	type = "executable",

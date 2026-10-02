@@ -3,6 +3,7 @@ local snacks = require("snacks")
 snacks.setup({
 	scope = {},
 	lazygit = {},
+	gh = {},
 	input = { enabled = false },
 	rename = { enabled = false },
 	bigfile = { enabled = true },

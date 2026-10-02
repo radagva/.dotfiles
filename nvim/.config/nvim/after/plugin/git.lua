@@ -42,4 +42,10 @@ gitsigns.setup({
 	end,
 })
 
-vim.keymap.set("n", "<leader>G", Snacks.lazygit.open, { desc = "Open Lazygit", silent = true, noremap = true })
+function ShowLazyGit()
+	Snacks.lazygit.open()
+end
+
+vim.api.nvim_create_user_command("G", ShowLazyGit, { desc = "Show lazygit" })
+
+-- vim.keymap.set("n", "<leader>G", Snacks.lazygit.open, { desc = "Open Lazygit", silent = true, noremap = true })

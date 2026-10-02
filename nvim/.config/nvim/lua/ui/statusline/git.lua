@@ -50,7 +50,7 @@ return function()
 		return ""
 	end
 
-	local head = git_info.head
+	local head = (#git_info.head > 20) and (git_info.head:sub(1, 20) .. "...") or git_info.head
 	local added = (git_info.added and git_info.added > 0) and (" +" .. git_info.added) or ""
 	local changed = (git_info.changed and git_info.changed > 0) and (" ~" .. git_info.changed) or ""
 	local removed = (git_info.removed and git_info.removed > 0) and (" -" .. git_info.removed) or ""

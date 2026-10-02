@@ -1,56 +1,46 @@
 local github = require("config.utils").github
 
 vim.pack.add({
-	github("nvim-lua/plenary.nvim"),
-	github("MunifTanjim/nui.nvim"),
-	github("nvim-tree/nvim-web-devicons"),
-	-- github("mistweaverco/kulala.nvim"),
-	github("mason-org/mason.nvim"),
-	github("nvim-treesitter/nvim-treesitter"),
-	github("neovim/nvim-lspconfig"),
-	github("saghen/blink.cmp", { "v1.10.1" }),
-	github("stevearc/conform.nvim"),
-	github("tpope/vim-dotenv"),
-	github("tpope/vim-dadbod"),
-	github("kristijanhusak/vim-dadbod-completion"),
-	github("kristijanhusak/vim-dadbod-ui"),
-	github("windwp/nvim-ts-autotag"),
-	github("dmmulroy/tsc.nvim"),
-	github("benomahony/uv.nvim"),
-	github("catgoose/nvim-colorizer.lua"),
-	github("mfussenegger/nvim-dap"),
-	github("MagicDuck/grug-far.nvim"),
-	github("nvim-flutter/flutter-tools.nvim"),
-	github("nvim-telescope/telescope.nvim"),
-	github("wasabeef/melos.nvim"),
-	github("igorlfs/nvim-dap-view", { version = vim.version.range("1.*") }),
-	github("mfussenegger/nvim-dap-python"),
-	github("mxsdev/nvim-dap-vscode-js"),
-	github("leoluz/nvim-dap-go"),
-	-- github("tpope/vim-fugitive"),
-	github("lewis6991/gitsigns.nvim"),
-	github("nvim-mini/mini.nvim"),
-	github("echasnovski/mini.icons"),
-	github("echasnovski/mini.ai"),
-	github("echasnovski/mini.pairs"),
-	github("echasnovski/mini.surround"),
-	github("folke/snacks.nvim"),
-	github("folke/flash.nvim"),
-	github("folke/persistence.nvim"),
-	github("mrjones2014/smart-splits.nvim"),
-	github("olimorris/persisted.nvim"),
-	github("MeanderingProgrammer/render-markdown.nvim", { name = "render-markdown" }),
-	github("obsidian-nvim/obsidian.nvim", { name = "obsidian" }),
-	github("stevearc/oil.nvim"),
-	-- github("antoinemadec/FixCursorHold.nvim"),
-	github("nvim-neotest/neotest"),
-	github("nvim-neotest/nvim-nio"),
-	github("nvim-neotest/neotest-python"),
-	github("nvim-neotest/neotest-jest"),
-	github("marilari88/neotest-vitest"),
-	github("radagva/neotest-dart", { version = "monorepo-support" }),
-	github("folke/which-key.nvim"),
-	github("nvzone/showkeys"),
+	github("nvim-lua/plenary.nvim"), -- dependency: for testing packages, required by melos
+	github("nvim-telescope/telescope.nvim"), -- dependency: required by melos
+
+	github("catgoose/nvim-colorizer.lua"), -- ui: for displaying colors codes with color presentation
+	github("stevearc/oil.nvim"), -- ui: directory navigation
+	github("folke/which-key.nvim"), -- ui: show keymaps tree
+	github("nvzone/showkeys"), -- ui: show keys pressed
+
+	github("mason-org/mason.nvim"), -- coding: for managing LSPs
+	github("neovim/nvim-lspconfig"), -- coding: for managing LSPs configs
+	github("nvim-treesitter/nvim-treesitter"), -- coding: manage syntax highlight + semantic tokens
+	github("saghen/blink.cmp", { "v1.10.1" }), -- coding: for auto completion + CMP
+	github("stevearc/conform.nvim"), -- coding: for linting and formatting
+	github("tpope/vim-dotenv"), -- coding: for parsing & loading ENV variables
+	github("tpope/vim-dadbod"), -- coding/ui: for running SQL queries
+	github("kristijanhusak/vim-dadbod-completion"), -- coding: for SQL autocompletion
+	github("kristijanhusak/vim-dadbod-ui"), -- coding/ui: for showing a DB UI
+	github("windwp/nvim-ts-autotag"), -- coding: for autoclosing/renaming html/xml tags
+	github("dmmulroy/tsc.nvim"), -- coding: for typecheking typescript projects
+	github("benomahony/uv.nvim"), -- coding: for loading and managing UV python projects
+
+	github("mfussenegger/nvim-dap"), -- debug: for setting up debugging sessions
+	github("igorlfs/nvim-dap-view", { -- debug: for displaying a debug UI
+		version = vim.version.range("1.*"),
+	}),
+	github("mfussenegger/nvim-dap-python"), -- debug: for setting up python DAP
+	github("nvim-flutter/flutter-tools.nvim"), -- language: enable flutter code/project actions
+	github("wasabeef/melos.nvim"), -- language: enable flutter package manager actions
+	github("lewis6991/gitsigns.nvim"), -- git: enable git signs in the gutter bar and git diagnostics
+
+	github("mrjones2014/smart-splits.nvim"), -- utils: for easy integration with terminal/tmux splits + nvim splits
+	github("nvim-mini/mini.nvim"), -- utils: for enabling many mini utils
+	github("echasnovski/mini.icons"), -- utils: for using mini icons instead of web dev icons
+	github("echasnovski/mini.ai"), -- utils: for extenging Inside/Around text object actions
+	github("echasnovski/mini.pairs"), -- utils: for auto creating closing pair (")]}'`)
+	github("echasnovski/mini.surround"), -- utils: for managing surrounding characters
+	github("MagicDuck/grug-far.nvim"), -- utils: for performiing global search & replace
+	github("folke/snacks.nvim"), -- utils: swiss knife of plugins
+	github("folke/flash.nvim"), -- utils: for highlighted text search
+	github("olimorris/persisted.nvim"), -- utils: for persisting last session scoped by directory
 })
 
 require("core.lsp")
@@ -58,6 +48,5 @@ require("config.options")
 require("config.keymaps")
 require("config.autocmd")
 require("ui.statusline")
-
 require("ui.winbar").setup()
 require("ui.pack")
