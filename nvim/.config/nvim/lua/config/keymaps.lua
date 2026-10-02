@@ -11,6 +11,7 @@ map({ "n" }, "<leader>f", "<Nop>", opts({ silent = true, desc = "Format" }))
 map({ "n" }, "<leader>fw", "<Nop>", opts({ silent = true, desc = "Word" }))
 map({ "n" }, "<leader>fwU", "viwU", opts({ silent = true, desc = "Uppercase" }))
 map({ "n" }, "<leader>fwu", "viwu", opts({ silent = true, desc = "Lowercase" }))
+
 -- Remove highlight after search by pressing Esc
 map({ "n" }, "<Esc>", "<cmd>nohl<cr>", opts({ silent = true }))
 

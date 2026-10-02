@@ -34,9 +34,12 @@ function M.open()
 		ft = "log",
 		wo = { wrap = false, cursorline = true },
 		keys = {
-			R = { function(win)
-				set_lines(win, read_lines())
-			end, desc = "refresh" },
+			R = {
+				function(win)
+					set_lines(win, read_lines())
+				end,
+				desc = "refresh",
+			},
 		},
 		footer_keys = true,
 		on_win = function(win)
