@@ -46,6 +46,6 @@ return function()
 		modified_indicator = colors.hl("WarningMsg", " ●")
 	end
 
-	return filename
-	-- return path_prefix .. filename_colored .. modified_indicator
+	-- return filename
+	return path_prefix .. filename_colored .. modified_indicator
 end

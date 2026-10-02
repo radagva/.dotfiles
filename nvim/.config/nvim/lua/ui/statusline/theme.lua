@@ -53,18 +53,13 @@ end
 -- count, a wifi glyph. Each borrows the foreground of the first group listed
 -- that the colorscheme actually defines, so accents follow the scheme too, and
 -- each sits on the segment's own background so the block stays solid behind it.
---
--- `verbatim` opts out of that: the group is used whole, background included.
--- ErrorMsg and WarningMsg are transparent, so the diagnostic counts show the
--- bar through them rather than the segment's bg. Drop `verbatim` to make them
--- match the way the git counts are drawn.
 local accents = {
 	branch = { groups = { c.highlights.git_branch, "Function" } },
 	added = { groups = { "GitSignsAdd", "DiagnosticOk", "String" } },
 	changed = { groups = { "GitSignsChange", "DiagnosticWarn" } },
 	removed = { groups = { "GitSignsDelete", "DiagnosticError" } },
-	error = { group = "ErrorMsg", verbatim = true },
-	warn = { group = "WarningMsg", verbatim = true },
+	error = { groups = { "ErrorMsg", "DiagnosticError" } },
+	warn = { groups = { "WarningMsg", "DiagnosticWarn" } },
 	wifi = { groups = { c.highlights.wifi, "Constant" } },
 	dart = { groups = { c.highlights.dart, "Type" } },
 	device = { groups = { c.highlights.device, "Constant" } },
@@ -83,8 +78,14 @@ local function style(segment, bg)
 	local spec = specs()[segment]
 	local opts = { bg = bg or spec.bg }
 	opts.fg = spec.contrast and palette.readable(opts.bg) or spec.fg
+
 	return {
 		hl = define(group_name(segment), opts),
+		-- `bg` is the block's own color, used as the fg of the wedge growing
+		-- out of it. `seam` is what neighbours taper into: normally the same,
+		-- but seam = "none" lets them point at the bar instead -- the wedge
+		-- leaving the segment must still be painted in the block's colour.
+		bg = opts.bg,
 		seam = spec.seam or opts.bg,
 	}
 end
@@ -118,9 +119,6 @@ function M.accent(segment, name, text)
 		return ""
 	end
 	local accent = accents[name]
-	if accent.verbatim then
-		return c.hl(accent.group, text)
-	end
 	return c.exthl({ fg = palette.fg_of(accent.groups), bg = specs()[segment].bg }, text)
 end
 

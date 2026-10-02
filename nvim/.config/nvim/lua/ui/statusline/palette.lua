@@ -20,6 +20,7 @@ local anchors = {
 	text = { "Normal", "StatusLine" },
 	muted = { "Comment", "NonText" },
 	surface = { "CursorLine", "Visual", "Pmenu" }, -- read for bg, not fg
+	surface_dim = { "CursorLine", "Visual", "Pmenu" }, -- read for bg, not fg
 	normal = { "String", "@string" },
 	visual = { "Function", "@function" },
 	replace = { "DiagnosticError", "ErrorMsg" },

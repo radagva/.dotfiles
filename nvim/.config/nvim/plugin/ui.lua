@@ -26,6 +26,4 @@ showkeys.setup({
 	-- more opts
 })
 
-vim.cmd("ShowkeysToggle")
-
 vim.cmd.colorscheme("dark-2026")

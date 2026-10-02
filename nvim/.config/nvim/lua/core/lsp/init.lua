@@ -87,10 +87,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- })
 
 vim.diagnostic.config({
-	virtual_text = false,
-	virtual_lines = {
-		current_line = true, -- Show virtual lines only for the current active line
-	},
+	virtual_text = true,
+	-- virtual_lines = {
+	-- 	current_line = true, -- Show virtual lines only for the current active line
+	-- },
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,

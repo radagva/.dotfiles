@@ -30,7 +30,7 @@ function M.left(segs, trailing)
 
 		if i < #segs or trailing then
 			local next_seam = (segs[i + 1] and segs[i + 1].style.seam) or "none"
-			table.insert(parts, theme.wedge(seg.style.seam, next_seam, ARROW_R))
+			table.insert(parts, theme.wedge(seg.style.bg, next_seam, ARROW_R))
 		end
 	end
 
@@ -49,7 +49,7 @@ function M.right(segs, leading)
 	for i, seg in ipairs(segs) do
 		if i > 1 or leading then
 			local prev_seam = (segs[i - 1] and segs[i - 1].style.seam) or "none"
-			table.insert(parts, theme.wedge(seg.style.seam, prev_seam, ARROW_L))
+			table.insert(parts, theme.wedge(seg.style.bg, prev_seam, ARROW_L))
 		end
 
 		table.insert(parts, content_of(seg))
