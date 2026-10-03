@@ -1,8 +1,6 @@
 local github = require("config.utils").github
 local highlights = require("config.utils").highlights
 
--- Local development checkout wins over the published plugin, so edits under
--- ~/Developer show up on the next :colorscheme dark-2026.
 local dev = vim.fn.expand("~/Developer/personal/themes/code-2026/nvim")
 
 if vim.uv.fs_stat(dev) then
@@ -20,8 +18,6 @@ require("code-2026").setup({
 		floats = "transparent",
 	},
 	on_highlights = function(hl, colors)
-		-- The shared util blanks these groups' fg along with their bg; put the
-		-- theme's own foregrounds back.
 		highlights(hl, colors, {
 			NormalFloat = { fg = colors.fg },
 			FloatBorder = { fg = colors.border_alt },
