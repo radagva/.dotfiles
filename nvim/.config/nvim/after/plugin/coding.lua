@@ -21,6 +21,7 @@ require("conform").setup({
 		markdown = { "prettierd" },
 		python = { "ruff_format", "ruff_fix", "isort" },
 		dart = { "dart_format" },
+		swift = { "swift_format" },
 	},
 	notify_on_error = false,
 	format_on_save = function(bufnr)
@@ -124,7 +125,6 @@ vim.filetype.add({
 		["http"] = "http",
 	},
 })
-
 
 require("melos").setup()
 
@@ -241,7 +241,6 @@ require("uv").setup({
 	keymaps = false,
 })
 
-
 require("tsc").setup({
 	use_trouble_qflist = true,
 })
@@ -258,4 +257,3 @@ require("nvim-ts-autotag").setup({
 		},
 	},
 })
-

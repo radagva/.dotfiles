@@ -1,6 +1,7 @@
 # command = "/bin/bash"
 
-theme = dark:dark-2026,light:light-2026
+theme = autumn
+# theme = dark:dark-2026,light:light-2026
 # macos-titlebar-style = hidden
 # window-decoration = none
 macos-window-shadow = false

@@ -15,6 +15,8 @@ local servers = {
 	"jsonls",
 	"kulala_ls",
 	"dartls",
+	"basedpyright",
+	"sourcekit",
 }
 
 vim.lsp.enable(servers)

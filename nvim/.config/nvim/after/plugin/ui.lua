@@ -1,10 +1,10 @@
 require("mini.icons").setup()
 
--- fidget.setup({
--- 	notification = {
--- 		window = { winblend = 0 },
--- 	},
--- })
+require("fidget").setup({
+	notification = {
+		window = { winblend = 0 },
+	},
+})
 
 require("which-key").setup({ preset = "modern" })
 
@@ -14,4 +14,5 @@ require("showkeys").setup({
 	-- more opts
 })
 
-vim.cmd.colorscheme("dark-2026")
+-- vim.cmd.colorscheme("dark-2026")
+vim.cmd.colorscheme("mochalate")

@@ -8,6 +8,7 @@ vim.pack.add({
 	github("stevearc/oil.nvim"), -- ui: directory navigation
 	github("folke/which-key.nvim"), -- ui: show keymaps tree
 	github("nvzone/showkeys"), -- ui: show keys pressed
+	github("j-hui/fidget.nvim"), -- utils: shows an spinner and notifications while LSP is loading
 
 	github("mason-org/mason.nvim"), -- coding: for managing LSPs
 	github("neovim/nvim-lspconfig"), -- coding: for managing LSPs configs
